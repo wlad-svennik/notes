@@ -1,6 +1,6 @@
 # A Geometric Algebra type formalism for doing computations in hyperbolic geometry
 
-Jan Trecht and I have developed a simple formalism for doing computations in 2D hyperbolic geometry. The ideas are inspired by Isaak Yaglom's two books *Complex Numbers in Geometry* and *A Non-Euclidean Geometry and Its Physical Basis*. I summarise it here. The formalism essentially constructs a bijection between $2 \times 2$ real matrices and hyperbolic cycles. The hyperbolic congruences which act on these cycles are also represented by the same matrices. The main current application is to visualise $2 \times 2$ real matrices as hyperbolic cycles, perhaps in order to plot the dynamics of iterative matrix algorithms like the QR algorithm.
+I present a simple computational formalism for reducing parts of hyperbolic geometry to linear algebra. This is courtesy of me and Jan Trecht. The idea is inspired by Isaak Yaglom's two books *Complex Numbers in Geometry* and *A Non-Euclidean Geometry and Its Physical Basis*. I summarise it here. The formalism essentially constructs a bijection between $2 \times 2$ real matrices and hyperbolic cycles. The hyperbolic congruences which act on these cycles are also represented by $2 \times 2$ real matrices. The main current application is to visualise $2 \times 2$ real matrices as hyperbolic cycles, perhaps in order to plot the dynamics of iterative matrix algorithms like the QR algorithm.
 
 ## Positive and negative matrices
 
