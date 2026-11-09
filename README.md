@@ -1,16 +1,21 @@
-# Mathematical notes and proof experiments
+# Mathematical software and research
 
-This repository collects mathematical research notes, exact computational artifacts, and formal proof developments. Items at different stages of verification are labelled accordingly.
+Research notes and computational projects in geometry, linear algebra, automatic differentiation and formal verification.
 
-## Featured project
+## New Foundations and Busy Beaver
 
-**[New Foundations and runtime Busy Beaver at 210 states](nf-bb210/README.md)** — a 210-state binary Turing machine, an external Lean 4 metatheorem about NF, and a reproducible source snapshot (5 November 2026). The proof is conditional on clearly identified assumptions; independent reproduction is still requested.
+**[New Foundations and runtime Busy Beaver at 210 states](nf-bb210/README.md)**
 
-## Other projects
+A 210-state binary Turing machine and an external Lean 4 proof development about NF. The project includes the machine table, theorem declarations, recorded audit results and the complete source snapshot from 5 November 2026.
 
-- [Laguerre transformations](https://github.com/wlad-svennik/laguerre_transformations)
-- [Hyperbolic Laguerre transformations](https://github.com/wlad-svennik/hyperbolic_laguerre_transformations)
-- [Bunch–Parlett computations](https://github.com/wlad-svennik/bunchparlett)
-- [Memoized coduals](https://github.com/wlad-svennik/memoized_coduals)
+The project README states the consistency and soundness assumptions separately and explains how to reproduce the recorded checks.
 
-The repository is a research record, not a claim that every experiment has reached publication-ready status.
+## Selected software
+
+| Project | Contents |
+| --- | --- |
+| [Laguerre transformations](https://github.com/wlad-svennik/laguerre_transformations) | Python code and animations for Laguerre geometry. |
+| [Linear algebra visualisations](https://github.com/wlad-svennik/la-vis) | A Pygame demonstration of iterative matrix dynamics. |
+| [Hyperbolic Laguerre transformations](https://github.com/wlad-svennik/hyperbolic_laguerre_transformations) | Python experiments with transformations of hyperbolic cycles. |
+| [Bunch–Parlett factorisation](https://github.com/wlad-svennik/bunchparlett) | A NumPy implementation of a symmetric matrix factorisation. |
+| [Memoized coduals](https://github.com/wlad-svennik/memoized_coduals) | A scalar automatic differentiation experiment using codual numbers. |
