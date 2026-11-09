@@ -1,0 +1,2 @@
+# Busy Beaver transition tables are data, not Tcl source.
+nf-bb210/data/*.tm linguist-detectable=false
