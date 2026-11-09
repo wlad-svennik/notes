@@ -17,5 +17,5 @@ The project README states the consistency and soundness assumptions separately a
 | [Laguerre transformations](https://github.com/wlad-svennik/laguerre_transformations) | Python code and animations for Laguerre geometry. |
 | [Linear algebra visualisations](https://github.com/wlad-svennik/la-vis) | A Pygame demonstration of iterative matrix dynamics. |
 | [Hyperbolic Laguerre transformations](https://github.com/wlad-svennik/hyperbolic_laguerre_transformations) | Python experiments with transformations of hyperbolic cycles. |
-| [Bunch–Parlett factorisation](https://github.com/wlad-svennik/bunchparlett) | A NumPy implementation of a symmetric matrix factorisation. |
+| [Bunch–Parlett factorisation](https://github.com/wlad-svennik/bunchparlett) | A SymPy implementation of LDL factorisation for Hermitian matrices. |
 | [Memoized coduals](https://github.com/wlad-svennik/memoized_coduals) | A scalar automatic differentiation experiment using codual numbers. |
