@@ -1,0 +1,8 @@
+<!-- Draft for BusyBeaverWiki: NOT published there as of this repository update. -->
+== New Foundations (NF) ==
+
+A November 2026 research development gives a 210-working-state, two-symbol Turing machine designed to halt exactly when a fixed first-order presentation of Quine's New Foundations (NF) has a contradiction proof. The archive contains an external Lean 4.35.0 formalization and a source-only verification package.
+
+Under the assumption that NF is syntactically consistent, the development derives that NF cannot prove a specified numerical upper bound on the ''runtime'' function BB(210), or its exact numerical value. Under the stronger assumption of arithmetic Σ₁-soundness of NF, the true exact-value equation is neither provable nor refutable in NF. The numerical value is not computed. This differs from results about ZF or PA; it does not give a 210-state independence bound for those theories.
+
+The source files and past verification receipts are published at [https://github.com/wlad-svennik/notes/tree/main/nf-bb210 GitHub]. The original machine has 210 working states, 420 binary transition rows, and SHA-256 <code>129fc1fe44f609c18c2dfbc6df367835bbee7d6a02bbda3480b93d3c2c52646a</code>. The statement is formalized as an ''external'' Lean metatheorem rather than a completed PA-internal derivation. As of this publication, a fresh independent clean build and community review have not been reported.

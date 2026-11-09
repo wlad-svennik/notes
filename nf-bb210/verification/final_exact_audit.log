@@ -1,0 +1,67 @@
+theorem NF210.Proof.BusyBeaver.no_numeral_exact_value : NF210.Proof.ConNF →
+  ∀ (k : ℕ), NF210.Proof.NF ⊬ NF210.Proof.BusyBeaver.nfExactValue k :=
+fun consistent k proof =>
+  NF210.Proof.BusyBeaver.no_numeral_upper_bound consistent k
+    (NF210.Proof.BusyBeaver.nf_exactValue_implies_upperBound k⨀proof)
+theorem NF210.Proof.BusyBeaver.busyBeaver210_exactValue_independent : NF210.Proof.NFSecond.ArithmeticSigmaOneSound →
+  FFL.Entailment.Independent NF210.Proof.NF (NF210.Proof.BusyBeaver.nfExactValue (NF210.TM.busyBeaver 210)) :=
+fun sound =>
+  let this := sound;
+  have consistent := NF210.Proof.ArithmeticPullback.conNF_of_consistent inferInstance;
+  ⟨NF210.Proof.BusyBeaver.no_numeral_exact_value consistent (NF210.TM.busyBeaver 210),
+    NF210.Proof.BusyBeaver.busyBeaver210_exactValue_unrefutable sound⟩
+'NF210.Proof.BusyBeaver.no_numeral_exact_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF210.Proof.BusyBeaver.busyBeaver210_exactValue_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+NF210.Proof.BusyBeaver.no_numeral_upper_bound (consistent : NF210.Proof.ConNF) (k : ℕ) :
+  NF210.Proof.NF ⊬ NF210.Proof.BusyBeaver.nfUpperBound k
+NF210.Proof.BusyBeaver.no_numeral_exact_value (consistent : NF210.Proof.ConNF) (k : ℕ) :
+  NF210.Proof.NF ⊬ NF210.Proof.BusyBeaver.nfExactValue k
+NF210.Proof.BusyBeaver.busyBeaver210_exactValue_independent (sound : NF210.Proof.NFSecond.ArithmeticSigmaOneSound) :
+  FFL.Entailment.Independent NF210.Proof.NF (NF210.Proof.BusyBeaver.nfExactValue (NF210.TM.busyBeaver 210))
+NF210.Proof.BusyBeaver.exactValueSentence_nat (k : ℕ) :
+  (FFL.FirstOrder.Semiformula.Realize ℕ) (NF210.Proof.BusyBeaver.exactValueSentence k) ↔ NF210.TM.busyBeaver 210 = k
+NF210.Proof.BusyBeaver.true_upperBound_independent (sound : NF210.Proof.NFSecond.ArithmeticSigmaOneSound) (k : ℕ)
+  (trueBound : NF210.TM.UpperBound 210 k) :
+  FFL.Entailment.Independent NF210.Proof.NF (NF210.Proof.BusyBeaver.nfUpperBound k)
+NF210.Proof.BusyBeaver.busyBeaver210_bound_independent (sound : NF210.Proof.NFSecond.ArithmeticSigmaOneSound) :
+  FFL.Entailment.Independent NF210.Proof.NF (NF210.Proof.BusyBeaver.nfUpperBound (NF210.TM.busyBeaver 210))
+NF210.Proof.ConNF : Prop
+NF210.Proof.NFSecond.ArithmeticSigmaOneSound : Prop
+NF210.Proof.BusyBeaver.upperBoundSentence_nat (k : ℕ) :
+  (FFL.FirstOrder.Semiformula.Realize ℕ) (NF210.Proof.BusyBeaver.upperBoundSentence k) ↔ NF210.TM.UpperBound 210 k
+NF210.Proof.BusyBeaver.upperBoundSentence_nat_zero (k : ℕ) :
+  (FFL.FirstOrder.Semiformula.Realize ℕ) (NF210.Proof.BusyBeaver.upperBoundSentence k) ↔ NF210.TM.UpperBoundZero 210 k ⋯
+NF210.TM.busyBeaver_le_iff_zero (states bound : ℕ) (positive : 0 < states) :
+  NF210.TM.busyBeaver states ≤ bound ↔ NF210.TM.UpperBoundZero states bound positive
+NF210.Selected.machineZero_halts_at (time : ℕ) :
+  (NF210.TM.run NF210.Selected.machineZero time (NF210.TM.blank 0)).state = none ↔
+    (NF210.TM.run NF210.Selected.machine time (NF210.TM.blank NF210.Selected.start)).state = none
+NF210.Selected.table_matches_literal : NF210.Selected.serializedTable = NF210.Selected.literalTable
+NF210.Selected.transitions_size : NF210.Selected.transitions.size = 210
+NF210.Selected.binary_row_count : NF210.Selected.transitions.size * 2 = 420
+NF210.Proof.machine_halting_iff_nf_refutation :
+  NF210.TM.Halts NF210.Selected.machine NF210.Selected.start ↔ NF210.Proof.Derives ⊥
+NF210.Proof.BinarySimulation.selected_step.{u_1} {V : Type u_1} [FFL.ORingStructure V] [V↓[ℒₒᵣ] ⊧* 𝗜𝚺₁] :
+  NF210.Proof.BinarySimulation.StepContract
+NF210.Proof.BinarySimulation.bootstrap_run.{u_1} {V : Type u_1} [FFL.ORingStructure V] [V↓[ℒₒᵣ] ⊧* 𝗜𝚺₁] :
+  NF210.Proof.MachineArithmetic.run (↑(NF210.TM.Code.machine NF210.Selected.machine NF210.Selected.start)) 69946 =
+    NF210.Proof.BinarySimulation.canonical NF210.Source.bootstrap.pc (fun i => ↑(NF210.Source.bootstrap.registers i)) 51
+      36
+NF210.Proof.BinarySimulation.source_implies_binary_halting : NF210.Proof.BusyBeaver.GroundReduction.BinarySourceBridge
+'NF210.Proof.BusyBeaver.no_numeral_upper_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF210.Proof.BusyBeaver.no_numeral_exact_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF210.Proof.BusyBeaver.busyBeaver210_exactValue_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF210.Proof.BusyBeaver.exactValueSentence_nat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF210.Proof.BusyBeaver.true_upperBound_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF210.Proof.BusyBeaver.busyBeaver210_bound_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF210.Proof.BusyBeaver.upperBoundSentence_nat_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF210.TM.busyBeaver_le_iff_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF210.Selected.machineZero_halts_at' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF210.Selected.table_matches_literal' depends on axioms: [propext]
+'NF210.Selected.transitions_size' does not depend on any axioms
+'NF210.Selected.binary_row_count' does not depend on any axioms
+'NF210.Proof.machine_halting_iff_nf_refutation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF210.Proof.BinarySimulation.selected_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF210.Proof.BinarySimulation.bootstrap_run' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF210.Proof.BinarySimulation.source_implies_binary_halting' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF210.Proof.GroundTranslation.CustomProvability.hbl3PA' depends on axioms: [propext, Classical.choice, Quot.sound]
