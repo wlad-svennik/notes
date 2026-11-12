@@ -2,6 +2,12 @@
 
 Research notes and computational projects in geometry, linear algebra, automatic differentiation and formal verification.
 
+## C₀ and 198-state Turing machines
+
+**[Two 198-state machines, proof reports and complete reproducible checkpoints](c0-198/README.md)**
+
+The 11 November 2026 C₀ research includes two binary Turing machines calibrated to inconsistency of C₀, the consistency bounds Con(NF) ⇒ nonhalting ⇒ Con(NFU + Infinity), and a later reverse-interpretation report. The project README states the exact proof and formalization scope.
+
 ## New Foundations and Busy Beaver
 
 **[New Foundations and runtime Busy Beaver at 210 states](nf-bb210/README.md)**

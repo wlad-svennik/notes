@@ -1,0 +1,112 @@
+{
+  "passed": true,
+  "run_root": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2",
+  "seconds": 177.54677197099954,
+  "manifest": {
+    "present": false,
+    "checked_files": 0
+  },
+  "round6_dependency_sha256": "109da024601d0c2f695a2d00e53fd6890ce17eebddb0a67e4421ac7ac91f5598",
+  "complete_prior_replay": true,
+  "fresh_raw201_recompilation": true,
+  "raw201_candidate_and_generic_bytes_identical": true,
+  "source_guarded_graph_equivalence": true,
+  "two_decoder_folds_all_initial_tapes": true,
+  "uniform_scanner_producer_certificate": true,
+  "full_M198_runtime_admission": true,
+  "states": 198,
+  "table_sha256": "b21c81769ecd3e0a99bfaa6af3cd9c645e6e1d5c076e9002489c2ef641f490bf",
+  "source_sha256": "93527d979a0144909230efe12b4e3b53683d5174dc18811b4183c30005343840",
+  "blank_steps": 65181,
+  "source_boundaries": 150,
+  "retained_unsupported_raw_return_failures": 14,
+  "recovered_logical_certificate_nodes": 3728,
+  "independent_endpoint_and_new_fold_passed": true,
+  "receipts": {
+    "logical": {
+      "path": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2/independent_audit_workspace/research/ground_agent/dominated_logic_receipt.json",
+      "sha256": "9bd44e5ed2d6716e6d21bcdfc9b87f661ea384699e69e9e2065b474aeacf7903"
+    },
+    "helpers": {
+      "path": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2/independent_audit_workspace/research/ground_agent/proof_dependencies/target211_correctness/source/source_contracts_receipt.json",
+      "sha256": "d9e0ca544dd0d0c2ab6198ba2408e06028ebe5d1fc1ebf42f39701868ca9b5ce"
+    },
+    "kernel_words": {
+      "path": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2/independent_audit_workspace/research/ground_agent/proof_dependencies/target211_correctness/runtime/kernel_word_certificate.json",
+      "sha256": "ab5a2dbee91621b67efa4732cebb6962e625366fd7711a6b01659c8f27562bb0"
+    },
+    "reference_endpoint": {
+      "path": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2/independent_audit_workspace/research/ground_agent/exact_endpoint_receipt.json",
+      "sha256": "dd7a638f2d9398c3d013d4c69deb31585720536b657a3981c882c2f0957895dc"
+    },
+    "new_endpoint": {
+      "path": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2/independent_audit_workspace/research/ground_agent/exact_endpoint198_receipt.json",
+      "sha256": "07435d5c81be4e92ff5cc4bbee0edbe291f6e883bb33ee377c804a5008728cc6"
+    },
+    "new_fold": {
+      "path": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2/independent_audit_workspace/research/ground_agent/new198_fold_receipt.json",
+      "sha256": "9267db861fc3be22cc38a07486ac768582de48371b1b67e6e95c92cdba246e97"
+    }
+  },
+  "command_records": [
+    {
+      "label": "the complete pinned Round6, Round5, and Round4 foundation",
+      "seconds": 165.1165558549983,
+      "log": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2/logs/01_complete_round6.log",
+      "log_sha256": "0cee08df8265343d9c9cae682232a9f554384b43943744c16dcd4fd2c890e972"
+    },
+    {
+      "label": "fresh raw201 compilation and byte-identical candidate/generic tables",
+      "seconds": 0.9883314289982081,
+      "log": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2/logs/02_recompile_raw201.log",
+      "log_sha256": "2083598366d972b180bf2901953e8a3a2fdb892f5e9c80481c06d4c4fd8d5677"
+    },
+    {
+      "label": "exact source graph, both decoder folds, full runtime, scanner, and blank admission",
+      "seconds": 9.156622808000975,
+      "log": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2/logs/03_full_198_admission.log",
+      "log_sha256": "e4f22904a9beb5db68fcc75d2a1f94b5b799f3812ccf3bc752c1ec002cf3a302"
+    },
+    {
+      "label": "all 3,728 nodes of the recovered universal logical certificate",
+      "seconds": 0.07544499000141514,
+      "log": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2/logs/04_logical_certificate.log",
+      "log_sha256": "58dd15171d78eb0a8ad55b7d055f343e78c1fd6eab751e1a0be05d595f75b23e"
+    },
+    {
+      "label": "all 103 original source helper definitions and their exact expansion",
+      "seconds": 0.03634687399971881,
+      "log": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2/logs/05_source_helpers.log",
+      "log_sha256": "aafc3ce816dc80bfce70be23a7e29f51d92b3b41c34506bb143f5e3f031dec1b"
+    },
+    {
+      "label": "all original kernel rows and 18 literal word identities",
+      "seconds": 0.416271431997302,
+      "log": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2/logs/06_kernel_words.log",
+      "log_sha256": "7cd8f647dbb16220b32b464fc81f8e6697870c32a6eb9343830a0fc5c68ecc0e"
+    },
+    {
+      "label": "independent literal M199 reference kernel and blank seed",
+      "seconds": 0.12191430499660783,
+      "log": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2/logs/07_reference_endpoint.log",
+      "log_sha256": "8ec9839d3ee5823290271f5fe6c08169dfd6586d3a397d344abcc0d604ebd032"
+    },
+    {
+      "label": "independent literal M198 kernel and complete 65,181-step blank seed",
+      "seconds": 0.11669570499725523,
+      "log": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2/logs/08_new_endpoint.log",
+      "log_sha256": "ffc47a1d321cc3bd5a32d213c21c301209244b7978c8521194a641f413584808"
+    },
+    {
+      "label": "second independent checker of the new four-word decoder fold",
+      "seconds": 0.03158855100264191,
+      "log": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_replay_test/run_8lk84ur2/logs/09_new_four_word_fold.log",
+      "log_sha256": "b3bc8d3e1e2ffae57782422f058e9f53c5630e190ce42561e6598e3f6d95e83a"
+    }
+  ],
+  "network_required": false,
+  "package_inputs_modified": false,
+  "heuristic_searches_rerun": false,
+  "new_Lean_endpoint": false,
+  "scope": "Fresh exact-source/compiler reconstruction and all finite transition premises, combined with the supplied explicit unbounded mathematical proofs; finite continuation samples do not replace those proofs."
+}

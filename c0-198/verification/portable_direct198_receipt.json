@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "run_root": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_direct_test/direct_rvtc9h9f",
+  "seconds": 0.11976666100235889,
+  "manifest": {
+    "present": false,
+    "checked_files": 0
+  },
+  "scope": "Only the optional direct199-to-198 stage was rerun; this is not a fresh replay of the inherited foundation or primary198 compilation.",
+  "direct198": {
+    "passed": true,
+    "states": 198,
+    "table_sha256": "c52925d27d1ea75fcc64922c844b45f61f3b157fbcfd502693ed822d510b470a",
+    "source_unchanged": true,
+    "all_initial_tapes": true,
+    "independent_checkers": 2,
+    "blank_steps": 65209,
+    "reconstruction_receipt": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_direct_test/direct_rvtc9h9f/direct198/direct_reduction_certificate.json",
+    "reconstruction_receipt_sha256": "a2a75e04768dcac484b77774e42bdec3ddd3605de905b7f3a7b519cd8fa2c2a1",
+    "independent_audit_receipt": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_direct_test/direct_rvtc9h9f/direct198/independent_audit_receipt.json",
+    "independent_audit_receipt_sha256": "01f888dac0e3f9108f04ddd91dc3a20f4b5a51d0fea53fd358da122789a98c38"
+  },
+  "command_records": [
+    {
+      "label": "direct sealed199-to-198 reconstruction and four symbolic word identities",
+      "seconds": 0.02646550200006459,
+      "log": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_direct_test/direct_rvtc9h9f/logs/03b_direct198_reconstruction.log",
+      "log_sha256": "809c5594b3e104b7cf9580d333bb921d26327e224c76745c265ac15c5bb397cf"
+    },
+    {
+      "label": "independent direct198 identities, entire transition delta, and 65,209-step blank seed",
+      "seconds": 0.09211270299783791,
+      "log": "/workspace/scratch/9801bfd1f62a/research/ground_agent/portable_direct_test/direct_rvtc9h9f/logs/03c_direct198_independent_audit.log",
+      "log_sha256": "73f0aeb6b6f711c4d756929a35859525ee9421c0f196725c7378b972bd8dd48e"
+    }
+  ],
+  "network_required": false,
+  "package_inputs_modified": false
+}
