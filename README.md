@@ -2,6 +2,12 @@
 
 Research notes and computational projects in geometry, linear algebra, automatic differentiation and formal verification.
 
+## NF, related theories and the 192-state machine
+
+[Browse the interpretability and equiconsistency proofs](nf-bb192/interpretations/) for NF, FunctionNF, CombNF, M, MAC, M+H and NFU + Infinity. The [theorem index](nf-bb192/SET-THEORY-PROOFS.md) identifies the statements and their formal scope.
+
+The [192-state countdown machine](nf-bb192/) halts on a blank tape exactly when first-order NF proves a contradiction. The project includes the literal machine, Lean verification, informal proof and original set-theory archive.
+
 ## C₀ and 198-state Turing machines
 
 **[Two 198-state machines, proof reports and complete reproducible checkpoints](c0-198/README.md)**
