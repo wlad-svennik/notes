@@ -1,0 +1,1115 @@
+\documentclass[11pt]{article}
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,geometry,hyperref,enumitem}
+\geometry{margin=1.05in}
+\hypersetup{pdftitle={A model of tangled type theory from overlapping generic litters},
+ pdfsubject={An exposition of a consistency proof for NF},
+ pdfauthor={},colorlinks=true,
+ linkcolor=blue,citecolor=blue,urlcolor=blue}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{idea}{Why this}
+\newcommand{\NF}{\mathrm{NF}}
+\newcommand{\TTT}{\mathrm{TTT}}
+\newcommand{\TST}{\mathrm{TST}}
+\newcommand{\Amb}{\mathrm{Amb}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\pos}{\operatorname{pos}}
+\newcommand{\ext}{\operatorname{ext}}
+\newcommand{\dep}{\operatorname{depth}}
+\newcommand{\Con}{\operatorname{Con}}
+\newcommand{\Descr}{\operatorname{Descr}}
+\newcommand{\calA}{\mathcal A}
+\newcommand{\calK}{\mathcal K}
+\newcommand{\calM}{\mathcal M}
+\newcommand{\up}{\!\uparrow\!}
+\title{A model of tangled type theory\\from overlapping generic litters\\[4pt]
+\large An expository proof of the consistency of New Foundations}
+\author{}
+\date{29 October 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We construct, inside ZFC+GCH, a model of Holmes's tangled type theory
+\(\TTT_\omega\). By Holmes's transfer theorem this gives
+\(\Con(\mathrm{ZFC})\Rightarrow\Con(\NF)\). The construction follows the
+Holmes--Wilshaw strategy (a symmetric model whose types are built from
+``litters'' of atoms, with extensionality enforced by a parity device) but
+changes its geometry: litters are overlapping generic subsets of the atoms
+rather than a partition, every parent description owns a large fibre of
+litters rather than a single one, and the allowable permutations are
+simply the automorphisms of a homogeneous structure with finitely many
+parent coordinates at each vertex. With these changes the near-litter machinery, strong
+supports and the hard form of the Freedom of Action theorem are not
+needed; freedom of action is a back-and-forth argument. The local extension argument, the recursive type construction, and the
+passage to full comprehension are given separately.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+\subsection{New Foundations}
+Quine's set theory \(\NF\) \cite{Quine} has one sort of object and two
+axioms: extensionality, and the comprehension scheme
+\[
+ \exists y\,\forall x\,(x\in y\leftrightarrow\varphi(x))
+\]
+for every \emph{stratified} formula \(\varphi\), i.e.\ every formula to
+whose variables one can assign natural-number types so that \(x\in y\)
+always has \(\mathrm{type}(y)=\mathrm{type}(x)+1\) and \(x=y\) always has
+equal types. The formula \(x=x\) is stratified, so there is a universal
+set \(V\) with \(V\in V\); the formula \(x\notin x\) is not, so Russell's
+paradox is blocked. Specker showed that \(\NF\) refutes the axiom of
+choice \cite{Specker53}, and the theory has no models in which membership
+is well-founded. Whether \(\NF\) is consistent relative to ordinary set
+theory was open from 1937 until the Holmes--Wilshaw proof
+\cite{HW}, whose formal verification in Lean was completed in 2024.
+
+\subsection{Why it is hard, and the route taken}
+Specker also showed \cite{Specker62} that \(\NF\) is consistent if and only
+if the simple theory of types \(\TST\) is consistent with the
+\emph{ambiguity scheme}: every sentence is equivalent to the sentence
+obtained by raising all its types by one. Holmes \cite{Holmes95} turned
+this into a target one can build: \(\NF\) is consistent iff the
+\emph{tangled type theory} \(\TTT\) is consistent, where \(\TTT\) is
+\(\TST\) with the relation \(x^\beta\in y^\alpha\) allowed for \emph{every}
+pair \(\beta<\alpha\) of types, not just consecutive ones. A model of
+\(\TTT\) is a sequence of types in which each type behaves like a power
+set of \emph{every} lower type at once. That cannot literally be true
+(Cantor), so the model must be a \emph{symmetric} one: each type consists
+only of the subsets of the lower types that are fixed by enough
+permutations, in the manner of Fraenkel--Mostowski models. The difficulty
+is to arrange a coherent family of permutation groups, one for every
+chain of types, such that every symmetric subset of every lower type is
+represented exactly once at every higher type. This coherence is a central difficulty in \cite{HW}.
+
+\subsection{What is done here}
+The model below keeps the two ideas of \cite{HW} that are essential: a
+higher-type object is coded by a \emph{distinguished extension} at one
+lower type, with its extensions at the other types derived from it through
+``litters''; and the clashes between distinguished and derived extensions
+are resolved by a \emph{parity} rule. The change is in the support geometry and extension argument.
+\begin{itemize}[nosep]
+\item Litters are the neighbourhoods of a \emph{random bipartite graph}
+ between atoms and litter labels: they overlap, and fixing finitely many
+ atoms fixes no litter.
+\item Each parent description owns a \emph{fibre} of \(\mu\) litters, not
+ one litter, and fibres of different descriptions are disjoint.
+\item Each litter's parent information is recorded by finitely many unary
+ \emph{coordinates}, so that the allowable group at each type is
+ the automorphism group of one homogeneous structure.
+\end{itemize}
+With this, ``freedom of action'' (the statement that a finite coherent
+configuration can be extended to an allowable permutation) is a
+back-and-forth using the raw incidence extension property, and the near-litter bookkeeping
+of \cite{HW} is not needed.
+
+\subsection{How to read this}
+Section~\ref{sec:logic} contains the logic: what \(\TST\), \(\TTT\) are
+and why a model of \(\TTT_\omega\) gives \(\Con(\NF)\). It is standard and
+can be skimmed. Section~\ref{sec:strategy} explains the shape of the
+construction and the reason for each device, with a worked miniature.
+Sections~\ref{sec:raw}--\ref{sec:union} are the proof. Each definition is
+preceded by a short paragraph headed \emph{Why this}, which can be skipped
+on a second reading. Section~\ref{sec:status} collects the main dependencies of the proof.
+
+\section{From \texorpdfstring{\(\NF\)}{NF} to tangled type theory}
+\label{sec:logic}
+
+\subsection{\texorpdfstring{\(\TST\)}{TST} and typical ambiguity}
+\(\TST\) is a many-sorted first-order theory with sorts (``types'')
+indexed by \(\omega\), a membership relation \(x^n\in y^{n+1}\) between
+consecutive types, and equality within each type. Its axioms are
+extensionality at every positive type and comprehension
+\(\exists y^{n+1}\forall x^n(x\in y\leftrightarrow\varphi(x))\) for every
+formula \(\varphi\) (with parameters of any types). If \(\varphi\) is a
+sentence of \(\TST\), \(\varphi^+\) is the sentence obtained by adding
+\(1\) to the type of every variable. The \emph{ambiguity scheme} \(\Amb\)
+is \(\{\varphi\leftrightarrow\varphi^+:\varphi\text{ a sentence}\}\).
+
+\begin{theorem}[Specker \cite{Specker62}]\label{thm:specker}
+\(\NF\) is consistent if and only if \(\TST+\Amb\) is consistent.
+\end{theorem}
+
+We use only the direction from \(\TST+\Amb\) to \(\NF\), taking
+Specker's theorem as an external input. The construction below supplies
+a model of tangled type theory; Ramsey's theorem and compactness then
+supply the ambiguity scheme, as follows.
+
+\subsection{Tangled type theory}
+\begin{definition}[Holmes \cite{Holmes95}]
+\(\TTT_\omega\) is the many-sorted theory with sorts indexed by \(\omega\),
+equality within each sort, and a membership relation \(x^\beta\in y^\alpha\)
+for \emph{every} pair \(\beta<\alpha\). Its axioms are: for every axiom
+\(\psi\) of \(\TST\) (an instance of extensionality or comprehension) and
+every strictly increasing map \(s:\omega\to\omega\), the sentence
+\(\psi^{s}\) obtained by replacing each type \(n\) by \(s(n)\).
+\end{definition}
+
+So \(\TTT_\omega\) says: along every increasing chain of types, the
+chain looks like a model of \(\TST\). It does \emph{not} say anything
+relating the \(\beta\)-extension of \(x^\alpha\) to the
+\(\gamma\)-extension of some \(y^\beta\in x\); those are independent.
+
+\begin{theorem}[Holmes \cite{Holmes95}]\label{thm:holmes}
+If \(\TTT_\omega\) has a model, then \(\NF\) is consistent.
+\end{theorem}
+\begin{proof}
+Let \(\calM=(\tau_n)_{n\in\omega}\) be a model of \(\TTT_\omega\).
+Let \(\Sigma\) be a finite set of TST sentences, and choose \(n\geq1\)
+larger than every type index occurring in them. Colour each
+\(n\)-element subset \(\{t_0<\cdots<t_{n-1}\}\) of \(\omega\) by the
+truth values of the sentences in \(\Sigma\), interpreting formal type
+\(i\) as \(\tau_{t_i}\). This is a finite colouring.
+
+By Ramsey's theorem there is an infinite homogeneous set
+\(H=\{h_0<h_1<\cdots\}\). The chain \((\tau_{h_i})_{i\in\omega}\)
+is a model of TST, since every increasing translation of a TST axiom
+holds in \(\calM\). For \(\varphi\in\Sigma\), its truth value along
+\(h_0,\ldots,h_{n-1}\) equals its truth value along
+\(h_1,\ldots,h_n\), by homogeneity. The latter is the truth value of
+\(\varphi^+\) in the chain model. Thus that model satisfies
+\(\varphi\leftrightarrow\varphi^+\) for every \(\varphi\in\Sigma\).
+
+Every finite subset of \(\TST+\Amb\) is therefore satisfiable.
+Compactness gives a model of \(\TST+\Amb\), and
+Theorem~\ref{thm:specker} gives \(\Con(\NF)\).
+\end{proof}
+
+\subsection{What has to be built}\label{sec:target}
+By Theorem~\ref{thm:holmes}, it suffices to produce sets
+\(\tau_0,\tau_1,\dots\) and relations \({\in}\subseteq\tau_\beta\times
+\tau_\alpha\) for \(\beta<\alpha\) such that
+\begin{enumerate}[nosep,label=(\Alph*)]
+\item\label{ax:ext} (extensionality) for all \(\beta<\alpha\) and
+ \(x,y\in\tau_\alpha\): if \(\{z\in\tau_\beta:z\in x\}=\{z\in\tau_\beta:
+ z\in y\}\) then \(x=y\);
+\item\label{ax:comp} (comprehension) for every \(\TST\) formula
+ \(\varphi\), every increasing chain of types interpreting its formal
+ types, and all parameters, the set \(\{x:\varphi(x)\}\) at formal type
+ \(i\) is \(\{z:z\in y\}\) for some \(y\) at formal type \(i+1\).
+\end{enumerate}
+Writing \(\ext_\beta(x)=\{z\in\tau_\beta:z\in x\}\), \ref{ax:ext} says
+that \(x\mapsto\ext_\beta(x)\) is injective on \(\tau_\alpha\) for every
+\(\beta<\alpha\), and \ref{ax:comp} says that enough subsets of
+\(\tau_\beta\) are of the form \(\ext_\beta(x)\).
+
+\section{The shape of the construction}\label{sec:strategy}
+
+\subsection{Objects as distinguished extensions}
+An object of type \(\alpha\) must know its extension at every lower
+type. We shall code it by \emph{one} of them: a pre-object at \(\alpha\) is
+a pair \((\beta,D)\) with \(\beta<\alpha\) and \(D\subseteq\tau_\beta\),
+its \emph{distinguished extension}. Its extension at another type
+\(\delta<\alpha\) is produced by a fixed injective map
+\(\calA_\delta\) from subsets of lower types to subsets of \(\tau_\delta\):
+\(\ext_\delta(\beta,D)=\calA_\delta(D)\). Injectivity of \(\calA_\delta\)
+gives \ref{ax:ext} between two pre-objects whose extensions at \(\delta\)
+are both \emph{derived}. It does not handle the clash between
+\((\delta,Y)\), whose extension at \(\delta\) is \(Y\) itself, and
+\((\beta,D)\) with \(\calA_\delta(D)=Y\).
+
+\subsection{The parity rule}
+Call \(D\) the \emph{inverse} of \(Y\) when \(Y=\calA_\delta(D)\); by
+injectivity it is unique when it exists. Follow inverses:
+\(Y,\ \calA^{-1}Y,\ \calA^{-1}\calA^{-1}Y,\dots\). We shall arrange that
+this chain is always finite, and call its length the \emph{depth} of
+\(Y\). The rule is: \emph{keep} \((\beta,D)\) iff the depth of \(D\) is
+even. Then of \((\delta,Y)\) and \((\beta,\calA^{-1}Y)\), exactly one is
+kept, because their depths differ by one. And every symmetric
+\(Y\subseteq\tau_\delta\) is still the \(\delta\)-extension of a kept
+object: of \((\delta,Y)\) if its depth is even, of \((\beta,\calA^{-1}Y)\)
+otherwise. This is the Cantor--Bernstein-like device of \cite{HW}.
+
+\subsection{Litters, and why they overlap}
+What should \(\calA_\delta(D)\) be? It must be a set of type-\(\delta\)
+objects determined by \(D\), injectively, with the source type recoverable.
+Following \cite{HW}, \(\calA_\delta(D)\) will be a set of \emph{litters}:
+special type-\(\delta\) objects \(b_\delta\), one for each label \(b\) in
+a set \(B\), whose extension at the bottom type is a set \(L_b\) of atoms.
+Each litter label \(b\) has a \emph{parent}, a description of an object
+\(x\) at some source type \(\beta\) together with a support of \(x\); and
+\(\calA_\delta(D)\) is the set of litters whose parent decodes to an
+element of \(D\) with source type \(\beta\). Injectivity then needs: every
+object has at least one parent description, descriptions with different
+decoded values own disjoint sets of litters, and litters with source
+\(\beta\) are distinguishable from litters with source \(\beta'\).
+
+In \cite{HW} the litters partition the atoms, and each description owns
+exactly one litter. A permutation of atoms that is forced, by coherence at
+lower types, to move some atoms of a litter can then only map the litter
+to a \emph{near-litter} (a set differing from a litter by a small set),
+and the whole proof has to track near-litters. Here instead the pair
+\((A,B)\) with the incidence relation \(a\in L_b\) is a \emph{random
+bipartite graph}: litters overlap generically, and fixing finitely many
+atoms fixes no litter label, because \(\mu\) labels share each finite
+incidence pattern. Permutations will act on \(A\) and
+\(B\) jointly, preserving incidence, and nothing is ever ``nearly''
+preserved. Moreover each description owns a whole fibre of \(\mu\) litters,
+all with the same parent; so when a permutation must send one litter to
+another ``with the same parent'' there is always room.
+
+\subsection{Symmetry, supports, and coherence along chains}
+To keep every type of size \(\mu\) (so that the recursion can continue)
+the types consist of \emph{symmetric} objects: those fixed by the pointwise
+stabilizer of a finite \emph{support}. A support is a finite list of atoms
+and litter labels, each tagged with a \emph{path}: the chain of types along
+which it is seen from the top. Why paths? In \(\TTT\) the extension at
+\(\gamma\) of an object \(x\) of type \(\alpha\), and the extension at
+\(\gamma\) of some \(y\in\ext_\beta(x)\), are unrelated. A permutation
+must therefore act on \(\ext_\gamma(x)\) and on \(\ext_\gamma(y)\) by
+\emph{independent} permutations of type \(\gamma\): the first ``along
+\(\gamma<\alpha\)'', the second ``along \(\gamma<\beta<\alpha\)''. So an
+allowable permutation at type \(\alpha\) is really a family of raw
+permutations of \(A\sqcup B\), one for each path \(\{-1,\dots,\alpha\}\),
+with \(-1\) the bottom level of atoms. We realise this by giving the raw
+structure one copy per path, with incidence only within copies, and letting
+the group be the automorphism group of the whole thing.
+
+The parent of a litter must be respected by these permutations: if
+\(b\) has parent \((\chi,S)\) decoding to \(x\), then \(\pi(b)\) must have
+a parent decoding to \(\pi(x)\). We enforce this by \emph{unary coordinate
+functions} from the litter (on the path along which its parent matters)
+to the entries of \(S\) (on the corresponding raised paths), together with
+a \emph{colour} naming the code \(\chi\). Automorphisms preserve colours
+and functions, and that is the whole coherence requirement.
+
+\subsection{Positions}
+Two finiteness properties are needed: closures under the coordinate
+functions must be finite (so supports can be taken closed and the
+back-and-forth works), and inverse chains for the parity rule must be
+finite. Both come from one device: an injective \emph{position} map on
+\(A\sqcup B\) into \(\mu\), with every litter of a fibre placed above every
+position in the closure of its parent's support.
+
+\subsection{A miniature}\label{sec:miniature}
+Let \(\tau_{-1}=A\) be the atoms. Type \(0\) objects are the pre-objects
+\((-1,D)\) with \(D\subseteq A\) symmetric; there is nothing to derive and
+nothing to discard, so \(\tau_0\) is the set of symmetric subsets of
+\(A\), including every litter \(b_0=(-1,L_b)\). At type \(1\) the
+pre-objects are \((-1,D)\) with \(D\subseteq A\) and \((0,X)\) with
+\(X\subseteq\tau_0\). The former has \(\ext_0=\calA_0(D)\), the set of
+litters whose parent is an atom-tuple projection landing in \(D\). The
+latter has \(\ext_{-1}=\varnothing\) and \(\ext_0=X\). The only possible
+clash at type \(0\) is \(X=\calA_0(D)\); then \(X\) has depth \(1\), so
+\((0,X)\) is discarded and \((-1,D)\) represents \(X\). The set
+\(X=\tau_0\) itself is not an image (it contains non-litters), has depth
+\(0\), and is represented by \((0,\tau_0)\): the universal set of type
+\(1\). A permutation at type \(1\) consists of a raw permutation on the
+path \(\{-1,1\}\) (acting on \(\ext_{-1}\)) and one on the path
+\(\{-1,0,1\}\) (acting on the atoms inside elements of \(\ext_0\)), tied
+together only through the parents of the litters on \(\{-1,0,1\}\), whose
+coordinates point to atoms on \(\{-1,1\}\).
+
+\section{Parameters and the raw structure}\label{sec:raw}
+
+Work in ZFC+GCH and put
+\[
+ \kappa=\beth_\omega=\aleph_\omega,\qquad
+ \mu=\kappa^+=2^\kappa=\aleph_{\omega+1}.
+\]
+Then \(\mu\) is regular and \(\mu^{<\mu}=\mu\): for \(1\leq\theta<\mu\),
+\(\theta\leq\kappa\) and \(\mu^\theta\leq(2^\kappa)^\kappa=\mu\). The
+role of \(\kappa\): all the counting in \S\ref{sec:count} happens at finite
+beth levels, and \(\kappa\) is the first cardinal above all of them.
+
+\begin{idea}
+A saturated random bipartite graph gives, for free, every extension
+property we shall need: any finite (indeed any \(<\mu\)) pattern of
+incidences is realised \(\mu\) times, and any partial isomorphism of size
+\(<\mu\) extends to an automorphism.
+\end{idea}
+
+Let \(T_0\) be the theory of the random bipartite graph: two sorts
+\(A\) (atoms) and \(B\) (litter labels), a relation \(E\subseteq A\times
+B\), and the extension axioms: for disjoint finite \(X,Y\subseteq B\) there
+is \(a\in A\) with \(E(a,b)\) for all \(b\in X\) and for no \(b\in Y\), and
+symmetrically. \(T_0\) is complete and \(\omega\)-categorical with
+quantifier elimination (it is the theory of the Fra\"iss\'e limit of finite
+bipartite graphs). Since \(\mu^{<\mu}=\mu\), it has a saturated model of
+cardinality \(\mu\); fix one, \(R=(A,B,E)\), and write
+\(L_b=\{a\in A:E(a,b)\}\). The sets \(L_b\) are nonempty and pairwise
+distinct.
+
+\begin{lemma}\label{lem:saturation}
+Let \(P\subseteq A\sqcup B\), \(|P|<\mu\), and let \(p\) be a complete
+non-algebraic \(1\)-type over \(P\). Then \(\mu\) elements
+realise \(p\). Every partial isomorphism of \(R\) of size \(<\mu\) extends
+to an automorphism.
+\end{lemma}
+\begin{proof}
+A non-algebraic type remains consistent after excluding finitely many
+individual elements. If fewer than \(\mu\) elements realised \(p\),
+adding the inequalities
+\(x\neq e\) for those elements would give a consistent type over fewer
+than \(\mu\) parameters that is not realised, contradicting saturation.
+Quantifier elimination makes every partial isomorphism elementary.
+The standard back-and-forth for saturated models of regular cardinality
+then gives the second claim.
+\end{proof}
+
+A \emph{litter cell} is a complete \(1\)-type of sort \(B\) over a set of
+fewer than \(\mu\) atoms, i.e.\ an incidence pattern towards those atoms;
+every pattern is consistent. There are \(\mu\) litter cells. A set
+\(X\subseteq B\) is \emph{rich} if it meets every litter cell in \(\mu\)
+points.
+
+\begin{idea}
+Reservoirs separate litters by the source and target type of their parent,
+so that a set of litters reveals the type of the objects it was derived
+from. The reserve \(R_*\) supplies litters with no parent at all.
+\end{idea}
+
+Partition \(B\) into rich sets \(R_{\beta\gamma}\), for \(\beta\in\{-1\}
+\cup\omega\), \(\gamma\in\omega\), \(\beta\neq\gamma\), and a rich reserve
+\(R_*\): enumerate the triples (cell, reservoir name, \(\nu<\mu\)) in order
+type \(\mu\), at each step choose a not yet assigned label in the cell
+(possible by Lemma~\ref{lem:saturation}, fewer than \(\mu\) having been
+assigned), and put the remaining labels into \(R_*\). Reservoirs are
+bookkeeping sets, not part of any structure below.
+
+Finally fix an injection \(\pos:A\sqcup B\to\mu\), the \emph{position}.
+Positions are not preserved by anything; they only order the construction.
+
+\section{Tokens, codes and fibres}\label{sec:codes}
+
+\begin{definition}[Paths, tokens, tuples]
+A \emph{path} is a finite set \(p\subseteq\{-1\}\cup\omega\) with
+\(-1\in p\); its \emph{type} is \(\max p\). A \emph{token at type
+\(\beta\)} is a pair \((t,p)\) with \(t\in A\sqcup B\) and \(\max p=
+\beta\); it is an \emph{atom token} if \(t\in A\) and a \emph{litter
+token} if \(t\in B\). At type \(-1\) the only path is \(\{-1\}\) and only
+atom tokens are allowed. For \(\alpha>\beta\), the \emph{raising} of a
+token is \((t,p)\up\alpha=(t,p\cup\{\alpha\})\). A \emph{tuple at type
+\(\beta\)} is a finite sequence of tokens at type \(\beta\), repetitions
+allowed; its \emph{signature} records the sorts and paths of its entries.
+\end{definition}
+
+The whole construction is a recursion on the type; its order is spelled
+out in \S\ref{sec:count}. In this section we are at type \(\beta\) and
+assume that the structure \(M_\beta\) and group \(G_\beta\)
+(\S\ref{sec:aux}) and the type \(\tau_\beta\) with its \(G_\beta\)-action
+(\S\ref{sec:types}) are available. \(G_\beta\) acts on tokens at type
+\(\beta\), hence on tuples. A tuple \(S\) \emph{supports} \(x\in
+\tau_\beta\) if the pointwise stabilizer \(\Fix(S)\) fixes \(x\).
+
+\begin{idea}
+A parent must be something an automorphism can be required to preserve.
+``The object \(x\)'' is not: there are \(\mu\) objects and we cannot have
+\(\mu\) colours in a language whose finite diagrams we need to count. So we
+record a parent as a \emph{code} (one of fewer than \(\kappa\)
+equivariant functions, the colour) applied to a \emph{support tuple} (the
+coordinates). Preserving colour and coordinates then forces the decoded
+value to be transported correctly, by equivariance of the code.
+\end{idea}
+
+\begin{definition}[Codes]
+Let \(\beta\geq0\). A \emph{code at type \(\beta\)} of signature
+\(\sigma\) is a \(G_\beta\)-equivariant function \(\chi\) from \emph{all}
+tuples of signature \(\sigma\) to \(\tau_\beta\) such that \(\chi(S)\) is
+supported by \(S\) for every \(S\).
+\end{definition}
+
+\begin{lemma}[Totality]\label{lem:total}
+Let \(\beta\geq0\), \(x\in\tau_\beta\), and let \(S_0\) support \(x\).
+Define \(\chi(gS_0)=gx\) for \(g\in G_\beta\), and \(\chi(T)=
+\varnothing_\beta\) (the empty object of type \(\beta\), see
+\S\ref{sec:types}) for \(T\) outside the orbit of \(S_0\). Then \(\chi\)
+is a code with \(\chi(S_0)=x\).
+\end{lemma}
+\begin{proof}
+If \(gS_0=g'S_0\) then \(g^{-1}g'\) fixes \(S_0\), hence \(x\), so
+\(gx=g'x\). Equivariance is immediate; \(gx\) is supported by \(gS_0\);
+\(\varnothing_\beta\) is supported by everything.
+\end{proof}
+
+At \(\beta=-1\) we have \(\tau_{-1}=A\) and \(G_{-1}=\Aut(R)\). An atom
+fixed by the pointwise stabilizer of a finite atom tuple \(S\) is an entry
+of \(S\), by Lemma~\ref{lem:saturation} (move any other atom to one with
+the same incidences and extend). The \emph{raw codes} are therefore the
+coordinate projections \(\chi_i(S)=S_i\) on atom tuples, one for each
+signature and position; there are countably many, none nullary, and all
+have atom-only signatures. The last fact is used once, in
+Lemma~\ref{lem:lower}.
+
+\begin{definition}[Code families, descriptors]
+For \(\beta\geq0\) choose, for each signature, representatives of the
+\(G_\beta\)-orbits of tuples of that signature; for each representative
+\(S_0\) and each \(x\in\tau_\beta\) supported by \(S_0\), put the code of
+Lemma~\ref{lem:total} into \(C_\beta\). Put \(C_{-1}=\{\text{raw codes}\}
+\). A \emph{descriptor at \(\beta\)} is a pair \((\chi,S)\) with \(\chi\in
+C_\beta\) and \(S\) of the signature of \(\chi\); its \emph{decoded value}
+is \(\chi(S)\). Write \(\Descr_\beta\) for the set of descriptors and
+\(c_\beta=|C_\beta|\).
+\end{definition}
+
+\(C_\beta\) \emph{covers every supported pair}: if \(S=gS_0\) supports
+\(x\) then \(g^{-1}x\) is supported by \(S_0\) and its code has
+\(\chi(S)=x\). In particular every object has a descriptor. Different
+descriptors may decode to the same object. Section~\ref{sec:count} proves
+\(c_\beta\leq\beth_{\beta+1}<\kappa\); there are \(\mu\) tuples, so
+\(|\Descr_\beta|=\mu\).
+
+\begin{idea}
+Positions of fibre litters are placed above the whole parent closure of
+the support. One choice gives both finiteness properties we need: parent
+edges strictly decrease position, and so do the inverse steps of the
+parity rule.
+\end{idea}
+
+\begin{definition}[Descriptor positions and fibres]\label{def:fibres}
+Choose an injection \(q_\beta:\Descr_\beta\to\mu\) with
+\[
+ q_\beta(\chi,S)>\pos(t)\quad\text{for every token }t\in\cl_\beta(S),
+\]
+where \(\cl_\beta\) is the parent closure in \(M_\beta\)
+(\S\ref{sec:aux}; \(\cl_{-1}(S)=S\)). This is a recursion of length
+\(\mu\): \(\cl_\beta(S)\) is finite, so each step excludes a bounded
+initial segment of \(\mu\) and fewer than \(\mu\) used values. For every
+\(\gamma\in\omega\), \(\gamma\neq\beta\), and every descriptor allocate a
+\emph{fibre}
+\[
+ F_{\beta\gamma}(\chi,S)\subseteq R_{\beta\gamma}\cap
+ \{b:\pos(b)>q_\beta(\chi,S)\},
+\]
+rich, the fibres of distinct descriptors being disjoint.
+\end{definition}
+
+The allocation is a recursion of length \(\mu\) through all triples
+(descriptor, litter cell, \(\nu<\mu\)): at each step the cell meets
+\(R_{\beta\gamma}\) in \(\mu\) labels, fewer than \(\mu\) of which are
+used or have position \(\leq q_\beta(\chi,S)\). Fibres at different
+source types lie in different reservoirs, so all fibres, over all types,
+are pairwise disjoint, and each label lies in at most one fibre.
+
+\begin{lemma}[Positions decrease across parent edges]\label{lem:posdec}
+If \(b\in F_{\beta\gamma}(\chi,S)\) then \(\pos(b)>\pos(t)\) for every
+\(t\in\cl_\beta(S)\), in particular for every entry of \(S\).
+\end{lemma}
+
+\section{The path structures and freedom of action}\label{sec:aux}
+
+Fix \(\alpha\geq0\) and assume the fibres with source \(\gamma<\alpha\)
+have been allocated. Write a path \(p\) of type \(\alpha\) with
+\(|p|\geq2\) as
+\[
+ p=\{-1,\delta\}\cup P,\qquad\delta=\text{second smallest element of }p,
+ \qquad P=p\setminus\{-1,\delta\},
+\]
+so \(P=\varnothing\) iff \(|p|=2\), and \(\alpha\in P\) otherwise.
+
+\begin{idea}
+A litter token \((b,p)\) stands for the litter \(b_\delta\in\tau_\delta\)
+seen from type \(\alpha\) along the chain \(P\): it is an element of
+\(\ext_\delta\) of some object at type \(\min P\), which is in turn an
+element of an extension of an object at the next type of \(P\), and so on
+up to \(\alpha\). The parent of \(b\), with source type \(\gamma\), matters
+for the object at type \(\min P\) only if that object can have
+distinguished extension at \(\gamma\), i.e.\ if \(\gamma<\min P\). On such
+a path we record the parent; on other paths the token is \emph{flexible}.
+The parent's support entries, which are tokens at type \(\gamma\), are
+seen from \(\alpha\) along the same chain \(P\): hence the raised paths
+\(u\cup P\).
+\end{idea}
+
+A fibre index \((\gamma,\delta')\) is \emph{active on \(p\)} iff
+\(\delta'=\delta\), \(P\neq\varnothing\), \(\gamma\neq\delta\) and
+\(\gamma<\min P\). Then \(\gamma<\alpha\).
+
+\begin{definition}[The structure \(M_\alpha\)]
+\(M_\alpha\) has, for every path \(p\) of type \(\alpha\), two sorts
+\(A_p=A\times\{p\}\) and \(B_p=B\times\{p\}\) with the incidence relation
+\(E_p\) copied from \(R\). Incidence relates only vertices on the same
+path; the parent coordinates defined next may join different paths.
+If \(b\in F_{\gamma\delta}(\chi,S)\) and \((\gamma,\delta)\) is active on
+\(p\), the vertex \(b_p=(b,p)\) carries the \emph{colour}
+\((\gamma,\delta,\chi)\) and the unary \emph{coordinate functions}
+\[
+ f_i(b_p)=(t_i,\,u_i\cup P)\qquad(i<k),\qquad\text{where }S=((t_i,u_i))_{i<k}.
+\]
+All other litter vertices are \emph{flexible} and carry no colour and no
+functions; atom vertices carry no functions. Put \(G_\alpha=\Aut(M_\alpha)
+\), with the topology of pointwise convergence; the stabilizers
+\(\Fix(S)\) of finite sets are a base of open subgroups. At \(\alpha=-1\)
+put \(M_{-1}=R\).
+\end{definition}
+
+Since \(\max u_i=\gamma<\min P\), the set \(u_i\cup P\) is a path of type
+\(\alpha\); and \(f_i(b_p)\) never lies in the sort of \(b_p\), because
+\(u_i\cup P=p\) would force \(\gamma=\delta\). Each label lies in at most
+one fibre, so each vertex has at most one colour. \(M_\alpha\) mentions
+only codes of source below \(\alpha\).
+
+A set of vertices is \emph{closed} if it contains \(f_i(v)\) whenever
+this is defined for one of its vertices \(v\); \(\cl(X)\) is the least
+closed superset of \(X\). By Lemma~\ref{lem:posdec} every parent edge
+\(v\mapsto f_i(v)\) strictly decreases the position of the underlying
+label; every vertex has finitely many outgoing edges; so by K\"onig's lemma
+\emph{the closure of a finite set is finite}. Incidence is not part of
+closure.
+
+\begin{idea}
+Freedom of action says: any finite coherent configuration can be realised
+and any two realisations are conjugate. To state it we must say exactly
+which finite configurations are coherent. Nothing hidden should be
+required beyond the visible colour, coordinate and acyclicity conditions;
+this is what makes the back-and-forth go through.
+\end{idea}
+
+\begin{definition}[The class \(\calK_\alpha\)]
+Let \(\calK_\alpha\) be the class of structures \(\mathfrak A\) in the
+language of \(M_\alpha\) such that
+\begin{enumerate}[nosep,label=(K\arabic*)]
+\item incidence between \(A_p\) and \(B_p\) is arbitrary;
+\item a litter vertex on path \(p\) carries at most one colour, and a
+ colour \((\gamma,\delta,\chi)\) occurs only on paths on which
+ \((\gamma,\delta)\) is active, with \(\chi\in C_\gamma\);
+\item a vertex of colour \((\gamma,\delta,\chi)\), where \(\chi\) has
+ signature \(((s_i,u_i))_{i<k}\), carries exactly the functions
+ \(f_0,\dots,f_{k-1}\), with \(f_i(v)\) a vertex of sort \(s_i\) on path
+ \(u_i\cup P\); uncoloured litter vertices and atom vertices carry no
+ functions (so \(\mathfrak A\) is closed);
+\item the parent graph \(v\mapsto f_i(v)\) is acyclic.
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}[Closed age and freedom of action]\label{lem:foa}
+The finite closed substructures of \(M_\alpha\) are, up to isomorphism,
+exactly the finite members of \(\calK_\alpha\). More precisely: if
+\(D\subseteq M_\alpha\) is closed with \(|D|<\mu\), and \(\mathfrak B\in
+\calK_\alpha\) contains \(D\) as a closed substructure with only finitely
+many vertices outside \(D\), then \(\mathfrak B\) embeds into \(M_\alpha\)
+over \(D\). Every isomorphism between closed substructures of \(M_\alpha\)
+of size less than \(\mu\) extends to an automorphism.
+\end{lemma}
+\begin{proof}
+Every finite closed substructure satisfies (K1)--(K3) by construction.
+Condition (K4) follows from Lemma~\ref{lem:posdec}.
+
+For the extension claim, place the new atoms of \(\mathfrak B\) one at a
+time: each needs an incidence pattern towards the litters already present
+in its sort, a type over fewer than \(\mu\) parameters, realised by
+\(\mu\) atoms (Lemma~\ref{lem:saturation}); choose one not yet used in
+that sort. Then place the new litters in an order in which every vertex
+comes after its parents, which exists by (K4). A flexible litter needs an
+incidence pattern towards all atoms now present in its sort; choose a
+fresh label of \(R_*\) in that cell, which exists by richness. A litter
+\(v\) of colour \((\gamma,\delta,\chi)\) has all its parents placed, say at
+the tuple \(S'\) (after deleting \(P\) from their paths); choose a fresh
+label in \(F_{\gamma\delta}(\chi,S')\) in the required cell, which exists
+because a fibre is allocated to \emph{every} tuple of the signature of
+\(\chi\), and is rich. The chosen vertex has exactly the colour and
+coordinates prescribed by \(\mathfrak B\), no other functions, and the
+prescribed incidences. There is no requirement to use distinct underlying
+labels on different paths. This gives an embedding of \(\mathfrak B\) over \(D\).
+
+For the last claim run a back-and-forth of length \(\mu\) through all
+vertices. Adding a vertex \(v\) to a closed domain \(D\) of size \(<\mu\)
+adds the finite set \(\cl(v)\); no old vertex acquires a new parent, as
+\(D\) is closed; and \(D\cup\cl(v)\), transported along the current
+partial isomorphism, is a member of \(\calK_\alpha\) containing the image
+of \(D\) as a closed substructure with finitely many new vertices, so it
+can be realised over the image. Regularity of \(\mu\) keeps all
+intermediate maps of size \(<\mu\).
+\end{proof}
+
+For \(\alpha=-1\), read \(M_{-1}=R\), \(\cl(S)=S\), \(\calK_{-1}\) as the
+class of bipartite graphs; Lemma~\ref{lem:foa} is then
+Lemma~\ref{lem:saturation}.
+
+\begin{lemma}[Fixed tokens]\label{lem:fixed}
+For a finite set \(S\) of vertices of \(M_\alpha\) (\(\alpha\geq-1\)),
+the vertices fixed by every element of \(\Fix(S)\) are exactly those of
+\(\cl(S)\). In particular \(\Fix(S)=\Fix(\cl S)\), and every object with a
+finite support has a finite closed support.
+\end{lemma}
+\begin{proof}
+Automorphisms preserve the functions, so \(\cl(S)\) is fixed. Let \(v\notin
+\cl(S)\) and \(D=\cl(S)\cup\cl(v)\). Form the free amalgam of \(D\) with a
+disjoint isomorphic copy \(D'\) over \(\cl(S)\): identify the two copies of
+\(\cl(S)\) and add no incidences. It satisfies (K1)--(K3), and (K4) because
+a parent path that enters \(\cl(S)\) cannot leave it, so a cycle would lie
+within one copy. By Lemma~\ref{lem:foa} it embeds into \(M_\alpha\) over
+\(D\), giving \(v'\neq v\) and an isomorphism \(D\to\cl(S)\cup\cl(v')\)
+fixing \(\cl(S)\) and sending \(v\) to \(v'\), which extends to
+\(\pi\in\Fix(S)\) with \(\pi(v)\neq v\).
+\end{proof}
+
+\paragraph{Derivatives.}
+Let \(\pi\in G_\alpha\) and \(-1\leq\beta<\alpha\). The sorts of
+\(M_\alpha\) indexed by paths \(u\cup\{\alpha\}\) with \(\max u=\beta\) are
+permuted by \(\pi\); deleting \(\alpha\) identifies their union with the
+vertex set of \(M_\beta\). Call the induced permutation \(\pi_\beta\), the
+\emph{derivative of \(\pi\) at \(\beta\)}.
+
+\begin{lemma}[Derivatives are allowable]\label{lem:derivative}
+\(\pi_\beta\in G_\beta\), and \((\pi\sigma)_\beta=\pi_\beta\sigma_\beta\).
+\end{lemma}
+\begin{proof}
+For \(\beta=-1\), the derivative is the incidence-preserving action on
+the raw copy at \(\{-1,\alpha\}\). For \(\beta\geq0\), incidence
+agrees on corresponding sorts. For a path \(u=\{-1,\delta\}\cup
+P'\) with \(|u|\geq3\), the active indices on \(u\) and on \(u\cup\{
+\alpha\}\) coincide, since \(\min(P'\cup\{\alpha\})=\min P'\); so colours
+and coordinate functions of litters on \(u\) in \(M_\beta\) and on
+\(u\cup\{\alpha\}\) in \(M_\alpha\) agree after deleting \(\alpha\) from
+coordinate paths. For \(u=\{-1,\beta\}\), litters carry no functions in
+\(M_\beta\) but may carry colours and functions on \(\{-1,\beta,\alpha\}\)
+in \(M_\alpha\). Forget these extra colours and functions before
+restricting to the selected sorts. Deleting \(\alpha\) then recovers
+\(M_\beta\), and the induced permutation preserves its entire structure.
+\end{proof}
+
+For a path \(p\) of type \(\alpha\), \(\pi\) permutes \(A_p\sqcup B_p\);
+identifying this with \(A\sqcup B\) gives \(\pi^{p}\in\Aut(R)\). Note
+\(\pi_{-1}=\pi^{\{-1,\alpha\}}\) and \((\pi_\delta)_{-1}=
+\pi^{\{-1,\delta,\alpha\}}\). An automorphism of \(R\) is determined by its
+action on \(A\), since distinct labels have distinct neighbourhoods.
+
+\section{The types}\label{sec:types}
+
+Put \(\tau_{-1}=A\) with \(G_{-1}=\Aut(R)\) acting naturally. Fix
+\(\alpha\geq0\) and assume that for \(-1\leq\beta<\alpha\) the type
+\(\tau_\beta\), its \(G_\beta\)-action, and the \emph{literal litters}
+\(b_\beta\in\tau_\beta\) (\(b\in B\)) have been constructed, with the
+properties proved in this section at the lower stages.
+
+\begin{definition}[Alternate extensions]
+For \(-1\leq\beta<\alpha\), nonempty \(X\subseteq\tau_\beta\), and
+\(\delta\in\omega\) with \(\delta<\alpha\), \(\delta\neq\beta\), put
+\[
+ \calA_\delta(X)=\{b_\delta:\ \exists(\chi,S)\in\Descr_\beta\
+ [\chi(S)\in X\ \&\ b\in F_{\beta\delta}(\chi,S)]\}\subseteq\tau_\delta,
+\]
+and \(\calA_\delta(\varnothing)=\varnothing\).
+\end{definition}
+
+\begin{lemma}[Injectivity]\label{lem:inj}
+For nonempty \(X\subseteq\tau_\beta\), \(\calA_\delta(X)\) has cardinality
+\(\mu\) and determines both \(\beta\) and \(X\).
+\end{lemma}
+\begin{proof}
+\(\calA_\delta(X)\subseteq\{b_\delta:b\in R_{\beta\delta}\}\) determines
+\(\beta\). Fibres are pairwise disjoint and of size \(\mu\), so
+\(\calA_\delta(X)\) determines the set of descriptors decoding into \(X\),
+and every element of \(\tau_\beta\) has a descriptor.
+\end{proof}
+
+\begin{definition}[Partial inverse, depth]
+For \(0\leq\delta<\alpha\) and \(Y\subseteq\tau_\delta\) let
+\(\calA^{-1}_\alpha(Y)\) be the unique \((\beta,X)\) with \(-1\leq\beta<
+\alpha\), \(\beta\ne\delta\), \(X\subseteq\tau_\beta\) nonempty and \(\calA_\delta(X)=Y\), if
+there is one. Iterating from \(Y\) gives a unique chain
+\(Y=Y_0,Y_1,Y_2,\dots\) with \(Y_i=\calA(Y_{i+1})\); its length (the index
+of the last member, which has no inverse) is the \emph{depth}
+\(\dep_\alpha(Y)\), finite by Lemma~\ref{lem:depth};
+\(\dep_\alpha(\varnothing)=0\). Subsets of the raw type \(\tau_{-1}\) have no inverse and have depth zero.
+\end{definition}
+
+\begin{corollary}\label{cor:literal-in-closure}
+If \((\chi,S)\in\Descr_\beta\) and \(\chi(S)=c_\beta\) is a literal
+litter, then \((c,\{-1,\beta\})\in\cl_\beta(S)\); hence
+\(\pos(c)<q_\beta(\chi,S)<\pos(b)\) for every \(b\in F_{\beta\gamma}
+(\chi,S)\).
+\end{corollary}
+\begin{proof}
+\(c_\beta\) is supported by \(S\), and \(\pi\cdot c_\beta=(\pi_{-1}(c))_
+\beta\) for \(\pi\in G_\beta\) (Lemma~\ref{lem:literal} at stage
+\(\beta\)); so \(\Fix(S)\) fixes the token \((c,\{-1,\beta\})\), which
+lies in \(\cl_\beta(S)\) by Lemma~\ref{lem:fixed}. Then apply
+Definition~\ref{def:fibres}.
+\end{proof}
+
+\begin{lemma}[Inverse chains are finite]\label{lem:depth}
+There is no infinite chain of nonempty typed sets
+\(Y_0,Y_1,\dots\) with \(Y_i=\calA(Y_{i+1})\), and no such cycle.
+\end{lemma}
+\begin{proof}
+Let \(Y_0=\calA_\delta(Y_1)\) and \(Y_1=\calA(Y_2)\). All elements of
+\(Y_1\) are literal litters. Let \(b_\delta\in Y_0\) have least position
+among the elements of \(Y_0\); then \(b\in F_{\beta\delta}(\chi,S)\) with
+\(\chi(S)=c_\beta\in Y_1\), and \(\pos(c)<\pos(b)\) by
+Corollary~\ref{cor:literal-in-closure}. So the least position strictly
+decreases from \(Y_0\) to \(Y_1\), and likewise along any chain from its
+second member on. Ordinals have no infinite descending sequences.
+\end{proof}
+
+\begin{definition}[Pre-objects, retained objects, \(\tau_\alpha\)]
+Types are treated as separate sorts; their top-type tags are suppressed
+in the notation. A \emph{pre-object at \(\alpha\)} is a pair \((\beta,D)\) with \(-1\leq
+\beta<\alpha\) and \(D\subseteq\tau_\beta\); all pairs with \(D=\varnothing
+\) are identified and called \(\varnothing_\alpha\). Its \emph{extensions}
+are \(\ext_\beta(\beta,D)=D\); \(\ext_\delta(\beta,D)=\calA_\delta(D)\)
+for \(\delta\in\omega\), \(\delta<\alpha\), \(\delta\neq\beta\); and
+\(\ext_{-1}(\beta,D)=\varnothing\) if \(\beta\geq0\). The pre-object is
+\emph{retained} if \(\dep_\alpha(D)\) is even. For \(\pi\in G_\alpha\) put
+\(\pi\cdot(\beta,D)=(\beta,\pi_\beta[D])\). A finite tuple \(S\) at type
+\(\alpha\) \emph{supports} a pre-object if \(\Fix(S)\) fixes it. Let
+\(\tau_\alpha\) be the set of retained pre-objects with a finite support.
+Membership: for \(z\in\tau_\beta\), \(\beta<\alpha\), \(z\in x\) iff
+\(z\in\ext_\beta(x)\).
+\end{definition}
+
+\begin{idea}
+The next lemma is the whole point of the colours and coordinate functions:
+it says the group action commutes with \(\calA_\delta\). Without it,
+\(\pi\cdot x\) would not have the right extensions and \(\tau_\alpha\)
+would not be a \(G_\alpha\)-set.
+\end{idea}
+
+\begin{lemma}[Fibre transport]\label{lem:transport}
+For \(\pi\in G_\alpha\), \((\chi,S)\in\Descr_\beta\) and \(\delta\) as
+above,
+\[
+ \pi^{\{-1,\delta,\alpha\}}\bigl[F_{\beta\delta}(\chi,S)\bigr]
+ =F_{\beta\delta}(\chi,\pi_\beta[S]),
+\]
+and consequently \(\pi_\delta[\calA_\delta(X)]=\calA_\delta(\pi_\beta[X])\)
+for all \(X\subseteq\tau_\beta\). Hence \(\ext_\delta(\pi\cdot x)=
+\pi_\delta[\ext_\delta(x)]\) for every \(\delta\), the map
+\(\calA^{-1}_\alpha\) commutes with the action, depth is
+\(G_\alpha\)-invariant, and \(G_\alpha\) acts on \(\tau_\alpha\).
+\end{lemma}
+\begin{proof}
+On the path \(\{-1,\delta,\alpha\}\), \(P=\{\alpha\}\) and \((\beta,
+\delta)\) is active, so \(b_{\{-1,\delta,\alpha\}}\) has colour \((\beta,
+\delta,\chi)\) with coordinates \(S\up\alpha\) iff \(b\in F_{\beta\delta}
+(\chi,S)\). As \(\pi\) preserves colours and functions, \(\pi(b)\) has
+colour \((\beta,\delta,\chi)\) and coordinates \(\pi[S\up\alpha]=
+\pi_\beta[S]\up\alpha\), i.e.\ \(\pi(b)\in F_{\beta\delta}(\chi,\pi_\beta
+[S])\); the same for \(\pi^{-1}\) gives equality. For the second claim,
+\(\chi(\pi_\beta[S])=\pi_\beta(\chi(S))\) by equivariance, so
+\(\chi(\pi_\beta[S])\in\pi_\beta[X]\) iff \(\chi(S)\in X\); and
+\(\pi_\delta\in G_\delta\) acts on literal litters through
+\((\pi_\delta)_{-1}=\pi^{\{-1,\delta,\alpha\}}\)
+(Lemma~\ref{lem:literal} at stage \(\delta\)). The remaining claims follow
+with Lemma~\ref{lem:derivative}.
+\end{proof}
+
+\begin{lemma}[Literal litters]\label{lem:literal}
+For \(b\in B\), \(b_\alpha:=(-1,L_b)\) is in \(\tau_\alpha\), supported by
+the token \((b,\{-1,\alpha\})\), and \(\pi\cdot b_\alpha=(\pi_{-1}(b))_
+\alpha\).
+\end{lemma}
+\begin{proof}
+Subsets of \(\tau_{-1}\) have depth \(0\), since no \(\calA_\delta\) has
+target \(-1\). And \(\pi\cdot(-1,L_b)=(-1,\pi_{-1}[L_b])=(-1,L_{\pi_{-1}
+(b)})\) because \(\pi_{-1}\) preserves incidence; this is fixed when
+\(\pi\) fixes \((b,\{-1,\alpha\})\).
+\end{proof}
+
+\begin{lemma}[Extensionality]\label{lem:ext}
+If \(x,y\in\tau_\alpha\), \(\delta\in\omega\), \(\delta<\alpha\), and
+\(\ext_\delta(x)=\ext_\delta(y)\neq\varnothing\), then \(x=y\). Moreover
+every nonempty \(x\in\tau_\alpha\) has \(\ext_\delta(x)\neq\varnothing\)
+for every proper \(\delta<\alpha\).
+\end{lemma}
+\begin{proof}
+Write \(x=(\beta,D)\), \(y=(\beta',D')\). If \(\beta=\beta'=\delta\) then
+\(D=D'\). If \(\beta,\beta'\neq\delta\) then \(\calA_\delta(D)=\calA_\delta
+(D')\), and Lemma~\ref{lem:inj} gives \(\beta=\beta'\), \(D=D'\). If
+\(\beta=\delta\neq\beta'\), then \(D=\calA_\delta(D')\) with \(\beta'<
+\alpha\), so \(\calA^{-1}_\alpha(D)=(\beta',D')\) and \(\dep_\alpha(D)=
+\dep_\alpha(D')+1\); the parities differ, so \(x,y\) are not both
+retained. The last claim is Lemma~\ref{lem:inj}.
+\end{proof}
+
+Note that nothing is claimed at \(\delta=-1\): a pre-object \((\beta,D)\)
+with \(\beta\geq0\) has empty extension there. Type \(-1\) is scaffolding
+and is not a type of the model (\S\ref{sec:target}), exactly as in
+\cite{HW}.
+
+\begin{lemma}[Symmetric comprehension]\label{lem:symm}
+Let \(-1\leq\beta<\alpha\), and let \(X\subseteq\tau_\beta\) be stabilized
+setwise by \(\Fix(S)\) for a finite tuple \(S\) at type \(\alpha\) (acting
+through \(\pi\mapsto\pi_\beta\)). Then there is an \(x\in\tau_\alpha\)
+with \(\ext_\beta(x)=X\), supported by \(S\). If \(\beta\geq0\), this
+representative is unique. In
+particular \(\tau_\alpha\) contains \(\varnothing_\alpha\), every
+singleton \(\{z\}_\alpha\) for \(z\in\tau_\beta\), and finite unions.
+\end{lemma}
+\begin{proof}
+If \(\dep_\alpha(X)\) is even, take \((\beta,X)\). If it is odd, then
+\(X=\calA_\beta(X')\) with \((\beta',X')=\calA^{-1}_\alpha(X)\) of even
+depth; take \((\beta',X')\), whose extension at \(\beta\) is \(X\). In
+either case \(\Fix(S)\) stabilizes the distinguished extension, by
+Lemma~\ref{lem:transport} and injectivity, so \(S\) supports the object.
+Uniqueness for \(\beta\geq0\) is Lemma~\ref{lem:ext}. For a singleton,
+raise a finite support of its member to \(\alpha\). A singleton is never
+an \(\calA\)-image, as fibres are infinite, so it has depth \(0\);
+\(\varnothing_\alpha\) has empty support; a finite union of symmetric sets
+is symmetric.
+\end{proof}
+
+\begin{remark}[Stages]\label{rem:stage}
+\(\calA^{-1}_\alpha\) looks only at source types below \(\alpha\). A set
+\(Y\subseteq\tau_\delta\) may acquire an inverse with source \(\beta'\geq
+\alpha\) at a later stage, so its depth may change. This is harmless:
+membership in \(\tau_\alpha\) is decided once, at stage \(\alpha\);
+extensionality is a statement about objects of one type and uses only
+\(\dep_\alpha\); and \(G_\alpha\) preserves \(\dep_\alpha\). Literal
+litters, \(\varnothing_\alpha\) and singletons are retained at every stage.
+\end{remark}
+
+\begin{idea}
+Comprehension for formulas whose quantifiers stay below the type of the
+set being defined is now automatic, because the action preserves
+membership along chains. The only subtlety is \emph{which} derivative acts
+on which variable: the one along the suffix of the chain.
+\end{idea}
+
+\begin{lemma}[Predicative comprehension along chains]\label{lem:pred}
+Let \(t_0<\dots<t_n\) be proper types. Let \(\varphi(z,\vec w)\) be a
+\(\TST\) formula with \(z\) of formal type \(j<n\), parameters \(w_i\) of
+formal types \(\leq j\), and all bound variables of formal type \(\leq j\).
+Interpret formal type \(m\) as \(\tau_{t_m}\). Then for all parameters,
+\(\{z\in\tau_{t_j}:\varphi(z,\vec w)\}=\ext_{t_j}(y)\) for some \(y\in
+\tau_{t_{j+1}}\).
+\end{lemma}
+\begin{proof}
+For \(\pi\in G_{t_{j+1}}\), let \(\pi\) act on a variable of formal type
+\(m\leq j\) by the derivative of \(\pi\) along the suffix \(t_m<t_{m+1}<
+\dots<t_{j+1}\). This preserves equality, and preserves \(u^{m}\in
+v^{m+1}\): the extension at \(t_m\) of the image of \(v\) is the image of
+\(\ext_{t_m}(v)\) under the derivative at \(t_m\) of the permutation acting
+on \(v\) (Lemma~\ref{lem:transport}), which is the permutation acting on
+\(u\). By induction on \(\varphi\), the defined set is mapped to the set
+defined from the images of the parameters. Raise finite supports of the
+parameters to \(t_{j+1}\) and concatenate: the pointwise stabilizer fixes
+every parameter, hence stabilizes the defined set, and
+Lemma~\ref{lem:symm} applies.
+\end{proof}
+
+\section{Counting, and the order of the recursion}\label{sec:count}
+
+\begin{idea}
+Everything hinges on \(|\Descr_\beta|=\mu\): with more descriptors there
+would be no room for disjoint fibres of size \(\mu\) in \(B\). Descriptors
+are pairs (code, tuple); there are \(\mu\) tuples, so what must be
+controlled is the number of codes, which comes from the number of objects
+with a given support, which comes from the number of orbits of the
+stabilizer. This is the analogue of the ``counting orbits'' part of
+\cite{HW}, and it is short because closures are finite and
+Lemma~\ref{lem:foa} says orbits are determined by closed diagrams.
+\end{idea}
+
+Let \(o_n\) bound the number of \(G_n\)-orbits of finite tuples. By
+Lemma~\ref{lem:foa}, two tuples lie in one orbit iff their closures, with
+the tuple entries marked, are isomorphic; so \(o_n\) is bounded by the
+number of finite marked closed diagrams in the language of \(M_n\). That
+language has finitely many sorts and incidence relations, countably many
+coordinate symbols, and the colours
+\((\gamma,\delta,\chi)\) with \(\chi\in C_\gamma\), \(\gamma<n\). Hence
+\[
+ o_0\leq\aleph_0,\qquad o_n\leq\max\bigl(\aleph_0,\sup_{j<n}c_j\bigr)
+ \ (n>0),\qquad c_{-1}\leq\aleph_0.
+\]
+For a finite tuple \(S\) at type \(0\), \(\Fix(S)\) has at most \(o_0\)
+orbits on atoms, so at most \(2^{\aleph_0}\) subsets of \(A\) are
+supported by \(S\); elements of \(\tau_0\) are pairs \((-1,D)\), so at
+most \(\beth_1\) of them have support \(S\). Since \(C_0\) has one code per
+(signature, orbit representative, supported object),
+\(c_0\leq\aleph_0\cdot o_0\cdot\beth_1=\beth_1\).
+
+Let \(n>0\) and \(S\) a finite tuple at type \(n\). By
+Lemma~\ref{lem:ext}, an element of \(\tau_n\) is determined by its
+extension at type \(0\), which is a union of \(\Fix(S)\)-orbits on
+\(\tau_0\). Each \(z\in\tau_0\) is \(\chi(U)\) for some \(\chi\in C_0\)
+and tuple \(U\) at type \(0\); if \(g\in\Fix(S)\) and \(g(U\up n)=U'\up
+n\), then \(g_0(\chi(U))=\chi(U')\). So the \(\Fix(S)\)-orbit of
+\(\chi(U)\) is determined by \(\chi\) and the \(G_n\)-orbit of the tuple
+\(S{+}U\up n\), and there are at most \(c_0\,o_n\) orbits. Hence at most
+\(2^{c_0o_n}\) elements of \(\tau_n\) have support \(S\), and
+\[
+ c_n\leq\aleph_0\cdot o_n\cdot2^{c_0o_n}.
+\]
+By induction, \(o_n\leq\beth_n\) and \(c_n\leq\beth_{n+1}\) for all
+\(n\geq0\). There are \(\mu\) finite tuples, so \(|\tau_n|\leq\mu\), with
+equality because of the literal litters. All code bounds stay below
+\(\beth_\omega=\kappa<\mu\).
+
+\paragraph{The recursion.}
+\emph{Stage \(-1\):} \(M_{-1}=R\), \(G_{-1}=\Aut(R)\), \(\tau_{-1}=A\), the
+raw codes, the positions \(q_{-1}\), the fibres \(F_{-1,\gamma}\) for all
+\(\gamma\in\omega\). \emph{Stage \(n\geq0\):} form \(M_n\) from the fibres
+with source below \(n\) and prove Lemmas~\ref{lem:foa}--\ref{lem:derivative}
+for it; define \(\tau_n\), its action, and the literal litters, and prove
+Lemmas~\ref{lem:inj}--\ref{lem:pred}; form \(C_n\), choose \(q_n\), and
+allocate the fibres \(F_{n\gamma}\) for all \(\gamma\neq n\). These fibres
+are inactive in every \(M_m\) with \(m\leq n\), even for \(\gamma<n\),
+because a colour with source \(n\) requires a path containing an element
+above \(n\). No circularity: \(M_n\) uses only codes of source below
+\(n\), and \(C_n\) uses only \(M_n\) and \(\tau_n\).
+
+\section{Singleton union and full comprehension}\label{sec:union}
+
+\begin{idea}
+Lemma~\ref{lem:pred} gives comprehension only for formulas whose
+quantifiers do not go above the set being defined. \(\TST\) comprehension
+has no such restriction. The standard repair, as in \cite[\S4.6]{HW}, is
+to define the set of iterated singletons of the wanted elements at a high
+enough type, which is predicative, and then lower it one type at a time.
+The lowering step is where one needs a permutation of a \emph{lower} type
+to lift to one of a \emph{higher} type fixing a given support; this is
+freedom of action again, applied to a configuration made of two closed
+pieces.
+\end{idea}
+
+For \(x\in\tau_\gamma\) and \(\beta>\gamma\) write \(\{x\}_\beta\in
+\tau_\beta\) for the singleton of Lemma~\ref{lem:symm}. A set
+\(X\subseteq\tau_\gamma\) is \emph{represented at \(\beta\)} if \(X=
+\ext_\gamma(y)\) for some \(y\in\tau_\beta\); by Lemma~\ref{lem:symm}
+this holds iff \(X\) has a finite \(G_\beta\)-support.
+
+\begin{lemma}[Type lowering]\label{lem:lower}
+Let \(\alpha>\beta>\gamma\geq0\) and \(X\subseteq\tau_\gamma\). If
+\(\{\{x\}_\beta:x\in X\}\) is represented at \(\alpha\), then \(X\) is
+represented at \(\beta\).
+\end{lemma}
+\begin{proof}
+Let \(y\in\tau_\alpha\) with \(\ext_\beta(y)=\{\{x\}_\beta:x\in X\}\), and
+let \(S\) be a finite closed support of \(y\) (Lemma~\ref{lem:fixed}). Let
+\(S_{(\beta)}\) consist of the entries of \(S\) whose path has
+second-greatest element \(\beta\), with \(\alpha\) deleted from their
+paths; a finite tuple at type \(\beta\). We show that \(S_{(\beta)}\)
+supports \(X\) in \(G_\beta\).
+
+Let \(\pi\in G_\beta\) fix \(S_{(\beta)}\) pointwise, and let \(x\in X\).
+Let \(T\) be a finite support of \(x\) at type \(\gamma\); then
+\(T\up\beta\) supports \(\{x\}_\beta\), and so does \(T^*=\cl_\beta(T\up
+\beta)\).
+
+\emph{\(T^*\up\alpha\) is closed in \(M_\alpha\), with the same colours and
+functions as \(T^*\).} By Lemma~\ref{lem:derivative} the only vertices
+that gain functions on raising are litters on the path \(\{-1,\beta\}\).
+None is in \(T^*\): the vertices of \(T\up\beta\) have paths of length
+\(\geq3\), and a coordinate of a vertex of \(T^*\) lies on a path
+\(u\cup P'\) with \(\max u=\gamma'<\min P'\), which is \(\{-1,\beta\}\)
+only if \(u=\{-1\}\), i.e.\ the code has raw source; raw signatures
+consist of atoms, so that coordinate is an atom.
+
+\emph{The map \(\theta\), identity on \(S\) and \(t\up\alpha\mapsto
+\pi(t)\up\alpha\) on \(T^*\up\alpha\), is an isomorphism between closed
+substructures of \(M_\alpha\).} Its domain is closed, as a union of closed
+sets. Every vertex of \(T^*\up\alpha\) lies on a path with second-greatest
+element \(\beta\); so an \(S\)-vertex in the same sort as such a vertex is
+in \(S_{(\beta)}\up\alpha\), fixed by \(\pi\). Hence the two definitions
+agree on the overlap, and incidence between an \(S\)-vertex and a moved
+vertex is preserved because \(\pi\) preserves it in \(M_\beta\) and fixes
+the \(S\)-vertex. Colours and functions are preserved on \(S\) (identity)
+and on \(T^*\up\alpha\) (as \(\pi\) is an automorphism of \(M_\beta\)); a
+vertex in the overlap has its coordinates in both parts, fixed by \(\pi\).
+\(\theta\) is injective: if \(\pi(t)\up\alpha=s\in S\), then \(s\) is in
+the sort of a moved vertex, so \(s\in S_{(\beta)}\up\alpha\) is fixed by
+\(\pi\), and \(t\up\alpha=s\). The image \(S\cup\pi[T^*]\up\alpha\) is
+closed for the same reason as the domain.
+
+By Lemma~\ref{lem:foa}, \(\theta\) extends to \(\pi^*\in G_\alpha\). Then
+\(\pi^*\) fixes \(S\), hence \(y\); and \(\pi^*_\beta\) agrees with
+\(\pi\) on \(T^*\), a support of \(\{x\}_\beta\), so
+\(\pi^*_\beta\cdot\{x\}_\beta=\pi\cdot\{x\}_\beta=\{\pi_\gamma(x)\}_\beta\).
+As \(\pi^*\) fixes \(y\), this singleton lies in \(\ext_\beta(y)\), so
+\(\{\pi_\gamma(x)\}_\beta=\{x'\}_\beta\) for some \(x'\in X\), and
+\(\pi_\gamma(x)=x'\in X\) by Lemma~\ref{lem:ext}. The same for
+\(\pi^{-1}\) gives \(\pi_\gamma[X]=X\). So \(S_{(\beta)}\) supports \(X\),
+and Lemma~\ref{lem:symm} represents \(X\) at \(\beta\).
+\end{proof}
+
+\begin{theorem}\label{thm:model}
+\((\tau_n)_{n\in\omega}\), with \(z\in x\) iff \(z\in\ext_{\mathrm{type}
+(z)}(x)\), is a model of \(\TTT_\omega\). Hence \(\Con(\mathrm{ZFC})
+\Rightarrow\Con(\NF)\).
+\end{theorem}
+\begin{proof}
+Extensionality along every pair of types is Lemma~\ref{lem:ext}. For
+comprehension, let \(\varphi(x)\) be a \(\TST\) formula with \(x\) of
+formal type \(i\), and let \(j\) exceed every formal type in \(\varphi\).
+Fix an increasing chain of proper types interpreting the formal types up to
+\(j+1\) (the model has \(\omega\) types, so every finite chain extends).
+Let \(s_{i,j}(x)\) be the \((j-i)\)-fold singleton of \(x\), at formal type
+\(j\). The set
+\[
+ \{z^{j}:\exists x^{i}\,[z=s_{i,j}(x)\wedge\varphi(x)]\}
+\]
+is defined by a formula whose variables all have formal type \(\leq j\)
+(``\(w=\{v\}\)'' is \(\forall u\,(u\in w\leftrightarrow u=v)\)), so it is
+represented at formal type \(j+1\) by Lemma~\ref{lem:pred}. Applying
+Lemma~\ref{lem:lower} \(j-i\) times represents \(\{x^{i}:\varphi(x)\}\) at
+formal type \(i+1\). This verifies \ref{ax:ext} and \ref{ax:comp} of
+\S\ref{sec:target}, so Theorem~\ref{thm:holmes} applies.
+
+The construction was carried out in ZFC+GCH, used only for
+\(\mu^{<\mu}=\mu\) and the existence of a saturated model. Since
+\(\Con(\mathrm{ZFC})\) implies \(\Con(\mathrm{ZFC+GCH})\) via the
+constructible universe, \(\Con(\mathrm{ZFC})\Rightarrow\Con(\NF)\). No
+inaccessible cardinal is used.
+\end{proof}
+
+\section{Dependencies and scope}\label{sec:status}
+
+The simplification lies in the local permutation argument. The global
+framework---multiple extensions, parity, derivative paths, and singleton
+lowering---is inherited from Holmes--Wilshaw. The following four steps
+connect the new support geometry to that framework.
+\begin{enumerate}[nosep]
+\item \emph{Closed-map extension (Lemma~\ref{lem:foa}).}
+ Total codes allow every parent tuple. Rich fibres then realize the
+ required incidences, so the stated finite diagrams are exactly the
+ closed age of the concrete structure.
+\item \emph{Equivariance (Lemma~\ref{lem:transport}).}
+ Colours and parent coordinates transport descriptors exactly. The
+ stage-local inverse and its depth therefore commute with the action.
+\item \emph{Counting (\S\ref{sec:count}).}
+ Closed diagrams determine tuple orbits. The resulting code bounds
+ leave enough labels to allocate the next stage's fibres.
+\item \emph{Type lowering (Lemma~\ref{lem:lower}).}
+ Atom-only raw signatures prevent a lifted singleton support from
+ acquiring new litter coordinates. Its action can therefore be combined
+ with the identity on the higher support and extended by the first step.
+\end{enumerate}
+
+The external inputs are the standard existence and homogeneity facts
+for the saturated random bipartite graph, Specker's ambiguity theorem,
+Ramsey's theorem, compactness, and the constructible-universe consistency
+reduction.
+
+The ordered variant adds sort orders, structural Ramsey theory and
+fixed-point arguments to study universal ordering and Boolean prime
+ideals. Those additions are separate from the consistency proof given
+here.
+
+\begin{thebibliography}{9}
+\bibitem{Quine} W.\,V. Quine, \emph{New Foundations for Mathematical
+Logic}, Amer.\ Math.\ Monthly 44 (1937), 70--80.
+\bibitem{Specker53} E. Specker, \emph{The axiom of choice in Quine's New
+Foundations for Mathematical Logic}, Proc.\ Nat.\ Acad.\ Sci.\ USA 39
+(1953), 972--975.
+\bibitem{Specker62} E. Specker, \emph{Typical ambiguity}, in: Logic,
+Methodology and Philosophy of Science (E. Nagel, P. Suppes, A. Tarski,
+eds.), Stanford Univ.\ Press, 1962, 116--124.
+\bibitem{Jensen} R.\,B. Jensen, \emph{On the consistency of a slight(?)
+modification of Quine's NF}, Synthese 19 (1969), 250--263.
+\bibitem{Holmes95} M.\,R. Holmes, \emph{The equivalence of NF-style set
+theories with ``tangled'' type theories; the construction of
+\(\omega\)-models of predicative NF (and more)}, J.\ Symbolic Logic 60
+(1995), 178--190.
+\bibitem{HW} M.\,R. Holmes and S. Wilshaw, \emph{New Foundations is
+consistent}, arXiv:1503.01406; author-hosted manuscript,
+\url{https://randall-holmes.github.io/Nfproof/maybedetangled2-for-referee-clean.pdf}.
+\bibitem{Forster} T.\,E. Forster, \emph{Set Theory with a Universal Set},
+2nd ed., Oxford Logic Guides 31, Oxford Univ.\ Press, 1995.
+\end{thebibliography}
+\end{document}
