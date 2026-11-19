@@ -1,0 +1,28 @@
+=== The eight-schema pure NF machine ===
+The 185-state, two-symbol machine halts from a blank tape if and only if Quine's [[New Foundations]] proves a contradiction. Its combinator terms use binary application, a constant <math>J</math>, and a binary witness constructor <math>H</math>. Write <math>B=JJ</math>, <math>Kx=H(x,x)</math>, and <math>D(x,y)=(J(Kx))y</math>. Application associates to the left. The designated equation is <math>B=J</math>, whose numerical formula code is 3.
+
+The machine emits the following eight schemata in this order. Its sole inference rule is [[modus ponens]]. In the first schema the numerical codes satisfy <math>u\leq a</math>.
+
+{| class="wikitable"
+! No. !! Schema
+|-
+| 1 || <math>((c\to u)\to a)\to((a\to c)\to(b\to c))</math>
+|-
+| 2 || <math>(Kb)a=b</math>
+|-
+| 3 || <math>Bcab=(c(Kb))(ab)</math>
+|-
+| 4 || <math>(c=b)\to(ac=ab)</math>
+|-
+| 5 || <math>(a=c)\to(cb=ab)</math>
+|-
+| 6 || <math>(a=b)\to((a=c)\to(c=b))</math>
+|-
+| 7 || <math>((B=D(b,a))\to(B=D(b,b)))\to(a=b)</math>
+|-
+| 8 || <math>(bH(a,b)=aH(a,b))\to(a=b)</math>
+|}
+
+Row 7 determines the behavior of <math>D</math> in every model with <math>B\ne J</math>. If <math>a\ne b</math>, its conclusion is false. The inner implication must therefore be false, which forces <math>D(b,a)=B</math> and <math>D(b,b)\ne B</math>. Every <math>b</math> has some distinct <math>a</math> because <math>B\ne J</math>. Thus the off-diagonal value is always <math>B</math>, while every diagonal value differs from <math>B</math>. This suffices to construct the fixed-point tester used to interpret NF.
+
+The roles of the short terms differ between this machine and the 192-state J-point machine with Rosser Counting. In the 185-state calculus <math>JJ</math> is the stratified abstraction combinator <math>B</math>. In the 192-state calculus <math>JJ</math> is the fixed-point tester <math>Q</math> and <math>H(Q,J)</math> is the abstraction combinator.
