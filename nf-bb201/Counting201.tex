@@ -1,0 +1,124 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,enumitem,microtype,xcolor,fancyhdr,hyperref}
+\usepackage[top=23mm,bottom=24mm,left=24mm,right=24mm]{geometry}
+\definecolor{ink}{HTML}{182E3D}\definecolor{link}{HTML}{165B75}
+\hypersetup{colorlinks=true,urlcolor=link,linkcolor=link,pdftitle={A 201-state Busy Beaver bound for Zermelo set theory}}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Counting and the 201-state machine}\fancyhead[R]{\small 19 November 2026}\fancyfoot[R]{\thepage}\setlength{\headheight}{14pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5.5pt plus 1pt minus 1pt}
+\setlist{nosep,leftmargin=*}
+\newcommand{\Con}{\operatorname{Con}}\newcommand{\PA}{\mathsf{PA}}\newcommand{\PRA}{\mathsf{PRA}}\newcommand{\Z}{\mathsf{Z}}\newcommand{\NF}{\mathsf{NF}}\newcommand{\Ax}{\mathsf{AxCount}}\newcommand{\BB}{\operatorname{BB}}\newcommand{\ACA}{\mathsf{ACA}_0}
+\newcommand{\id}[1]{\texttt{\small\detokenize{#1}}}
+\newcommand{\hd}[1]{\par\vspace{3pt}{\large\bfseries\color{ink}#1}\par}
+\newcommand{\shd}[1]{\par\textbf{#1}\enspace}
+\newcommand{\relurl}{https://github.com/wlad-svennik/notes/releases/tag/counting201-zermelo}
+\begin{document}
+\thispagestyle{empty}
+{\small\scshape\color{link} Research note\hfill 19 November 2026}\par\vspace{4mm}
+{\LARGE\bfseries\color{ink} A 201-state Busy Beaver bound\\[2pt] for Zermelo set theory}\par\vspace{2mm}
+Let $M$ be the released two-symbol machine with 201 working states, started on a blank tape in state \id{k:64}. Write $H$ for the arithmetic sentence asserting that a finite trace reaches its halt label. Let $\Z$ be Zermelo set theory with Infinity and full Separation, without Choice or Replacement. The runtime function $\BB(n)$ is the greatest first halting time among blank-tape machines with $n$ working states. Write $N_U$ for the least state count from which the theory $U$ cannot prove any numerical upper bound.
+\hd{The result}
+\textbf{Theorem 1.} For this specific machine, $\PA\vdash\neg H\to\Con(\Z)$. In particular,
+\[
+                   \Z\vdash\neg H\longrightarrow\Con(\Z).
+\]
+Consequently, if $\Z$ is consistent, it cannot prove that $M$ runs forever. In the usual ZF metatheory, using the upper consistency result specified below, $M$ does run forever, and $\Z$ proves no numerical upper bound for $\BB(201)$. Padding gives $N_{\Z}\le201$.
+
+\textbf{Theorem 2.} Put $A=\NF+\Ax$, with Rosser's full Axiom of Counting. Using the two consistency comparisons from v15 in section 5, $A$ proves, in its native arithmetic,
+\[
+                     \neg H\longrightarrow\Con(A).
+\]
+At the ordinary metatheoretic level $M$ halts exactly when $A$ is inconsistent. The same numerical argument gives $N_A\le201$.
+
+\shd{What is checked.}A new Lean theorem proves that the literal machine halts exactly when a natural number passes the ten-row proof checker for its false goal. The rebuilt sources also characterize nonhalting by the existence of an applicative algebra and extract a model of bare NFU with Dedekind Infinity and full Counting. The object-theory implications above are paper theorems. Their set-theoretic inputs come from \emph{Choice and Consistency Strength in NF and NFU}, research draft v15. The lower implication of Theorem 1 uses only Proposition 17.6 of that draft. The stronger comparison and the ordinary nonhalting argument have additional dependencies (section 5).
+
+\shd{Why an internal proof matters.}An external nonhalting equivalence does not itself exclude a $\Z$ proof of nonhalting. The argument below works for the proof codes of the working theory. In particular, its treatment of nonstandard proof lengths does not require the extracted model to have the same natural numbers as the metatheory.
+
+\vfill
+\textbf{Verification materials.}\enspace The literal table, code, build receipts and cited manuscript excerpts are in the \href{\relurl}{public release}. The primary table begins with SHA-256 \id{2ee8eae8b8f11975}. Other 201-state machines use different tables.
+\newpage
+
+\hd{1. From a finite refutation to a halting run}
+For the proof of Theorem 1 work in $\ACA$, classical second-order arithmetic with arithmetical comprehension. A tape with finite support is coded by its two binary rays, its head convention and its control state. An annotated proof tree records an instance of a numerical row at a leaf or a modus ponens inference at a node. Both the run relation and the tree checker are effective on natural number codes. Let $D(p,G)$ say that $p$ derives the goal $G$, the equality of $s=qq$ and $q$. Application associates to the left. We need the implication
+\[
+                       \forall p\,(D(p,G)\longrightarrow H).
+\]
+The released \id{Counting201Certificate.lean} defines $D$ by decoding a depth bound and a proof tree from a single number. A leaf checks membership in the ten rows. A modus ponens node checks both children at smaller depth. Induction on depth proves soundness, and induction on a derivation supplies a sufficient depth and an accepting code. The remaining inductions below connect this checker to the table.
+\shd{Ground proof to command word.}The emitter supplies ten rows per batch, including the propositional row. Given the parameters $a,b,c,u$ of a leaf with $u\le a$, first reset, issue AX with fields $u,b,a-u$ and $c$ zero pairs, and select the required entry of the first batch. Pops and a swap put that entry on the top and restore the saved stack below it. For an inference, concatenate the words for its minor and major premises, then pop, swap, issue MP with the consequent, and recover the boundary state. The reset uses a zero AX batch, eight pops and MP(0). Recovery uses a zero AX batch, nine pops and a swap. Induction on the coded tree produces a word that builds its conclusion for any incoming stack and cache with cleared parameter. A final swap and pop expose the goal to the MODE test. Earlier detection also suffices. See \id{C201Search.lean}, especially \id{deriv_buildable} and \id{exists_detecting_word}.
+
+\shd{Word to reachable program state.}Encode commands from right to left using the register program's Cantor pairing. A nonterminal continuation stores the suffix code plus one. The remaining numerical tail can be chosen sufficiently large to put the resulting candidate beyond the current search index. Parsing recovers the required word as a prefix. Within each earlier candidate the cursor decreases between commands, and the next refill increases the candidate index by one. Induction on these two counters proves detection unless there was an earlier halt. The ten rows emitted and the command boundary in the 3,446 literal instructions are those in \id{C201Rows} and \id{C201Register}.
+
+\shd{Program to binary tape.}The blank run reaches the first AX frame after 16,813 binary transitions. Another 80 register instructions bring it to the signed simulation frame at binary time 48,867. The frame consists of a selector, a gap, nine unary register fields and spare fields. The indexed finite-word lemmas for increment, jump and decrement (including zero and halting branches) give a positive-length binary run to the next corresponding frame or to halt. Induction on the number of register steps concatenates these runs. The four native decisions check closed case tables for the arithmetic phases, arithmetic returns, control carries and control branches. The remaining inductions are over coded words, register values, positions and trace lengths. Their assertions quantify over number codes for finite inputs and outputs. Specializing to the reachable frames fixes the tape exterior to zero. This is the arithmetical proof used here. It does not require a general interpretation of Lean in arithmetic. In the reverse direction each stack entry has a derivation annotation (including the default zero), and positive simulation times prevent a hidden physical halt between two live frames.
+\newpage
+
+\hd{2. From nonhalting to a countable chart}
+Assume $\neg H$. There is no tree deriving $G$. At stage $n$, adjoin the numerical formula $n$ to the previously accepted finite list if the enlarged list still fails to derive $G$. The existence of a finite derivation from a given list is a recursively enumerable condition, uniformly in the list. One halting oracle suffices for every stage. Arithmetical comprehension supplies the oracle, the sequence of stages and the deductive closure of their union. Every finite deduction uses hypotheses from one stage. Rejection of $p$ yields a derivation of $p\to G$ by the deduction theorem. The propositional row supplies Peirce's law; maximality then gives the classical truth clause for implication. This construction is \id{C201.not_deriv_goal_iff_valuation} in \id{C201Logic.lean}.
+
+On closed terms let $r(a,b)$ mean that the equality atom $E(a,b)$ holds in this valuation. The surviving rows give reflexivity, symmetry, transitivity, congruence for application, and congruence for $K$ by extensionality. Select the least numerical representative of each class. The separating witness in the row calculus gives extensionality on the quotient; it need not define an operator on equivalence classes. The rejected goal forces distinct tester outputs. The resulting countable chart has a coded binary application, a unary $K$ and constants $q,J,B$. Its finite first-order theory $C$ has the following axioms:
+\[
+\begin{gathered}
+ B=(Jq)q,\qquad (Kx)y=x,\qquad Bxyz=(x(Kz))(yz),\\
+ (\forall x\,fx=gx)\ \Rightarrow\ f=g,\qquad KJ\ne J,\\
+ fx=x\ \Rightarrow\ (qf)x=KJ,\qquad fx\ne x\ \Rightarrow\ (qf)x=J,\\
+                   (J(Jx))q=Jx .
+\end{gathered}
+\]
+All unbound variables are universally quantified. These are the fields of \id{NF201.GroundChart.Chart}. In particular, $\ACA$ proves that nonhalting yields a countably coded model of $C$.
+
+\hd{3. A finite consequence of the chart}
+Let $T$ be bare NFU with Dedekind Infinity and full Rosser Counting. The verified interpretation uses the chart carrier itself. After normalizing the Boolean tester, the FunctionNF truth values correspond to $B$ and $BB$. In chart-language formulas the extracted NFU structure has
+\[
+ \mathrm{Set}(y)\ \longleftrightarrow\ \forall a\,(ya=B\ \lor\ ya=BB),\qquad
+ x\in^*y\ \longleftrightarrow\ \mathrm{Set}(y)\land yx=B .
+\]
+These are the normalized Boolean values; the primitive tester in $C$ returns $KJ$ and $J$. The source definitions are \id{NormalizedToComb}, \id{CombModelCore}, \id{FnBool} and \id{FunctionCut.model}. To see the role of the extra row, let $D=\operatorname{ran}(J)$. For $a\in D$ the equation gives $(Ja)q=a$, so the represented map $a\mapsto\{(Ja)q\}$ is singleton on $D$. The readback calculation proves that $J[D]$ omits a point of $D$. This supplies a strongly Cantorian set with a proper self-injection. The model theorem gives $T(n)=n$ for every internal Frege natural $n$, together with the injection and a missed point. Here $T(n)$ denotes the type-raising operation, as distinct from the theory $T$.
+
+\newpage
+\hd{4. Why $\Z$ cannot prove nonhalting}
+Proposition 17.6 of v15 proves $T\vdash\Con(\Z)$. Inside $T$, Counting makes the finite-cardinal field strongly Cantorian. Two consecutive copies of its natural order give a strongly Cantorian limit of type $\omega+\omega$. The well-founded extensional relation construction on that cut gives a set structure satisfying choice-free Zermelo theory. The proof of Proposition 17.6 checks soundness also for internally coded Separation instances. We use this one theorem as an input.
+
+Choose a fixed bounded arithmetic formula $\delta$ such that $\exists z\,\delta(z)$ says that a coded $\Z$-refutation exists. The witness includes a checking computation, with auxiliary witnesses bundled into $z$ or a fixed finite tuple. Take the finite arithmetic conditions $F$ consisting of the injectivity of successor, zero outside its range, the recursion equations for addition and multiplication, $x\nless 0$, and $x<Sy\leftrightarrow(x<y\lor x=y)$. Take the native interpretation using the finite cardinals. Its number domain, arithmetic operations and order are first-order definable. Equivalently existentially bind their fixed finite package of parameters, with the necessary existence, closure and functionality clauses. Expanding the definitions in the chart gives a \emph{single first-order sentence} $\Theta$ saying that this arithmetic satisfies $F$ and $\forall z\,\neg\delta(z)$. Each chart satisfies $\Theta$ by the interpretation and Proposition 17.6. Ordinary first-order completeness therefore supplies a fixed finite $C$-proof of $\Theta$. No uniform appeal to completeness inside a weak theory is being made.
+
+Back in $\ACA$, our coded chart satisfies that fixed proof by soundness. Only finitely many fixed formulas need to be evaluated on its diagram; each evaluation is arithmetical relative to that diagram. Let $A_0$ be the resulting coded arithmetic structure. Define $i(0)=0^{A_0}$, $i(n+1)=S^{A_0}i(n)$. Number recursion on least representatives gives its graph. Induction with $F$ proves that $i$ is injective, preserves addition and multiplication, and
+\[
+               x<^{A_0}i(n)\quad\Longleftrightarrow\quad
+                       (\exists j<n)\ x=i(j).
+\]
+Induction on a bounded arithmetic formula now gives absoluteness on numeral images. In particular, any ambient witness $z$ for $\delta$ would yield a witness $i(z)$ in $A_0$, contradicting $\Theta$. This proves $\ACA\vdash\neg H\to\Con(\Z)$. The argument applies to every number of the working arithmetic, even in a nonstandard model. Arithmetic conservativity of $\ACA$ over PA yields Theorem 1. Equally, $\Z$ can run the argument with its own $\omega$ and $\mathcal P(\omega)$.
+
+\shd{Numerical bounds.}If consistent $\Z$ proved $\neg H$, appending Theorem 1 would give a $\Z$ proof of $\Con(\Z)$, contrary to the second incompleteness theorem. Once actual nonhalting is known, for every standard $k$ the first $k$ steps are a finite calculation verifiable in $\Z$. A proof that $\BB(201)\le k$ would turn this finite calculation into a proof of $\neg H$. Adding unreachable states gives the same conclusion at each $n\ge201$.
+\newpage
+
+\hd{5. The NF + Counting row and actual nonhalting}
+For this part use the ordinary two-sorted theory $S$ of full second-order arithmetic, with full comprehension and induction. Here $S$ is a recursively axiomatized theory with two sorts and the usual deductive semantics. The countable-chart construction is available in $S$. To see uniformly that its membership structure gives $\Con(T)$, form satisfaction for this \emph{one} coded first-order structure. Induction on depth constructs the sets evaluating formulas and finite assignments through that depth. The atomic clauses read the diagram, and each extension uses the Tarski clauses and arithmetical comprehension. Partial tables agree on common levels. Full comprehension forms their union by the predicate that some correct table through the given depth contains the tuple. This construction gives the clauses for every internally coded formula.
+
+The comprehension schema needs a uniform check. The recursion \id{FunctionCut.term} takes a formula together with a stratification, a bound on its active variables and a list of variable types. It constructs Boolean terms for interpreted membership and equality, combines subterms for negation and conjunction, and abstracts the bound variable at its assigned type for a quantifier. At a binder, the updated index map sends that variable to zero and shifts the others by one. The accompanying induction identifies evaluation with satisfaction for the finite assignment. The final abstraction yields the characteristic function witnessing the comprehension set. The recursive term and bracket-abstraction constructions operate on finite syntax. Intermediate semantic predicates and graphs on the coded carrier are sets of integers; their recognition uses the preceding satisfaction table. These inductions work for arbitrary internally coded formulas, including when the model's syntax is nonstandard. All witnesses are objects of the same coded carrier; when a choice of representatives is required, choose the least number code. All remaining nonlogical axioms of $T$ are fixed, and are supplied by the same interpretation. Induction on each coded first-order proof now gives $S\vdash\neg H\to\Con(T)$.
+
+Proposition 17.13 and Theorem 21.1 of v15 give, on paper in $\PRA$,
+\[
+                         \Con(T)\ \longleftrightarrow\ \Con(C_{\beth})
+                         \ \longleftrightarrow\ \Con(A).
+\]
+Thus $S\vdash\neg H\to\Con(A)$. Inside $A$ interpret $S$ on the native natural numbers and their subsets. Use homogeneous graphs for the arithmetic operations on the strongly Cantorian number field, replacing terms by their value relations. Assign number variables one type and variables for subsets of numbers the next type. Relativizing both kinds of quantifier respects this assignment, even for impredicative set quantifiers. Stratified comprehension gives each translated instance of full comprehension. The inductive definition of the finite cardinals gives induction. The interpretation preserves the native proof-code and trace computations, so the transferred formula is exactly the implication of Theorem 2. Gödel's second theorem applies with the recursive annotated proof checker for $A$.
+
+\shd{Upper direction.}From a countable model of $A$, the construction in \id{readback_201.md} realizes the particular chart $B=(Jq)q$ with the scalar law of section 2. The supplement \id{UpperConstruction.md} gives the coding and the choice of witnesses. The reverse direction of the verified chart equivalence supplies actual nonhalting from $\Con(A)$ by completeness. Conversely the countable model argument and the two comparisons give $\Con(A)$ from nonhalting. In ZF the constructible universe contains a rank segment witnessing $\Con(C_{\beth})$. In $L$ choose a limit rank above the required beth cardinals and the witnessing sequences for every natural index. Full Separation holds on this set rank, and Choice holds there by finite-rank closure and Choice in $L$. Thus, using the written v15 comparison, ZF supplies $\Con(A)$. This last step is distinct from the internal nonprovability argument.
+\newpage
+
+\hd{Sources and verification}
+\shd{Machine identity.}The literal table \id{candidate.tm} has one rule for each of the two scanned bits in each of 201 working states. Halt is a separate label. The start state is \id{k:64} and both rays start blank. The SHA-256 digests for the table and source are
+\begin{flushleft}\small\ttfamily
+2ee8eae8b8f11975d20da71969ea4b9242d17b0e5db3789e961cd533460a38f0\\
+11275db07f9ac67effe6d7da9fd251280062701f6d9cebefdb8825ed6b7c1c3d.
+\end{flushleft}
+The first digest identifies the table and the second identifies the 3,446-site register program. The runtime in this note counts transitions of the literal two-sided binary machine.
+
+\shd{Fresh checks.}The independent input comparison matched 402 tape rows and 3,446 register sites. The finite replay checked the 48,867-step blank prefix and intermediate physical interfaces. A clean build of 487 Lean modules rebuilt the physical and calculus theorem \id{C201.binary_iff_counting_chart} using Lean 4.35.0 and its standard library. A further 21 source modules, with the pinned Foundation, Mathlib and NF interpretation dependencies, rebuilt \id{JJ201NFU.model_of_forever_201}. The new \id{Counting201Certificate.halts_iff_numerical_certificate} connects the very same table to a finite, decidable proof witness. The standalone \id{InitialSegment.lean} checks initiality of the numeral map, bounded-formula absoluteness and witness lifting. Its three endpoints have empty axiom reports. The model theorem's axiom report lists the three usual Lean axioms and four named closed native decisions. These are fresh checks of the archived machine theorems. The release includes the commands, inputs and receipts. The chart consequence supplied by v15 Proposition 17.6 is obtained on paper by completeness; the release does not contain its serialized first-order derivation.
+
+\shd{Set-theoretic sources.}\emph{Choice and Consistency Strength in NF and NFU}, expanded research draft v15 (30 October 2026), Propositions 17.5--17.6, 17.11, 17.13, and Theorem 21.1. The release includes the relevant pages with their original pagination. The standalone lemma can be checked with \id{lean src/InitialSegment.lean}. Proposition 17.6 is the sole v15 comparison needed for the lower implication of Theorem 1. The stronger equiconsistency comparisons are written research claims and have not been independently formalized. Neither the consistency of ordinary NF alone nor the 192-state PA theorem supplies the Counting hypothesis.
+
+\shd{Other references.}S. G. Simpson, \emph{Subsystems of Second Order Arithmetic}, 2nd ed. (2009), for $\ACA$ and arithmetic conservativity. For the physical and interpretive sources use the \href{\relurl}{201-state release}. The earlier \href{https://github.com/wlad-svennik/notes/releases/tag/nf192-pa}{192-state PA proof} treats a different literal table and a different consistency statement.
+
+\shd{The attempted 200-state reduction.}A decoder rotation saves a state but introduces a false halt. On a goal-test frame with register 5 equal to one, the 201-state table returns live after 2,178 transitions. The edited table halts after 1,202. The release supplies both traces and the broader search results. The bound established here is 201.\par
+\shd{Reproducing the central claims.}Read the supplied \id{README.md} for the replay commands and the scope of each theorem. The archive contains the native register and tape proofs, the model interpretation, and the certificates indexing their exact inputs. The machine with the digest printed above is the table used throughout this note.
+\end{document}
