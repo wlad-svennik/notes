@@ -14,7 +14,7 @@ def main():
     cli.add_argument('--target', default='NF185PAInternalConsistency')
     cli.add_argument('--jobs', type=int, default=2)
     cli.add_argument('--sha256', action='append', help='Published archive SHA-256, repeated in archive order')
-    cli.add_argument('--verify-only', action='store_true', help='Unpack, verify hashes and check the machine bytes')
+    cli.add_argument('--verify-only', action='store_true', help='Unpack, reconstruct missing certificates, verify hashes and check the machine bytes')
     args=cli.parse_args()
     if args.jobs<1:
         cli.error('--jobs must be positive')
@@ -39,7 +39,7 @@ def main():
                 else:
                     raise ValueError(f'Unexpected special file {item.name}')
     root=work/'NF185_PA'
-    subprocess.run([sys.executable,'replay.py','--verify-only'],cwd=root,check=True)
+    subprocess.run([sys.executable,'replay.py','--verify-only','--jobs',str(args.jobs)],cwd=root,check=True)
     subprocess.run([sys.executable,'-B','verify.py'],cwd=root,check=True)
     if not args.verify_only:
         if not shutil.which('lake'):

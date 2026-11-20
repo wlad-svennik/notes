@@ -61,7 +61,9 @@ The release check compiled the new proofs against previously built, pinned depen
 
 ## Reproduce the verification
 
-Download the [source archive](NF185_PA_verification.tar.xz), [replay script](replay_archive.py) and [checksums](SHA256SUMS). The source archive includes the pinned Lean sources, the literal 185-state table, the 192-state transcripts and the proof notes. From the download directory, verify the downloaded files and run the full proof replay. It checks the numerical inputs, builds both PA theorems and the Busy Beaver corollaries, and audits the resulting declarations.
+The [complete verification download](NF185_PA_verification.tar.xz) is **1,549,656 bytes**. It includes all 844 Lean sources, the 93 tape proof batches, the literal machine tables, the proof notes and the original NF192 certificate generator. Python reconstructs the 65 historical transcripts and 65 address indexes locally from the included inputs and checks each against its published SHA-256. No additional download is needed for certificate reconstruction. The full Lean build still needs its pinned compiler and Mathlib dependencies.
+
+Download the archive, [replay script](replay_archive.py) and [checksums](SHA256SUMS). From the download directory, verify the downloaded files and run the full proof replay. It checks the numerical inputs, builds both PA theorems and the Busy Beaver corollaries, and audits the resulting declarations.
 
 ```sh
 sha256sum --check --ignore-missing SHA256SUMS
@@ -69,3 +71,5 @@ python3 replay_archive.py NF185_PA_verification.tar.xz --work nf185-replay --tar
 ```
 
 The full build needs Python 3 and elan with access to the pinned Lean 4.35.0 and Mathlib dependencies. The argument `--work` names a new directory. To check the archive manifest and the connection between the published transition table and the Lean literals using Python alone, add `--verify-only`. Inside the extracted directory, `REGISTER-PROOF.md` describes the compiler and startup proofs, `COMPARISON-PROOF.md` explains the interpretation between the proof pools, and `sources.json` identifies the source of each Lean module.
+
+The earlier [22,355,600-byte archive](https://github.com/wlad-svennik/notes/blob/bfc960b0725ecab9be07518cc35954662f2592e7/nf-bb185/pa/NF185_PA_verification.tar.xz) contains the transcripts already expanded. The compact package reproduces every original file, including its original packaging files in `nf192_generator/original-packaging/`.
