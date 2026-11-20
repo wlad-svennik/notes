@@ -1,0 +1,124 @@
+Lean 4.35.0
+Public entry file: NF185_PA.lean
+Machine: ../NF185.tm
+Machine SHA-256: 5504746071e10a0555754b55efc2da348ebfb1f8e8ab5bc7af474eaad81f60fe
+
+Axioms reported for each compiled declaration.
+
+NF185PA.machine_transfer
+    68 total, 65 beyond propext, Classical.choice and Quot.sound
+    Classical.choice
+    Quot.sound
+    _private.FrozenSite0000.0.PA192.PhysicalModel.Frozen.decision0000._native.decide.ax_1_1
+    _private.FrozenSite0048.0.PA192.PhysicalModel.Frozen.decision0048._native.decide.ax_1_1
+    _private.FrozenSite0096.0.PA192.PhysicalModel.Frozen.decision0096._native.decide.ax_1_1
+    _private.FrozenSite0144.0.PA192.PhysicalModel.Frozen.decision0144._native.decide.ax_1_1
+    _private.FrozenSite0192.0.PA192.PhysicalModel.Frozen.decision0192._native.decide.ax_1_1
+    _private.FrozenSite0240.0.PA192.PhysicalModel.Frozen.decision0240._native.decide.ax_1_1
+    _private.FrozenSite0288.0.PA192.PhysicalModel.Frozen.decision0288._native.decide.ax_1_1
+    _private.FrozenSite0336.0.PA192.PhysicalModel.Frozen.decision0336._native.decide.ax_1_1
+    _private.FrozenSite0384.0.PA192.PhysicalModel.Frozen.decision0384._native.decide.ax_1_1
+    _private.FrozenSite0432.0.PA192.PhysicalModel.Frozen.decision0432._native.decide.ax_1_1
+    _private.FrozenSite0480.0.PA192.PhysicalModel.Frozen.decision0480._native.decide.ax_1_1
+    _private.FrozenSite0528.0.PA192.PhysicalModel.Frozen.decision0528._native.decide.ax_1_1
+    _private.FrozenSite0576.0.PA192.PhysicalModel.Frozen.decision0576._native.decide.ax_1_1
+    _private.FrozenSite0624.0.PA192.PhysicalModel.Frozen.decision0624._native.decide.ax_1_1
+    _private.FrozenSite0672.0.PA192.PhysicalModel.Frozen.decision0672._native.decide.ax_1_1
+    _private.FrozenSite0720.0.PA192.PhysicalModel.Frozen.decision0720._native.decide.ax_1_1
+    _private.FrozenSite0768.0.PA192.PhysicalModel.Frozen.decision0768._native.decide.ax_1_1
+    _private.FrozenSite0816.0.PA192.PhysicalModel.Frozen.decision0816._native.decide.ax_1_1
+    _private.FrozenSite0864.0.PA192.PhysicalModel.Frozen.decision0864._native.decide.ax_1_1
+    _private.FrozenSite0912.0.PA192.PhysicalModel.Frozen.decision0912._native.decide.ax_1_1
+    _private.FrozenSite0960.0.PA192.PhysicalModel.Frozen.decision0960._native.decide.ax_1_1
+    _private.FrozenSite1008.0.PA192.PhysicalModel.Frozen.decision1008._native.decide.ax_1_1
+    _private.FrozenSite1056.0.PA192.PhysicalModel.Frozen.decision1056._native.decide.ax_1_1
+    _private.FrozenSite1104.0.PA192.PhysicalModel.Frozen.decision1104._native.decide.ax_1_1
+    _private.FrozenSite1152.0.PA192.PhysicalModel.Frozen.decision1152._native.decide.ax_1_1
+    _private.FrozenSite1200.0.PA192.PhysicalModel.Frozen.decision1200._native.decide.ax_1_1
+    _private.FrozenSite1248.0.PA192.PhysicalModel.Frozen.decision1248._native.decide.ax_1_1
+    _private.FrozenSite1296.0.PA192.PhysicalModel.Frozen.decision1296._native.decide.ax_1_1
+    _private.FrozenSite1344.0.PA192.PhysicalModel.Frozen.decision1344._native.decide.ax_1_1
+    _private.FrozenSite1392.0.PA192.PhysicalModel.Frozen.decision1392._native.decide.ax_1_1
+    _private.FrozenSite1440.0.PA192.PhysicalModel.Frozen.decision1440._native.decide.ax_1_1
+    _private.FrozenSite1488.0.PA192.PhysicalModel.Frozen.decision1488._native.decide.ax_1_1
+    _private.FrozenSite1536.0.PA192.PhysicalModel.Frozen.decision1536._native.decide.ax_1_1
+    _private.FrozenSite1584.0.PA192.PhysicalModel.Frozen.decision1584._native.decide.ax_1_1
+    _private.FrozenSite1632.0.PA192.PhysicalModel.Frozen.decision1632._native.decide.ax_1_1
+    _private.FrozenSite1680.0.PA192.PhysicalModel.Frozen.decision1680._native.decide.ax_1_1
+    _private.FrozenSite1728.0.PA192.PhysicalModel.Frozen.decision1728._native.decide.ax_1_1
+    _private.FrozenSite1776.0.PA192.PhysicalModel.Frozen.decision1776._native.decide.ax_1_1
+    _private.FrozenSite1824.0.PA192.PhysicalModel.Frozen.decision1824._native.decide.ax_1_1
+    _private.FrozenSite1872.0.PA192.PhysicalModel.Frozen.decision1872._native.decide.ax_1_1
+    _private.FrozenSite1920.0.PA192.PhysicalModel.Frozen.decision1920._native.decide.ax_1_1
+    _private.FrozenSite1968.0.PA192.PhysicalModel.Frozen.decision1968._native.decide.ax_1_1
+    _private.FrozenSite2016.0.PA192.PhysicalModel.Frozen.decision2016._native.decide.ax_1_1
+    _private.FrozenSite2064.0.PA192.PhysicalModel.Frozen.decision2064._native.decide.ax_1_1
+    _private.FrozenSite2112.0.PA192.PhysicalModel.Frozen.decision2112._native.decide.ax_1_1
+    _private.FrozenSite2160.0.PA192.PhysicalModel.Frozen.decision2160._native.decide.ax_1_1
+    _private.FrozenSite2208.0.PA192.PhysicalModel.Frozen.decision2208._native.decide.ax_1_1
+    _private.FrozenSite2256.0.PA192.PhysicalModel.Frozen.decision2256._native.decide.ax_1_1
+    _private.FrozenSite2304.0.PA192.PhysicalModel.Frozen.decision2304._native.decide.ax_1_1
+    _private.FrozenSite2352.0.PA192.PhysicalModel.Frozen.decision2352._native.decide.ax_1_1
+    _private.FrozenSite2400.0.PA192.PhysicalModel.Frozen.decision2400._native.decide.ax_1_1
+    _private.FrozenSite2448.0.PA192.PhysicalModel.Frozen.decision2448._native.decide.ax_1_1
+    _private.FrozenSite2496.0.PA192.PhysicalModel.Frozen.decision2496._native.decide.ax_1_1
+    _private.FrozenSite2544.0.PA192.PhysicalModel.Frozen.decision2544._native.decide.ax_1_1
+    _private.FrozenSite2592.0.PA192.PhysicalModel.Frozen.decision2592._native.decide.ax_1_1
+    _private.FrozenSite2640.0.PA192.PhysicalModel.Frozen.decision2640._native.decide.ax_1_1
+    _private.FrozenSite2688.0.PA192.PhysicalModel.Frozen.decision2688._native.decide.ax_1_1
+    _private.FrozenSite2736.0.PA192.PhysicalModel.Frozen.decision2736._native.decide.ax_1_1
+    _private.FrozenSite2784.0.PA192.PhysicalModel.Frozen.decision2784._native.decide.ax_1_1
+    _private.FrozenSite2832.0.PA192.PhysicalModel.Frozen.decision2832._native.decide.ax_1_1
+    _private.FrozenSite2880.0.PA192.PhysicalModel.Frozen.decision2880._native.decide.ax_1_1
+    _private.FrozenSite2928.0.PA192.PhysicalModel.Frozen.decision2928._native.decide.ax_1_1
+    _private.FrozenSite2976.0.PA192.PhysicalModel.Frozen.decision2976._native.decide.ax_1_1
+    _private.FrozenSite3024.0.PA192.PhysicalModel.Frozen.decision3024._native.decide.ax_1_1
+    _private.FrozenSite3072.0.PA192.PhysicalModel.Frozen.decision3072._native.decide.ax_1_1
+    propext
+
+NF185PA.internal_consistency
+    3 total, 0 beyond propext, Classical.choice and Quot.sound
+    Classical.choice
+    Quot.sound
+    propext
+
+NF185PA.pa_cannot_prove_nonhalting_of_consistent
+    3 total, 0 beyond propext, Classical.choice and Quot.sound
+    Classical.choice
+    Quot.sound
+    propext
+
+NF185PA.pa_independence
+    14 total, 11 beyond propext, Classical.choice and Quot.sound
+    Classical.choice
+    Quot.sound
+    _private.P185ArithmeticPhaseComplete.0.P185.Phase.all_checked._native.native_decide.ax_1_1
+    _private.P185ArithmeticReturnFinite.0.P185.ArithmeticReturn.all_checked._native.native_decide.ax_1_1
+    _private.P185CarryFinite.0.P185.FiniteCarry.all_finite_carries._native.native_decide.ax_1_1
+    _private.P185MachineCanonicalControlData.0.P185.CanonicalControl.checked._native.native_decide.ax_1_1
+    _private.P185MachineCanonicalControlData.0.P185.CanonicalControl.positive_prefixes._native.native_decide.ax_1_1
+    _private.P185MachineControlComplete.0.P185.Control.cases_verified._native.native_decide.ax_1_1
+    _private.P185MachineControlComplete.0.P185.Control.coverage._native.native_decide.ax_1_1
+    _private.P185MachineSourceBounds.0.P185.Source.complete_ordered_prefix_code._native.native_decide.ax_1_1
+    _private.P185MachineSourceBounds.0.P185.Source.unique_conditional_halt._native.native_decide.ax_1_1
+    _private.P185MachineSourceTargets.0.P185.Frame.all_targets._native.native_decide.ax_1_1
+    _private.P185SignedSource.0.P185.Source.agreement._native.native_decide.ax_1_1
+    propext
+
+NF185PA.true_value_independent
+    14 total, 11 beyond propext, Classical.choice and Quot.sound
+    Classical.choice
+    Quot.sound
+    _private.P185ArithmeticPhaseComplete.0.P185.Phase.all_checked._native.native_decide.ax_1_1
+    _private.P185ArithmeticReturnFinite.0.P185.ArithmeticReturn.all_checked._native.native_decide.ax_1_1
+    _private.P185CarryFinite.0.P185.FiniteCarry.all_finite_carries._native.native_decide.ax_1_1
+    _private.P185MachineCanonicalControlData.0.P185.CanonicalControl.checked._native.native_decide.ax_1_1
+    _private.P185MachineCanonicalControlData.0.P185.CanonicalControl.positive_prefixes._native.native_decide.ax_1_1
+    _private.P185MachineControlComplete.0.P185.Control.cases_verified._native.native_decide.ax_1_1
+    _private.P185MachineControlComplete.0.P185.Control.coverage._native.native_decide.ax_1_1
+    _private.P185MachineSourceBounds.0.P185.Source.complete_ordered_prefix_code._native.native_decide.ax_1_1
+    _private.P185MachineSourceBounds.0.P185.Source.unique_conditional_halt._native.native_decide.ax_1_1
+    _private.P185MachineSourceTargets.0.P185.Frame.all_targets._native.native_decide.ax_1_1
+    _private.P185SignedSource.0.P185.Source.agreement._native.native_decide.ax_1_1
+    propext
+
