@@ -4,7 +4,7 @@ On a blank tape the machine halts exactly if pure Quine NF proves a contradictio
 
 The default Lean kernel accepted all 7,794 signed register-branch theorems. Lean checked the exact signed-register conclusion in NF184RegisterConclusion.lean, including both implications. [Proof status](proof-status.txt) records this snapshot.
 
-[Download the full verification checkpoint](NF184_verification_checkpoint.zip) or browse the [Lean proof sources](lean/), [replay scripts](checks/) and [recorded results](receipts/). The archive includes the table, the proofs and their upstream source snapshot.
+The [verification checkpoint](NF184_verification_checkpoint.zip) contains the Lean sources in `lean/`, the replay scripts in `checks/`, the recorded results in `receipts/`, and the upstream source snapshot. The archived copy of [NF184.tm](NF184.tm) is `machines/variable184/candidate.tm`.
 
 ## What changed
 
@@ -23,7 +23,7 @@ If $x\ne y$, this forces $D(x,y)=x$ and $D(x,x)\ne x$. The construction of a fix
 
 ## Replay
 
-Run these commands from this directory or from the root of the extracted checkpoint. The first four need Python 3, and the blank replay also needs a C++20 compiler.
+Extract the verification checkpoint and run these commands from its root. The first four need Python 3, and the blank replay also needs a C++20 compiler.
 
 ```sh
 python3 checks/verify.py
