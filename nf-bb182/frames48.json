@@ -1,0 +1,47 @@
+{
+  "working_states": 182,
+  "transitions": 364,
+  "source_PCs": 2971,
+  "depth": 39,
+  "fixtures_per_PC": 48,
+  "frames": 142608,
+  "literal_steps": 88735299,
+  "longest_primitive": 2086,
+  "max_test_register": 31,
+  "CI": 53952,
+  "CD_positive": 23141,
+  "CD_zero": 21355,
+  "CC": 41376,
+  "CB": 2784,
+  "halt_PC": 2954,
+  "halt_gate_frames": 23,
+  "positive_goal_fallthrough_frames": 25,
+  "incumbent_goal_matches": 48,
+  "incumbent_halting_register_tapes_matched": 23,
+  "incumbent_goal_test_steps": 37826,
+  "blank_anchor": {
+    "step": 17319,
+    "pc": 40,
+    "head": -1,
+    "header": 31
+  },
+  "blank_bridge": {
+    "step": 49239,
+    "pc": 107,
+    "head": -1,
+    "gap": 50,
+    "exact_primitive_returns": 77
+  },
+  "extended_blank_replay": {
+    "step": 235255,
+    "pc": 161,
+    "head": -1,
+    "additional_primitive_returns": 240
+  },
+  "sha256": {
+    "table": "27613930a4fb7365b761eb23624efa32f1990da0c2d7763e68ad48e0082cb7b7",
+    "source": "0aa8f1ebc66afd3b7dd1775863db312d24cee23f9fed5d0bab1ec060d9c0d278",
+    "196_reference": "18ec8262ccf9a52101ea2152c40b30c97eab8fa1a259d3396d6c9719bf4b8662"
+  },
+  "scope": "Finite independent full-tape tests at every source address, with varied frames, and exact comparisons at boot and the halt gate."
+}

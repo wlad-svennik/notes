@@ -1,0 +1,442 @@
+{
+  "table": "27613930a4fb7365b761eb23624efa32f1990da0c2d7763e68ad48e0082cb7b7",
+  "source": "0aa8f1ebc66afd3b7dd1775863db312d24cee23f9fed5d0bab1ec060d9c0d278",
+  "trace_sha256": "b601bc35357eed9a7c4f314ed7ed49c682647c7cb7526e8afd226d79f4e23910",
+  "branch_theorems": 7794,
+  "intervals": [
+    {
+      "first_pc": 0,
+      "past_last_pc": 48,
+      "export_sha256": "408a082c93e1c1836b02deb34cd023c3e8b70c76a3eefec9d6c07b12fecac747",
+      "branches": 130,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 48,
+      "past_last_pc": 96,
+      "export_sha256": "d38ec794cfd765d4933778e455e203e3264e1d8d7fd7f669660713ebb81ac563",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 96,
+      "past_last_pc": 144,
+      "export_sha256": "0c26c2d463d4fb31196f254c145bdc5e2a46e5caa48d82a1cc04235b436ef16a",
+      "branches": 128,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 144,
+      "past_last_pc": 192,
+      "export_sha256": "4df9cc5f8e66c1e3a616c7f7b01aa95701c1b49c018515ffd1f84bb9aaa59be3",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 192,
+      "past_last_pc": 240,
+      "export_sha256": "fef3be796d0ba1580b0b21858044c071d72cd5c9a7f1e2683aba509574883c17",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 240,
+      "past_last_pc": 288,
+      "export_sha256": "102b9c193c0490a6c6558ac6c86fc02d36d97ee9d1410ccb068e1832100634f9",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 288,
+      "past_last_pc": 336,
+      "export_sha256": "99c6cf7f9099781ceef66a66745921b627a84f147e882ac2c3b3018b4ab7e480",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 336,
+      "past_last_pc": 384,
+      "export_sha256": "0fc936f159a6c05793f7cbccde89f596a9a33cd57defe2f5964c145a7f95416f",
+      "branches": 128,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 384,
+      "past_last_pc": 432,
+      "export_sha256": "45ec24477c257f0e676ead4a91007bbbf08e44e5504682972343b423312ffe55",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 432,
+      "past_last_pc": 480,
+      "export_sha256": "e7b1fd0b4990c0d0d6297aa5a98bd3669e695aba9183fe620b844a1188b596d1",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 480,
+      "past_last_pc": 528,
+      "export_sha256": "6e692ab272f925ebec45eaf0064be09ee1c73a085b40dcc0fd67688342a51550",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 528,
+      "past_last_pc": 576,
+      "export_sha256": "e16a1c318af060e4b4ebbb547103d342c17cf5971abd8ce2c7d48f8eb85b6c8d",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 576,
+      "past_last_pc": 624,
+      "export_sha256": "32c66301d491aa54d2a50f73be211b35aa7c6388aff600a4220869cc1a3dfa6e",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 624,
+      "past_last_pc": 672,
+      "export_sha256": "d1228a16039b3c2335bafd081029d9f235da703011c46ae83810d483536cea1c",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 672,
+      "past_last_pc": 720,
+      "export_sha256": "e8df0b65e111c22e21bf2fef6c5aa7291707657b76d969d3df9748ae970c0300",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 720,
+      "past_last_pc": 768,
+      "export_sha256": "8b1bc8c39b0a7a45accfd5948f5d1e6b18fd064030de4c3432df726ebc501c0a",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 768,
+      "past_last_pc": 816,
+      "export_sha256": "24fb1c36bf70148dd41665822e88c6481a3daa6cd925eb665e9f7063a2a7875e",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 816,
+      "past_last_pc": 864,
+      "export_sha256": "59371bc6a1679681569e8b5801108047ddd7b1e6d44e2d339d7d784767b9824c",
+      "branches": 128,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 864,
+      "past_last_pc": 912,
+      "export_sha256": "7b9ee7b742bd88fd25d6162cd99b86887ecc0f0d9d870db5fcd74c45b111972c",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 912,
+      "past_last_pc": 960,
+      "export_sha256": "81439d236a99a98304cba1a0ba2feacf43147eb2288816b530c2c0004588ffbd",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 960,
+      "past_last_pc": 1008,
+      "export_sha256": "26b485a6898cd70171c60dfadbc39043f8b49e217a78e927965b9bfc9db149ee",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1008,
+      "past_last_pc": 1056,
+      "export_sha256": "569fc2949163e71d73d0863208d78be2d8ec56694201850a855fca9fc9c9a59a",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1056,
+      "past_last_pc": 1104,
+      "export_sha256": "9f012c4cf59dc7b23ec9459597dc8d2642af545c2940124c873767c1b89ec8c3",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1104,
+      "past_last_pc": 1152,
+      "export_sha256": "d4b7dd6858c3cf4662a1afb8a865dab929c1d93b86c28faa20ade775d858d85c",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1152,
+      "past_last_pc": 1200,
+      "export_sha256": "690975ec8cc491664be0875b15a37e476204bdf216a96b8a98dbaa915d87b5fb",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1200,
+      "past_last_pc": 1248,
+      "export_sha256": "e083d7354c3e535dbbe97449581feab480ad4fc948f7f05988e064b0f4bcac49",
+      "branches": 128,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1248,
+      "past_last_pc": 1296,
+      "export_sha256": "033db4b6447cf1b4641c0369c285b2b840a5a5a85cd8b9d4728b8995f3a08d56",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1296,
+      "past_last_pc": 1344,
+      "export_sha256": "f318bc435b19f326f46df6dc45241152d49109391dc4b515363ef8a2bd5dc7cd",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1344,
+      "past_last_pc": 1392,
+      "export_sha256": "81782f6bd5d424f75722d28570d050db3ac74a05eef5436ed4ed91dce0e9c15e",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1392,
+      "past_last_pc": 1440,
+      "export_sha256": "33b71457618a92b1bf3996d072073e5119d39f5818f79ce55e02576db80a25fe",
+      "branches": 128,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1440,
+      "past_last_pc": 1488,
+      "export_sha256": "47d6ef175166e9a1e52f1c796d71180036538a09ed933e184a0cda0b6a2afb17",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1488,
+      "past_last_pc": 1536,
+      "export_sha256": "ee4210e94e753a22b2713d5fb067b59066d43d8c90da16b6ff66be651ab05f84",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1536,
+      "past_last_pc": 1584,
+      "export_sha256": "748fc691c8d0262e567f795150647fc093af76c8897963bbf0d0f601b187a043",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1584,
+      "past_last_pc": 1632,
+      "export_sha256": "ac62a71c52abdbd63dc9699866e5c1fcb0439762a127d3d732a575b41efe6b7b",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1632,
+      "past_last_pc": 1680,
+      "export_sha256": "9c2a6ebdf0b43e1e89bde63f4a09abee03214f4763d91289289d7a451eea1793",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1680,
+      "past_last_pc": 1728,
+      "export_sha256": "094396152375a5579a121a2be0c79f3bcb08e1ab95e8ab1f0b8537a6b3f256b4",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1728,
+      "past_last_pc": 1776,
+      "export_sha256": "7749de59440f5a1f62a3256eb2a60a6ce32cb07c750e9f5511a5a0df12f297d2",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1776,
+      "past_last_pc": 1824,
+      "export_sha256": "ce889f9bf032d066951b02afef67801b41d751b2863d530c43e32e5571615ff9",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1824,
+      "past_last_pc": 1872,
+      "export_sha256": "8b3529bc8dadb3d274c49507c7423e3fa159d6478f401f2df4a9cc5e1b2e11ef",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1872,
+      "past_last_pc": 1920,
+      "export_sha256": "5efa98394430ab232cfac93cade815ece02b03d4ef9d24614e2f567da43c2007",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1920,
+      "past_last_pc": 1968,
+      "export_sha256": "ae8a3c4becc65dc4ec67aacf8253b40be0d79e6fe69edb5415301c56740b8506",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 1968,
+      "past_last_pc": 2016,
+      "export_sha256": "e1a46d2c2c26812de579bc31d4dbd7650f6d1f3cb3afc5f8b90c55982d27f5e8",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2016,
+      "past_last_pc": 2064,
+      "export_sha256": "0a5dc04e5c64be5fdb4cce0d8966ecf08b23324d1df467f2cf5eb617230a0567",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2064,
+      "past_last_pc": 2112,
+      "export_sha256": "80e42fd3a6c20b79328fe0f54030d2512aaa1a4fe14c05f0ebea928752601430",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2112,
+      "past_last_pc": 2160,
+      "export_sha256": "c5e9464a9d4ffd220a5f2da234a1ac50c4c60bc7e02eff313d085b50e194e8f9",
+      "branches": 128,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2160,
+      "past_last_pc": 2208,
+      "export_sha256": "3d00022e2e2d02b3645929aef9059265c29cb985a903cdd449fbf4c0b1fdf57d",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2208,
+      "past_last_pc": 2256,
+      "export_sha256": "fee457ee9dc075ae55ff436b5328c40c93174470ad63ffcbfbbd4cbfb4e41496",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2256,
+      "past_last_pc": 2304,
+      "export_sha256": "18cee7c0d448d6f288b4a07c67c471e26c8a6c823e92aeb8f57c58ef805cc6a0",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2304,
+      "past_last_pc": 2352,
+      "export_sha256": "45a6065f4ec23efe75c8a43931c4fdae6711167f2478917478342e3d38f3fbc6",
+      "branches": 128,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2352,
+      "past_last_pc": 2400,
+      "export_sha256": "dd88f8f6c078e7c149670b03f5ead8386aee593dad034ff7d81adc88815af53d",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2400,
+      "past_last_pc": 2448,
+      "export_sha256": "2b1d92f4904c63e9034dccf73d3b96fe795c40d84f70394efa3f845f76d58804",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2448,
+      "past_last_pc": 2496,
+      "export_sha256": "b114856c8f66d432fc657cd9342fde655f630b1a0536c557625df25d70accaa8",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2496,
+      "past_last_pc": 2544,
+      "export_sha256": "c904716c990d240d7cd9fc3c7321a7e40f89942a72572ba7d34b3eb058c76fc4",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2544,
+      "past_last_pc": 2592,
+      "export_sha256": "f223cb0023eee813c31fa754d6868343a6c33e454d9b40d4c0b8750b0c400c92",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2592,
+      "past_last_pc": 2640,
+      "export_sha256": "0020d701c76f53d08c798a9f6aab2e93654840ef3d8e9b411a441c47cfaa776f",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2640,
+      "past_last_pc": 2688,
+      "export_sha256": "2302bf94275f60e600d12d37ce5f16009f263df6cfe21648131d5b0de5c7d575",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2688,
+      "past_last_pc": 2736,
+      "export_sha256": "fd2c8bfd95eb006d4c6a5d5ae092a2a496de73e6d3196b127ed70287ed3aa70f",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2736,
+      "past_last_pc": 2784,
+      "export_sha256": "cd8a31299aaef169267db09a6dc8820b4b48460fd9db17d8f2e188b5570e4d1b",
+      "branches": 124,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2784,
+      "past_last_pc": 2832,
+      "export_sha256": "a7d317d9215a1fb7e4fd31dc201b6268bb74a2018b2ca95ff545f628b8332893",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2832,
+      "past_last_pc": 2880,
+      "export_sha256": "a8ac4946983ff882df190dc14ad4e2e29ceae6f548ccc755eba195c5c3964456",
+      "branches": 126,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2880,
+      "past_last_pc": 2928,
+      "export_sha256": "13245857deea02563a5fe930a73f57781a7c1e2e2a2e41f18d7700c892700d88",
+      "branches": 130,
+      "kernel": "Lean default kernel accepts the solution"
+    },
+    {
+      "first_pc": 2928,
+      "past_last_pc": 2971,
+      "export_sha256": "6abf10df2b1792f47723ceba0e646947ffcfdc6b2d1d6d0be2fcacd4347b6947",
+      "branches": 120,
+      "kernel": "Lean default kernel accepts the solution"
+    }
+  ]
+}
