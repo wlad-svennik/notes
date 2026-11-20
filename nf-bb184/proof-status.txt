@@ -1,0 +1,57 @@
+Checked Lean sources in lean/
+CollapsedRows.lean
+DataMarker.lean
+DyadicEnumeration.lean
+FilteredImplication.lean
+LoadGate.lean
+LoadGateBridge.lean
+LoadGateListing.lean
+LoadGateNF.lean
+LoadGatePop.lean
+Marker184Search.lean
+Marker184SearchCore.lean
+Marker184SearchWords.lean
+MarkerSignature.lean
+Moving184Batch.lean
+Moving184Boot.lean
+Moving184Cold.lean
+Moving184ColdBatches.lean
+Moving184ColdCore.lean
+Moving184ColdStartup.lean
+Moving184Control.lean
+Moving184Frame.lean
+Moving184FrozenMP.lean
+Moving184Literal.lean
+Moving184Margin.lean
+Moving184Outer.lean
+Moving184Raw.lean
+Moving184Register.lean
+Moving184RegisterAX.lean
+Moving184Safe.lean
+Moving184Search.lean
+Moving184SearchCore.lean
+Moving184SearchWords.lean
+Moving184SignedNF.lean
+Moving184Table.lean
+Moving186Logic.lean
+Moving186NF.lean
+MovingRows.lean
+NF184RegisterConclusion.lean
+ObservationRows.lean
+ObservedSevenLogic.lean
+ObservedSevenNF.lean
+PositiveMinor.lean
+ProgressionEnumeration.lean
+ProgressionScanner.lean
+RestrictedConsequences.lean
+VariableDetector.lean
+VariableMarkerNF.lean
+VariableSyntax.lean
+ZeroPop.lean
+ZeroPopNF.lean
+
+Unfinished or unreplayed sources in in-progress/
+(none)
+
+The default Lean kernel accepted all 7,794 signed register-branch theorems.
+Lean checked the exact signed-register conclusion in NF184RegisterConclusion.lean, including both implications.
