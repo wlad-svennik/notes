@@ -4,6 +4,12 @@ Starting on the all-zero tape, this machine halts if and only if pure Quine NF p
 
 [Literal transition table](NF182.tm) · [Complete verification checkpoint](NF182_verification_checkpoint.zip) · [SHA-256 checksums](SHA256SUMS)
 
+## Peano arithmetic
+
+Let $H_{182}$ say that the published machine halts on the blank tape. Lean verifies that first-order PA proves $\neg H_{182} \to \mathrm{Con}(\mathrm{PA})$. Consequently, if PA is consistent, PA cannot prove that this machine runs forever. If pure NF is consistent, the machine does run forever and PA proves neither $H_{182}$ nor its negation.
+
+The archive includes the Lean sources, the literal table, the dependency manifest, the axiom audit, and replay instructions. The theorem `NFMachine182.halts_iff_nf_refutation` connects this exact table to pure NF. [Download the PA proof and replay package](NF182_PA_verification.zip)
+
 ## Verification
 
 Five transition changes to the [184-state machine](../nf-bb184/) eliminate `d:127` and `a:CD:1` while preserving the same 2,971-instruction register program. Lean checks that the literal machine reaches a covered register frame from the blank tape at step 51,157. Its default kernel accepted all 7,794 universal branch proofs. An independent C++ replay checked 142,608 complete tapes, including 23 halting cases and 25 continuations at the halt gate. [Kernel receipt](kernel.json) · [Independent replay receipt](frames48.json)
