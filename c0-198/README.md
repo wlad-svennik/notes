@@ -29,7 +29,7 @@ The PDF reports and ZIP archives are downloads from the [C₀ research release](
 
 These are conventional mathematical arguments in ZF, with explicit unbounded inductions and replayable finite certificates. They do not constitute a new end-to-end Lean or PA formalization of a 198-state machine. Finite runtime tests are supplementary to the uniform arguments. No optimality claim is made.
 
-The calibration concerns the exact unrestricted C₀ theory. It does not identify C₀ with NF. The reverse interpretation of C₀ in NFU + Infinity remains unresolved in the later report. These checkpoints do not establish an NF–Mac Lane equiconsistency theorem; they precede the separate audit of the v15 manuscript.
+The calibration concerns the exact unrestricted C₀ theory. It does not identify C₀ with NF. The reverse interpretation of C₀ in NFU + Infinity remains unresolved in the later report. These checkpoints do not establish an NF–Mac Lane equiconsistency theorem; they precede the separate audit of the v15 manuscript by R. Gutin and E. Glazer.
 
 The earlier [NF BB(210) development](../nf-bb210/README.md) remains available with its own theorem statements and verification scope.
 
