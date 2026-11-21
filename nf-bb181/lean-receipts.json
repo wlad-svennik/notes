@@ -1,0 +1,127 @@
+{
+  "Direct181Frames": {
+    "sha256": "06a3aff587fe35dbebf7d6d03913a7914cb2f00c8a982604d53f4b6fccad474e",
+    "theorems": {
+      "Direct181.Boot.blank_first_signed_frame": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Direct181.Boot.blank_margin_frame": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Direct181.Boot.blank_signed_origin": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  },
+  "Direct181PARefill": {
+    "sha256": "9d3ec2f656eb7b8d9a0bfe4f88934d5cc64c0a82d7d144aebc6ab6502654b47c",
+    "theorems": {
+      "PA192.ModelSearch.Register181.Commands.reader24": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "PA192.ModelSearch.Register181.Commands.refill0To24": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  },
+  "Direct181PATransfer": {
+    "sha256": "3322d5d7e1fd8e4a50343a5e8dd9a891a543754041bace424875f1ed64b4f203",
+    "theorems": {
+      "NF181PA.halting_equivalence": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "NF181PA.transfer_from_182": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "NF181PA.transfer_to_182": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  },
+  "Direct181SourceIff": {
+    "sha256": "ac40b9aff39a56a483eb61f9fe1e22884e53b877582e01dd759302d7abec2755",
+    "theorems": {
+      "NF181PA.Reverse.sourceHalt_iff_pool": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  },
+  "NF181Exact": {
+    "sha256": "9650e062fb17d1522ae7046596a777b71991bebd413eafa35134ab2ffcdd4368",
+    "theorems": {
+      "NFMachine181.halts_iff_nf_refutation": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  },
+  "NF181PAIndependence": {
+    "sha256": "5481f45c5bea9a1fa4be767aca6351037c2d744121325f8b5725e2bd7f76789e",
+    "theorems": {
+      "NF181PA.pa_cannot_prove_nonhalting": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "NF181PA.pa_cannot_prove_nonhalting_of_consistent": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "NF181PA.pa_independence": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "NF181PA.pa_no_upper_of_live": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "NF181PA.true_value_independent": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  },
+  "NF181PAInternalConsistency": {
+    "sha256": "ca879891f88b5cfcd03d8a3250d49d78b075f476315aad6cd3594a594893f721",
+    "theorems": {
+      "NF181PA.internal_consistency": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  },
+  "NF181PATapeKernel": {
+    "sha256": "4b83cc287061e87d54f3fac8031fcefbba0c786fd624ddd4f946c58d3a4f9e4c",
+    "theorems": {
+      "NF181PA.Symbolic.tape_of_register_halt": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  }
+}
