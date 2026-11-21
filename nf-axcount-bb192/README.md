@@ -21,7 +21,7 @@ The last result gives a one-sided set-theoretic guarantee. If NFU with Dedekind 
 | Direction for pure NF + AxCount | Additional argument |
 | --- | --- |
 | Consistency implies nonhalting. | Starting from a model of pure NF + AxCount, prescribe the rows of an applicative model along its internal natural numbers. Each successor row returns its predecessor at every argument. The construction and completion of the represented graph are given on paper. Lean checks that the resulting data give the required J-point model, in `NF193.Upper.Splice.Operations.chart`. |
-| Nonhalting implies consistency. | Start with the NFU model constructed in Lean. Proposition 17.13 and the first row of Theorem 21.1 in Ran Gutin’s *Choice and Consistency Strength in NF and NFU*, v15, compare this NFU theory and pure NF + AxCount to the same first-order theory. These relative-consistency results are claims in a research draft awaiting independent verification. |
+| Nonhalting implies consistency. | Start with the NFU model constructed in Lean. Proposition 17.13 and the first row of Theorem 21.1 in *Choice and Consistency Strength in NF and NFU* (v15) by R. Gutin and E. Glazer compare this NFU theory and pure NF + AxCount to the same first-order theory. These relative-consistency results are claims in a research draft awaiting independent verification. |
 
 Taken together, the written arguments give the proposed “halts iff pure NF + AxCount is inconsistent” conclusion. The proof of each Lean theorem in the first table is independent of both written arguments. The companion archive includes the detailed graph construction in `Calibration.md` and the relevant manuscript pages in `references/Counting_comparisons_v15_excerpt.pdf`.
 
