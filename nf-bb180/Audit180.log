@@ -1,0 +1,34 @@
+NF180PA.H180_eval {V : Type} [ORingStructure V] [V↓[ℒₒᵣ] ⊧* 𝗣𝗔] :
+  (Semiformula.Evalb ![]) NF180PA.H180 ↔
+    ∃ t, PA192.PhysicalModel.state (PA192.PhysicalModel.rawRun Blank180.Table.machine Blank180.Table.start t) = 180
+Blank180.Table.literal_exact : Blank180.Table.rendered = Blank180.Table.raw
+NF180PA.model_refutation {V : Type} [ORingStructure V] [V↓[ℒₒᵣ] ⊧* 𝗣𝗔] :
+  (Semiformula.Evalb ![]) NF180PA.H180 ↔ NF182PA.Pool.Pr ∅ goal
+NF180PA.halting_equivalence : M6.PA.theory ⊢ NF180PA.H180 🡘 NF181PA.H181
+NFMachine180.halts_iff_nf_refutation : NF210.TM.Halts Blank180.Table.machine Blank180.Table.start ↔ 𝗡𝗙 ⊢ ⊥
+NF180PA.internal_consistency : M6.PA.theory ⊢ ∼NF180PA.H180 🡒 M6.PA.consistencySentence
+NF180PA.pa_independence (nf : Entailment.Consistent 𝗡𝗙) :
+  M6.PA.theory ⊬ ∼NF180PA.H180 ∧
+    M6.PA.theory ⊬ NF180PA.H180 ∧
+      ∀ (k : ℕ),
+        M6.PA.theory ⊬ PA192.BusyBeaver.upper 180 k ∧
+          M6.PA.theory ⊬ PA192.BusyBeaver.fixedUpper 0 k ∧ M6.PA.theory ⊬ PA192.BusyBeaver.value 180 k
+NF180PA.true_value_independent (nf : Entailment.Consistent 𝗡𝗙) :
+  ∃ k,
+    (Semiformula.Evalb ![]) (PA192.BusyBeaver.value 180 k) ∧
+      M6.PA.theory ⊬ PA192.BusyBeaver.value 180 k ∧ M6.PA.theory ⊬ ∼PA192.BusyBeaver.value 180 k
+NF180PA.FromPublished181.busy_beaver (nf : Entailment.Consistent 𝗡𝗙) :
+  M6.PA.theory ⊬ ∼NF180PA.H180 ∧
+    M6.PA.theory ⊬ NF180PA.H180 ∧
+      (∀ (k : ℕ), M6.PA.theory ⊬ PA192.BusyBeaver.upper 180 k) ∧
+        ∃ k,
+          (Semiformula.Evalb ![]) (PA192.BusyBeaver.value 180 k) ∧
+            M6.PA.theory ⊬ PA192.BusyBeaver.value 180 k ∧ M6.PA.theory ⊬ ∼PA192.BusyBeaver.value 180 k
+'NF180PA.model_refutation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF180PA.halting_equivalence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NFMachine180.halts_iff_nf_refutation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF180PA.internal_consistency' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF180PA.pa_independence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF180PA.true_value_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF180PA.FromPublished181.internal_consistency' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF180PA.FromPublished181.busy_beaver' depends on axioms: [propext, Classical.choice, Quot.sound]
