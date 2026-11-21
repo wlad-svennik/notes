@@ -2,7 +2,7 @@
 
 This binary Turing machine searches for a refutation in a nine-schema calculus. Subject to the written set-theoretic arguments below, it halts from a blank tape exactly when pure New Foundations with full Rosser Counting is inconsistent.
 
-[Transition table](NF_AxCount_Guarded_187.tm) · [Verification archive](NF_AxCount_Guarded_187_Verification.zip) · [SHA-256 checksums](SHA256SUMS)
+[Transition table](NF_AxCount_Guarded_187.tm) · [Verification archive](NF_AxCount_Guarded_187_Verification.zip) · [Independent replay](NF_AxCount_Guarded_187_Independent_Replay.zip) · [SHA-256 checksums](SHA256SUMS)
 
 ## Running the table
 
@@ -22,6 +22,12 @@ The 3,642-instruction register program keeps the eight families of the pure NF m
 | Nonhalting of the register program | Lean proves that nonhalting is equivalent to existence of a guarded chart and implies existence of an NFU model with Dedekind Infinity and $T(n)=n$ for every natural number of that model. See `nonhalting_iff_guarded_chart` and `nonhalting_yields_counting_model` in the same namespace. |
 
 Two written mathematical arguments connect these results to **pure NF + full AxCount**. First, `calculus/UPPER.md` constructs a guarded chart from a pure NF + AxCount model using the stated full-chart and completion hypotheses. Conversely, the NFU model gives consistency of pure NF + AxCount using Proposition 17.13 and the first row of Theorem 21.1 of Ran Gutin’s *Choice and Consistency Strength in NF and NFU*, v15, through their common comparison theory. The manuscript describes these results as self-audited and awaiting independent verification. The verification archive includes the relevant excerpt in `upstream/Jpoint_Calibration.zip`. The pure-theory equivalence depends on these written arguments.
+
+## Independent replay
+
+All 57 regenerated proof batches matched their recorded SHA-256 hashes and passed the Lean 4.35.0 reference kernel. A separate checker read the actual theorem statements and matched all 9,552 branch domains, destinations and symbolic clocks to the literal register program. The independent simulator also matched every tape and clock in 38,208 fixtures that collectively exercised all 374 binary transition rows.
+
+The supplemental Lean theorem `Guarded187.ExportBinding.normalized_iterate_view` identifies an arbitrary finite run of the exported step function with the ordinary tape and control of this literal machine, viewed from its current head. The companion `terminal_iff` identifies its halt code. All 57 batches share the exact machine definitions used for those theorems. A clean Lean 4.35.0 build compiled all 197 project modules against the 14 pinned external packages. Seven endpoint statements and their axiom dependencies were rechecked from that build. The replay archive contains the source, the per-batch results and the commands to repeat the checks.
 
 ## Reproducing the checks
 
