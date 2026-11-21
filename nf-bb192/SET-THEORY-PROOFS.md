@@ -1,6 +1,6 @@
 # Guide to the submitted set-theory proofs
 
-`nf-interp.zip` contains the original Lean 4.35.0 development, eleven written proofs and expositions under `nf-interp/docs/`, two earlier working notes, and the recorded checker results under `nf-interp/check/`. The standalone project contains 63 Lean source files. The [browsable proof sources](interpretations/) preserve the original file text. For the original directory layout and the complete build, use [nf-interp.zip](nf-interp.zip). A declaration that one theory *interprets* another gives a translation of the latter theory into the former.
+`nf-interp.zip` contains the original Lean 4.35.0 development, eleven written proofs and expositions under `nf-interp/docs/`, two earlier working notes, and the recorded checker results under `nf-interp/check/`. The standalone project contains 63 Lean source files. The [browsable proof sources](interpretations/) preserve the original Lean code. For the original directory layout and the complete build, use [nf-interp.zip](nf-interp.zip). A declaration that one theory *interprets* another gives a translation of the latter theory into the former.
 
 | Theory | Formal definitions and proofs | Selected declarations |
 | --- | --- | --- |
@@ -16,4 +16,4 @@ The M in these proofs is Mathias’s Mac Lane set theory with transitive contain
 
 The original `docs/README.md` indexes all the informal proofs and identifies the two historical plans. Its self-contained NFU + Infinity interpretation is `nfu_inf_interprets_nf_selfcontained_2026-11-16.md`. The corresponding guides for the function and combinator theories are `function_nf_2026-11-17.md` and `comb_nf_2026-11-18.md`. For the Mac Lane theories, read `nf_interprets_mac_2026-11-17.md`, `m_tsti_nfui_2026-11-17.md`, and `mac_choice_2026-11-18.md`.
 
-SHA-256 of the submitted `nf-interp.zip` is `0d840316c347b659bcd20008450387e0f5d0191ff0ebd5bb700a6f04f2363a90`.
+The downloadable `nf-interp.zip` has SHA-256 `52e0fc8a41c9eb4ba170d712697e0fdb69a8662b04e186f248b317913752e3e8`. The submitted archive, before the joint manuscript credits were added to three notes, has SHA-256 `0d840316c347b659bcd20008450387e0f5d0191ff0ebd5bb700a6f04f2363a90`.
