@@ -1,0 +1,28 @@
+Table SHA-256 46cde5a5de2b1ef86094baa9940cd61153c0c1cb45cdc9339fa642b3c7625efc
+Register-source SHA-256 7bacb7672e2df5f580588cc493b52c62bb0574de94c3a374d28e07195beccd47
+178 reachable working states, 356 binary transitions, one halt edge.
+240354 steps from blank to epoch five. All startup Lean modules accepted.
+7792 signed branches and 20 pump rules checked in 60 reference-kernel export intervals.
+142544 full successor tapes, 16 halts, 100654682 binary transitions
+'Blank180.Table.literal_exact' depends on axioms: [propext]
+'NF178.EarlyGraph.all_control_states_reachable' depends on axioms: [propext]
+'NF178.FirstBoot.blank_first_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF178.FirstBinding.machine_exact' depends on axioms: [propext]
+'NF178.FirstBinding.first_literal_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Blank180.Boot.blank_first_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Blank180.Boot.blank_margin_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF178.HeaderCheck.header_exact' depends on axioms: [propext]
+'NF178.TableAudit.literal_records_exact' depends on axioms: [propext]
+'NF178.TableAudit.complete_file_exact' depends on axioms: [propext]
+'NF178.HaltAudit.halt_exact' depends on axioms: [propext]
+'NF178.HaltAudit.halt_instruction' depends on axioms: [propext]
+'NF178.HaltAudit.start_id' depends on axioms: [propext]
+'NF178.HaltAudit.binary_table_size' depends on axioms: [propext]
+'NF178.GraphAudit.all_control_states_reachable' depends on axioms: [propext]
+'NF178.Startup.packed_table_exact' depends on axioms: [propext, Quot.sound]
+'NF178.Startup.exact_frames' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF178.Startup.epoch_five_layout' does not depend on any axioms
+'NF178.Startup.live_through_startup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Blank180.Boot.first_snapshot_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Blank180.Boot.margin_snapshot_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF178.Fast.machine_eq' depends on axioms: [propext, Quot.sound]
