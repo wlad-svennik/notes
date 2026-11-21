@@ -12,11 +12,13 @@ Two decoder states in the predecessor were always entered just after a right mov
 
 Lean checked the blank run through tick 230,892. At that point the entire tape encodes source instruction zero, epoch counter five and eight zero registers. The head is at −10, the gap is 97, and there are 78 spare cells. This is the same register checkpoint used in the predecessor proof. The independent Lean reference kernel accepted all 7,792 signed physical instruction branches, including the terminal cases. Their induction rules cover arbitrary register lengths. The unchanged source therefore transfers both directions of the published pure-NF halting criterion.
 
-An independent simulator also checked 142,544 full successor tapes and 16 halting fixtures across 94,093,082 binary steps. The PA-format executable checker accepted all 7,792 witness integers. The separate end-to-end PA independence proof for this exact table is being rebuilt.
+An independent simulator also checked 142,544 full successor tapes and 16 halting fixtures across 94,093,082 binary steps. The PA-format executable checker accepted all 7,792 witness integers. Lean also checked the end-to-end arithmetic proof for this exact table. In every model of PA, the literal halting sentence is equivalent to the existence of an internal refutation. If PA is consistent, PA cannot prove that the machine runs forever. If pure NF is consistent, PA decides neither this machine’s halting sentence nor the equation giving the true numerical value of BB(179).
+
+[PA verification archive](NF179_PA_verification.zip) · [The six theorem statements and their axiom audit](Audit179_PA.log)
 
 ## Replay
 
-Extract the verification archive and run `python3 verify.py --examples`. With Lean 4.35.0 and `leanchecker-paranoid` on PATH, run `python3 verify.py --kernel --jobs 2` to regenerate all signed proofs. The archive also includes the blank-startup Lean sources and a replay of the state-sharing search.
+Extract the verification archive and run `python3 verify.py --examples`. With Lean 4.35.0 and `leanchecker-paranoid` on PATH, run `python3 verify.py --kernel --jobs 2` to regenerate all signed proofs. The archive also includes the blank-startup Lean sources and a replay of the state-sharing search. To rebuild the PA theorems, extract the PA verification archive and run `python3 object-pa/replay.py --jobs 2` with Lean 4.35.0 and Lake available.
 
 **Literal table SHA-256** `36c19b11e2b4c854ae41919cfd7cfc5be5a20f3846453da2e9099798e5edfee3`
 

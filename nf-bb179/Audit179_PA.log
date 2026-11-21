@@ -1,0 +1,22 @@
+Blank180.Table.literal_exact : Blank180.Table.rendered = Blank180.Table.raw
+NF179.model_refutation {V : Type} [FFL.ORingStructure V] [V↓[ℒₒᵣ] ⊧* 𝗣𝗔] :
+  (FFL.FirstOrder.Semiformula.Evalb ![]) NF179.H179 ↔ NF182PA.Pool.Pr ∅ PA192.Literal.goal
+NF179.halts_iff_nf_refutation : NF210.TM.Halts NF179.machine NF179.start ↔ 𝗡𝗙 ⊢ ⊥
+NF179.internal_consistency : M6.PA.theory ⊢ ∼NF179.H179 🡒 M6.PA.consistencySentence
+NF179.pa_cannot_prove_nonhalting_of_consistent (h : M6.PA.Consistent) : M6.PA.theory ⊬ ∼NF179.H179
+NF179.pa_independence (nf : FFL.Entailment.Consistent 𝗡𝗙) :
+  M6.PA.theory ⊬ ∼NF179.H179 ∧
+    M6.PA.theory ⊬ NF179.H179 ∧
+      ∀ (k : ℕ),
+        M6.PA.theory ⊬ PA192.BusyBeaver.upper 179 k ∧
+          M6.PA.theory ⊬ PA192.BusyBeaver.fixedUpper 0 k ∧ M6.PA.theory ⊬ PA192.BusyBeaver.value 179 k
+NF179.true_value_independent (nf : FFL.Entailment.Consistent 𝗡𝗙) :
+  ∃ k,
+    (FFL.FirstOrder.Semiformula.Evalb ![]) (PA192.BusyBeaver.value 179 k) ∧
+      M6.PA.theory ⊬ PA192.BusyBeaver.value 179 k ∧ M6.PA.theory ⊬ ∼PA192.BusyBeaver.value 179 k
+'NF179.model_refutation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF179.halts_iff_nf_refutation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF179.internal_consistency' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF179.pa_cannot_prove_nonhalting_of_consistent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF179.pa_independence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF179.true_value_independent' depends on axioms: [propext, Classical.choice, Quot.sound]
