@@ -1,0 +1,17 @@
+Literal table SHA-256 36c19b11e2b4c854ae41919cfd7cfc5be5a20f3846453da2e9099798e5edfee3
+179 reachable working states; 358 binary rows; 1 halt row.
+230892 blank steps to PC 0, epoch 5, head -10, gap 97, 78 spare cells.
+7792 signed branches submitted to the reference Lean kernel in 30 export intervals.
+142544 full successor tapes, 16 halts, 94093082 literal transitions.
+7792 PA-format witnesses accepted by the executable checker.
+
+'NF179.GraphAudit.all_control_states_reachable' depends on axioms: [propext]
+'NF179.HaltAudit.halt_exact' depends on axioms: [propext]
+'NF179.HaltAudit.halt_instruction' depends on axioms: [propext]
+'NF179.HaltAudit.start_id' depends on axioms: [propext]
+'NF179.HaltAudit.binary_table_size' depends on axioms: [propext]
+'NF179.Startup.exact_frames' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF179.Startup.epoch_five_layout' does not depend on any axioms
+'NF179.Startup.live_through_startup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'NF179.TableAudit.literal_records_exact' depends on axioms: [propext]
+'NF179.TableAudit.complete_file_exact' depends on axioms: [propext]
