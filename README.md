@@ -20,7 +20,7 @@ publication replay evidence. Its README distinguishes implementation
 verification, inherited written theory calibrations and theory-internal
 independence claims.
 
-[Proposed Busy Beaver wiki page and exact insertion markup](wiki/).
+[Proposed edits to the Busy Beaver wiki page Logical independence](wiki/).
 
 ## Earlier NF machines and interpretation proofs
 

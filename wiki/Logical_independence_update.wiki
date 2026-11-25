@@ -1,15 +1,39 @@
-=== Recent NF-family constructions ===
+<!-- Proposed fragments for Logical independence, revision 11626. Apply each block at its labelled location; this is not a full-page replacement. -->
 
-The latest machines in the R. Gutin and E. Glazer reduction series have the following state counts. See [[New Foundations consistency machines]] for the target theories, construction and verification scope.
+<!-- SUMMARY ROW: NF + CS -->
+|-
+| New Foundations (NF) + Cantorian Sets (CS)
+| 199 [https://github.com/wlad-svennik/notes/tree/main/nf-cs-bb199 Source]<br />Latest construction: '''197 states''' [https://github.com/wlad-svennik/notes/tree/main/nf-cs-bb197 Release]<ref group="footnote" name="nf-implementation-records-2026">The newer figures are complete binary implementation records, with blank-tape initialization included and the terminal halt state excluded. Their release notes distinguish implementation verification from inherited logical calibration. The older independence-bound entries are retained here; this update does not assert new PA or Zermelo bounds for the reduced tables.</ref>
 
-{| class="wikitable"
-! Target theory !! Working states !! Date !! Source and verification
+<!-- SUMMARY ROW: NF + AxCount -->
 |-
-| NF || '''173''' || 25 November 2026 || [https://github.com/wlad-svennik/notes/tree/main/nf-bb173 Literal table and portable certificates]
-|-
-| NF + full Axiom of Counting || '''182''' || 25 November 2026 || [https://github.com/wlad-svennik/notes/tree/main/nf-axcount-bb182 Literal table, certificates and calibration audit]
-|-
-| NF + full Cantorian Sets || '''197''' || 24 November 2026 || [https://github.com/wlad-svennik/notes/tree/main/nf-cs-bb197 Literal table, phase certificate and calibration notes]
-|}
+| New Foundations (NF) + Axiom of Counting (AxCount)
+| 187 [https://github.com/wlad-svennik/notes/tree/main/nf-axcount-bb187 Source]<br />Latest construction: '''182 states''' [https://github.com/wlad-svennik/notes/tree/main/nf-axcount-bb182 Release]<ref group="footnote" name="nf-implementation-records-2026" />
 
-The counts include the complete binary machines and blank-tape initialization, excluding the terminal halt state. The releases preserve the earlier refutation-search sources and distinguish the implementation certificates from their inherited written and formal logical calibrations. These construction records do not by themselves establish new exact-table PA or Zermelo transfer theorems.
+<!-- SUMMARY ROW: NF / Mac Lane -->
+|-
+| New Foundations (NF) / Mac Lane
+| 177 [https://github.com/wlad-svennik/notes/tree/main/nf-bb177 Source]<br />Latest NF construction: '''173 states''' [https://github.com/wlad-svennik/notes/tree/main/nf-bb173 Release]<ref group="footnote" name="nf-implementation-records-2026" />
+
+<!-- NF HISTORY: replace the table caption -->
+|+History of New Foundations (NF) refutation-search machines
+
+<!-- NF HISTORY: append before its closing table marker -->
+|-
+|173
+|25 November 2026
+|R. Gutin and E. Glazer
+|[https://github.com/wlad-svennik/notes/blob/main/nf-bb173/NF_173.tm Transition table]
+|[https://github.com/wlad-svennik/notes/tree/main/nf-bb173 Portable implementation certificates]; inherited NF calibration includes written arguments.<ref name="nf173-release">R. Gutin and E. Glazer, [https://github.com/wlad-svennik/notes/tree/main/nf-bb173 ''Pure NF: a 173-state binary machine''], 25 November 2026.</ref>
+
+<!-- FIRST AXCOUNT SUBSECTION: replace its outdated current-record sentence -->
+On 25 November 2026, R. Gutin and E. Glazer published a '''182-state''' implementation of the NF + AxCount refutation search. It preserves the 3,397-instruction source and full Rosser Counting over internal natural numbers. The release includes portable verification, a full physical-phase and blank-start kernel replay, and a separate statement of the inherited calibration's written components.<ref name="axcount182-release">R. Gutin and E. Glazer, [https://github.com/wlad-svennik/notes/tree/main/nf-axcount-bb182 ''NF + full AxCount: 182-state binary machine''], 25 November 2026.</ref>
+
+<!-- CS SUBSECTION: replace its outdated final current-record sentence -->
+The latest construction has '''197 working states''', with a certificate dated 24 November 2026. Its full-CS proof-search source is preserved; the release supplies a portable certificate for universal symbolic phases, the source invariant and the complete blank-tape startup, together with the inherited calibration notes.<ref name="nfcs197-release">R. Gutin and E. Glazer, [https://github.com/wlad-svennik/notes/tree/main/nf-cs-bb197 ''NF + CS: a 197-state binary Turing machine''], certificate dated 24 November 2026.</ref>
+
+<!-- SECOND AXCOUNT SUBSECTION: replace its first sentence -->
+The earlier 187-state Counting presentation uses the same three primitives.
+
+<!-- END OF NF SECTION: replace the final verification-status paragraph before Peano Arithmetic -->
+The November 2026 reductions distinguish the literal-machine implementation proofs from their logical calibrations. The 173-state NF and 182-state AxCount packages include standalone Lean-kernel component certificates; the 197-state CS package includes universal symbolic phase checks and written loop-composition arguments. The inherited theory comparisons retain the written steps identified in the release notes, so these packages are not presented as one newly completed end-to-end Lean formalization. In particular, a new PA or Zermelo bound for the exact reduced tables requires the corresponding internal arithmetic transfer; the smaller state counts alone do not supply that result.<ref name="nf173-release" /><ref name="axcount182-release" /><ref name="nfcs197-release" />
