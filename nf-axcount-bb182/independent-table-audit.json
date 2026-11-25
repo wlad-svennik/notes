@@ -1,0 +1,21 @@
+{
+  "audit_date_utc": "2026-11-25",
+  "status": "PASS",
+  "scope": "Independent literal-table structural and exact finite startup audit. This is not by itself a proof of full program simulation or set-theoretic calibration.",
+  "working_states": 182,
+  "rows": 364,
+  "blank_symbol": 0,
+  "start_state": "k:74",
+  "separate_halt_state": "halt",
+  "total_binary_transition_function": true,
+  "all_targets_defined_or_halt": true,
+  "syntactic_reachable_states": 182,
+  "exact_blank_start_steps": 67998,
+  "blank_start_state": "d:0",
+  "blank_start_head": -4,
+  "blank_start_ones_match": true,
+  "source_sites": 3397,
+  "table_sha256": "d99fe0163acc608b1bed679e9c72a941bd05d37c285e6db0a12cb111eca25e7b",
+  "source_sha256": "222bb33545c28307c2a358760ed9857f6897d43ef1bae010919a0abca7e2b8f4",
+  "archive_sha256": "4e2ab88ed5027ff4bcef425b11a0f41db778c1914930c7a4e578c56f5262f452"
+}

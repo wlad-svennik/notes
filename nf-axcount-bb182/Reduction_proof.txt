@@ -1,0 +1,270 @@
+NF+AxCount: the 183-to -182 state reduction
+R. Gutin and E. Glazer
+25 November 2026
+
+This document records the mathematical interpretation of the two changed
+transitions. Acceptance is recorded separately in the replay receipts.
+
+1. The literal change
+
+The 183-state table has SHA-256
+bb6603f5a5e9848c3125ce1c861ff5f6bbdb3db383bdbc65ad487fba1feb0b52.
+
+Retain every transition except these two targets:
+
+    state   read   write   move   old target   new target
+    d:163     1      1      R       d:39         d:17
+    d:79      1      1      R       d:39         d:160
+
+The state d:39 then has no outside predecessor. Delete its two rows.
+The resulting table has 182 working states, 364 binary rows, and a separate
+halting state. Its start state is k:74, its blank symbol is 0, and its tape
+is two-way infinite. Its SHA-256 is
+d99fe0163acc608b1bed679e9c72a941bd05d37c285e6db0a12cb111eca25e7b.
+
+The original 3,397-site numerical proof-enumeration source is unchanged,
+byte for byte. Its SHA-256 is
+222bb33545c28307c2a358760ed9857f6897d43ef1bae010919a0abca7e2b8f4.
+
+This is not a claim that d:39 and either target state have identical
+behavior on every possible tape. Its two incoming contexts acquire
+different interpretations. The proof works at complete arithmetic-loop
+boundaries and supplies the necessary entry conditions from an inductive
+source invariant.
+
+2. The smallest example of the rotated transfer
+
+At each affected ordinary loop, the old source is
+
+    h:     decrement R3; zero -> exit, positive -> h+1
+    h+1:   increment R4
+    h+2:   jump to h
+
+At genuine entry to each of these 30 loops, R4 is zero. Consider R3=3.
+The new implementation follows these register values:
+
+    entry h              (R3,R4) = (3,0)
+    after first decrement          (2,0)
+    after deferred increment       (2,0)
+    after first positive tail      (1,1)
+    after second positive tail     (0,2)
+    after final zero tail          (0,3), exit
+
+The old CI4 address now defers its increment. At the old jump address,
+the new tail increments R4 and then tests R3. A positive R3 is decremented
+and returns to the same tail address. Zero R3 exits after the final
+increment. The initial decrement and final increment balance exactly.
+
+For input R3=0, the ordinary entry-zero branch exits without entering the
+new tail. This separate case is essential: entering a tail with donor zero
+does perform one increment, whereas entering the entire loop with donor
+zero performs none.
+
+3. Frames and universal domains
+
+A canonical frame has state d:0 and consists of a leading guard, the binary
+source address, a zero gap, the register header, nine unary register fields,
+and zero spare fields. Register order on tape is
+
+    R2, R8, R1, R4, R3, R7, R0, R5, R6.
+
+The register value r is represented by r+2 consecutive ones in its field.
+All nine register values are natural numbers. The base address-to-header
+gap is at least 49, and there are at least 24 zero spare fields. Eleven
+independent natural exponents represent the nine register values and the
+unbounded extensions of the gap and spare region.
+
+A visit to d:0 alone is not a source boundary. The replay checks the entire
+tape frame, the source address, the control, and the exact head position.
+Internal visits to d:0 are allowed during a certified phase.
+
+Let w=1 if the loop exit wraps to source PC0, and w=0 otherwise. A wrap
+moves the frame origin left by one and increases the gap by one. The
+positive decrement adds one to the gap. An increment adds one zero spare
+field. All registers not mentioned below are preserved.
+
+The five phase contracts at each of the 30 literal loop locations are:
+
+  Entry zero, h:
+      R3=0, R4=m -> exit, R3=0, R4=m;
+      gap += w, spares unchanged, frame origin -= w.
+
+  Entry positive, h:
+      R3=N>0, R4=0 -> h+1, R3=N-1, R4=0;
+      gap += 1, spares unchanged, frame origin unchanged.
+
+  Defer, h+1:
+      R3=d, R4=0 -> h+2, same registers and resources.
+
+  Tail positive, h+2:
+      R3=d>0, R4=m -> h+2, R3=d-1, R4=m+1;
+      gap += 1, spares += 1, frame origin unchanged.
+
+  Tail zero, h+2:
+      R3=0, R4=m -> exit, R3=0, R4=m+1;
+      gap += w, spares += 1, frame origin -= w.
+
+Their common guarded assumptions are R1>0 and R7=0. The defer and positive
+entry additionally require R4=0. The tail contracts allow arbitrary
+independent destination and donor values; they do not assume an unstated
+relation between the other registers and their sum.
+
+The 30 loop heads are:
+281, 427, 453, 558, 636, 792, 1018, 1167, 1439, 1517, 1543,
+1648, 1778, 1934, 2141, 2219, 2341, 2367, 2498, 2569, 2595,
+2674, 2726, 2829, 2906, 2958, 3089, 3220, 3374, 3394.
+
+All five contracts are checked separately at every address, including the
+last loop's wrapped exit. No address-generic decoder behavior is assumed.
+
+4. Natural-number induction for the complete rotated loop
+
+Write n for the initial R3 value. If n=0, entry-zero gives the complete
+source effect immediately. Suppose n>0. The positive entry and defer give
+the first tail frame with
+
+    R3 = n-1, R4 = 0, gap = g+1, spares = s.
+
+For every k with 0 <= k <= n-1, induction gives the tail frame
+
+    R3 = n-1-k,
+    R4 = k,
+    gap = g+1+k,
+    spares = s+k.
+
+For k<n-1, R3 is positive and the tail-positive contract gives the next
+instance. R1>0 and R7=0 are preserved. The gap and spare counts never
+decrease, so every phase premise continues to hold.
+
+At k=n-1, tail-zero performs the final increment and exits. Therefore
+
+    R3_out = 0,
+    R4_out = n,
+    gap_out = g+n+w,
+    spares_out = s+n,
+    origin_out = origin_in-w.
+
+These are exactly the original complete-loop effects on the admitted
+entry domain. The old loop terminates because each positive iteration
+decreases R3. The new loop terminates because its positive tail does the
+same, followed by one final zero tail. Each physical phase has a finite,
+nonnegative linear clock in its natural parameters. Their composition is
+finite for every natural n. No uniform finite bound on n is used.
+
+5. The exceptional borrowed increment
+
+The remaining literal R3-to-R4 transfer loop is at PC3334. Its source
+neighborhood is
+
+    3333: CI4 -> 3334
+    3334: CD3; positive -> 3335, zero -> 3337
+    3335: CI4 -> 3336
+    3336: jump -> 3334.
+
+The new physical contract at 3335 preserves every register and resource
+and jumps to 3333. Thus the already-existing increment at 3333 performs the
+increment that previously occurred at 3335. PC3336 is unreachable in this
+new phase graph.
+
+At each positive iteration the resulting arithmetic sequence remains one
+CD3 and one CI4. For initial values R3=n and R4=m at 3334, it exits3337
+with R3=0 and R4=m+n; gap grows by n and spares by n. This argument allows
+arbitrary m. No zero-destination condition is needed for this exception.
+If entry is instead at 3333, its one leading CI4 is preserved as well.
+
+No exterior source edge enters the interior of any of these 31 loops.
+The independent source checker reconstructs that fact from the literal
+binary-address graph. The borrow changes only its own interior control
+and does not introduce an entrance to another loop.
+
+6. Why the guards hold on every actual call
+
+The proof uses a source invariant at true outer entries, rather than
+conflating those entries with internal iteration heads. The source's 791
+disjoint closed decrement/increment loops are replaced temporarily by
+their exact complete register updates. This is an analysis graph; the
+machine's source bytes and addresses remain unchanged.
+
+The invariant uses numeric classes {0}, {1}, {2}, {3}, {4}, and {5,6,...}.
+The last class is unbounded. It is initialized at PC0 with R1=1 and all
+other registers zero. The independent checker reconstructs the binary
+source tree and every edge, checks all closed-loop patterns and ingress,
+then verifies initial inclusion and all 1,832 nonhalting abstract successor
+images. It contains 1,565 reachable outer vertices.
+
+At each of the 30 rotated loop entries, it proves R4=0, R1>0, and R7=0.
+Consequently the guarded contracts cover every actual call. The invariant
+does not need to hold at the internal tail, where R4 grows; the explicit
+tail induction supplies those interior facts. The exceptional borrow is
+proved for arbitrary R4.
+
+7. Complete physical coverage and composition
+
+There are 4,334 ordinary natural-input domains outside the replaced
+intervals, 150 guarded rotated-loop phase domains, and one borrowed-jump
+domain: 4,485 in total. Each ordinary CD instruction has both its positive
+and zero domain. The source's unique halting ordinary domain is included.
+All other ordinary registers are independently arbitrary naturals.
+
+The independent action checker reconstructs the domain set and every
+endpoint from the source. It checks every literal transition, every
+word-rotation identity, and all 20 one-unit pump laws before using their
+natural-number iteration. It records full head displacement and linear
+clock expressions. A second path exports raw physical computation and
+pump induction to the standalone Lean kernel, with independent endpoint
+definitions and arbitrary exterior tape rays beyond explicit blank margins.
+
+The exact all-blank startup reaches PC0 after 67,998 transitions, with
+R1=1, every other register zero, frame head -4, gap 55, and 30 zero spare
+fields. The boot check compares every marked tape cell with the claimed
+canonical frame. The fresh kernel replay also checks the complete blank
+run in contiguous, endpoint-matched segments.
+
+Combining startup, ordinary contracts, the 30 guarded loop inductions, and
+the exceptional borrowed increment simulates every finite source prefix.
+No admitted phase can get stuck or halt early. Therefore the 182-state
+table halts from blank tape exactly when the unchanged proof-enumeration
+source halts, and hence exactly when the 183-state baseline halts.
+
+The total whole-program composition is an explicit written argument
+supported by kernel-checked physical domains and independent source
+checks. This package does not assert a single end-to-end Lean theorem for
+that composition.
+
+8. Full AxCount and the inherited calibration boundary
+
+The reduction changes no axiom row, source formula, register meaning,
+proof-word construction, or starting enumeration counter. It therefore
+preserves the 183-state release's full internal counting calibration,
+including its existing proof qualifications.
+
+In that calibration the readback law (F(Fx))T=Fx, together with the proper
+range injection, yields T(n)=n for every internal Frege natural number.
+It is not merely a family checked separately for externally standard
+numerals. The uploaded FunctionNF/counting/NF interpretations supply the
+formal counting endpoint described in the inherited Calibration_Audit.
+
+The special designated full-chart construction and the entire numerical
+proof-enumeration comparison remain written components of the inherited
+argument. The uploaded interpretation modules were not rebuilt here with
+a complete Lean frontend and dependency closure. Fresh raw physical
+kernel checks do not change that status. See
+
+    reference/NF_AxCount_183/proof_connection/Calibration_Audit.txt
+    reference/NF_AxCount_183/reference/AxCount184/Staged_Counting_Calculus.md
+    reference/NF_AxCount_183/reference/AxCount184/Census_transfer.md
+
+for the exact inherited mathematical and formalization boundary.
+
+9. Discovery versus admission
+
+The successful discovery screen tested14,299 whole-arithmetic-body and
+blank-start fixtures. It allowed the two incoming edges of a deleted
+state to select different existing successors. This is how the two
+distinct phase changes above were found together.
+
+Those finite tests are search evidence only. The reduction's admission
+rests on the unbounded phase replay, inductive source guards, complete
+source-domain accounting, literal startup, and explicit loop induction.
+The exact rebuild ensures that the certified table is the table obtained
+by the two displayed changes and the deletion of d:39.

@@ -2,7 +2,27 @@
 
 Research notes and computational projects in geometry, linear algebra, automatic differentiation and formal verification.
 
-## NF, related theories and the 192-state machine
+## Latest NF-family machines
+
+**R. Gutin and E. Glazer — 25 November 2026**
+
+| Target theory | Working states | Literal table | Verification and scope |
+| --- | ---: | --- | --- |
+| NF | **173** | [NF_173.tm](nf-bb173/NF_173.tm) | [Portable certificates and proof scope](nf-bb173/) |
+| NF + full Rosser Axiom of Counting | **182** | [machine.tm](nf-axcount-bb182/machine.tm) | [Portable certificates and calibration audit](nf-axcount-bb182/) |
+| NF + full Cantorian Sets | **197** | [NF_CS_197.tm](nf-cs-bb197/NF_CS_197.tm) | [Phase certificate and inherited calibration](nf-cs-bb197/) |
+
+These are the smallest verified implementations in this repository's
+reduction series. The counts include blank-tape initialization and all
+implementation machinery; the terminal halt state is separate. Each
+release includes its original portable archive, exact hashes and
+publication replay evidence. Its README distinguishes implementation
+verification, inherited written theory calibrations and theory-internal
+independence claims.
+
+[Proposed Busy Beaver wiki page and exact insertion markup](wiki/).
+
+## Earlier NF machines and interpretation proofs
 
 [Browse the interpretability and equiconsistency proofs](nf-bb192/interpretations/) for NF, FunctionNF, CombNF, M, MAC, M+H and NFU + Infinity. The [theorem index](nf-bb192/SET-THEORY-PROOFS.md) identifies the statements and their formal scope.
 

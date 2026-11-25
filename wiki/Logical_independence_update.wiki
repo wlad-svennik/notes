@@ -1,0 +1,15 @@
+=== Recent NF-family constructions ===
+
+The latest machines in the R. Gutin and E. Glazer reduction series have the following state counts. See [[New Foundations consistency machines]] for the target theories, construction and verification scope.
+
+{| class="wikitable"
+! Target theory !! Working states !! Date !! Source and verification
+|-
+| NF || '''173''' || 25 November 2026 || [https://github.com/wlad-svennik/notes/tree/main/nf-bb173 Literal table and portable certificates]
+|-
+| NF + full Axiom of Counting || '''182''' || 25 November 2026 || [https://github.com/wlad-svennik/notes/tree/main/nf-axcount-bb182 Literal table, certificates and calibration audit]
+|-
+| NF + full Cantorian Sets || '''197''' || 24 November 2026 || [https://github.com/wlad-svennik/notes/tree/main/nf-cs-bb197 Literal table, phase certificate and calibration notes]
+|}
+
+The counts include the complete binary machines and blank-tape initialization, excluding the terminal halt state. The releases preserve the earlier refutation-search sources and distinguish the implementation certificates from their inherited written and formal logical calibrations. These construction records do not by themselves establish new exact-table PA or Zermelo transfer theorems.

@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-25",
+  "table_sha256": "948492f1d299acb09b0d3464c5de7ef6e5d510bc09398324a9610c65f52cbbf3",
+  "working_states": 197,
+  "binary_transition_rows": 394,
+  "initial_state": "k:64",
+  "blank_symbol": 0,
+  "external_halting_target": [
+    "halt"
+  ],
+  "all_working_states_graph_reachable": true,
+  "duplicate_rows": false,
+  "undefined_nonhalting_targets": false,
+  "independent_startup_steps": 72014,
+  "independent_startup_state": "d:0",
+  "independent_startup_head": -6,
+  "independent_startup_ones": 54
+}

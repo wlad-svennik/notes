@@ -1,0 +1,164 @@
+NF+AxCount machine: audit of the uploaded proof connection
+2026-11-25
+
+RESULT
+
+The upload supplies a formal first-order interpretation that replaces the
+184-state release's manuscript-only final passage from NFU+Infinity+Counting
+to pure NF+Counting. It does not, by itself, formalize the special chart that
+realizes the 184-state numerical axiomatisation, or the entire machine-to-proof
+enumeration argument.
+
+The exact new endpoint is:
+
+  SetTheory.nfuicInterpretsNFC : NFUIC interprets NFC
+
+in NFUCountInterp.lean, together with the reverse interpretation and the mutual
+interpretation nfuicNFCMutual. NFUSupply.lean also contains the earlier direct
+consistency implication consistent_nfc_of_consistent_nfuic and its iff theorem.
+
+NFInterpretsFnCount.lean supplies:
+
+  SetTheory.NFFn.nfcInterpretsFNC : NFC interprets FNFC
+
+FnCountNFU.lean supplies:
+
+  FNF.fncInterpretsNFUIC : FNFC interprets NFUIC
+  FNF.countChurch_iff_counting
+
+Thus counted FunctionNF and NF+full Rosser Counting are mutually interpretable
+using the supplied maps. The new CountingCalibration.lean states this composition
+explicitly, then connects the machine's readback and missing-range-point
+premises to that exact endpoint. The optional MachineBasisBridge.lean installs
+the inherited ArbitraryBooleanFNF structure on the original application and
+applies the new endpoint. These new adapter sources have not been freshly built.
+
+WHY THIS IS FULL COUNTING
+
+The input `gap` says that F restricted to im(F) omits one of that range's
+members. The readback equation is:
+
+  (F(Fx))T = Fx, for every x.
+
+The inherited JJ203Range argument, restated against the uploaded CountSet API
+in CountingCalibration.lean, makes d=im(F) into a strongly Cantorian set with
+an internally represented proper self-injection. The uploaded theorem
+FNF.T_eq_of_strong_dedekind proves T(n)=n for every internal Frege natural
+number; FNF.counting_of_T and FNF.countChurch_iff_counting identify this with
+Rosser Counting and the FunctionNF counting sentence. This does not merely
+check each externally standard numeral.
+
+THE TWO DIRECTIONS AND THEIR REMAINING OBLIGATIONS
+
+1. No numerical proof of the designated false goal implies Consistent(NFC).
+
+   The release's quotient construction supplies the extensional application,
+   K/B basis and variable tester. Four separating arguments give the arbitrary
+   Boolean basis on that same application. The release's algebra establishes
+   readback and a proper range map. The uploaded proof body now supplies the
+   full-counting-to-pure-NF consistency endpoint without the old v15 theorem
+   being left as an external manuscript premise.
+
+   The particular quotient, tester conversion and generated numerical emitter
+   are still inherited parts of the machine proof. The new adapter source
+   connects their explicit mathematical outputs; it is not an end-to-end
+   kernel replay of those constructions.
+
+2. Consistent(NFC) implies no numerical proof of the false goal.
+
+   The uploaded NFC-to-FNFC interpretation provides a counted function model.
+   However, the machine requires the additional designated equations
+   TT=F and FT=B, with T as its variable tester, while preserving the native
+   B law and the unconditional readback equation. The release's special
+   full-chart construction in Staged_Counting_Calculus.md builds those rows.
+   The uploaded NFC-to-FNFC theorem does not state those extra properties.
+   That chart construction remains a written mathematical obligation.
+
+3. The binary table detects exactly a numerical goal proof.
+
+   Physical trace/kernel certificates and blank startup concern the compiled
+   register program. Row soundness, row reachability, finite proof-word
+   construction and eventual occurrence in the integer enumeration are
+   distinct logical/source obligations. Census_transfer.md and the inherited
+   source_argument.md and MarkerProof.md give written arguments. The actual
+   184-to-183 source edit is only a register permutation; it preserves the
+   row order, formulas and control-flow tree. Its authenticating rebuild
+   therefore transports the existing indexed extraction argument directly.
+
+FRESH CHECK PERFORMED
+
+The eight proper-injection algebra theorems of the 184-state release were
+regenerated from lower/check_lower.py and independently replayed with the
+available Lean 4.35 paranoid kernel executable. It returned:
+
+  Lean default kernel accepts the solution
+
+The exact 71,715-byte export has SHA256:
+
+  9792d12b312da2effe5485031e3f925bd9e129132a1f56266b3883d0fff75cb9
+
+Its eight theorems are countFixK2, countBneT, countBTneT, countToutside,
+countInjection, countThirdIsT, countNoThreePreimages and countNotOnto.
+The algebra is parametric in the displayed application/K/B/tester/readback
+laws. Its kernel acceptance does not prove that a model of all those premises
+exists, and does not replace the written upper chart.
+
+WHAT WAS NOT REBUILT
+
+The uploaded archive contains source and earlier check reports. It does not
+contain the Lean frontend, the compiled Mathlib/Foundation dependency tree or
+the full exported dependency closure needed for a fresh build here. The
+workspace has a standalone paranoid kernel, but no lean/lake frontend or
+compiled FnCountTransfer/NFUCountInterp modules was found.
+
+The archived CountAudit output lists only propext, Classical.choice and
+Quot.sound for the counting interpretations and Church/Rosser equivalence.
+Its nanoda report says 12,408 declarations were accepted with those permitted
+axioms; its module kernel logs record successful checks. The separate
+2026-11-25 interpretation log records NFUCountInterp exit=0. These are supplied
+historical receipts, not fresh checks by this audit. The source inventory
+script records exact hashes and scans the local transitive imports for sorry,
+admit, sorryAx and extra axiom declarations without treating comments as code.
+
+CHANGING THE BLANK START FROM ENUMERATION COUNTER 3 TO 1
+
+The proposed 183-state backend reaches PC zero with enumeration counter 1
+and all eight other registers zero. Provided the source register permutation
+has been authenticated, the inherited enumeration proof applies.
+
+MarkerProof.md does not require the initial counter to be 3. It chooses the
+three-epoch synchronization window ending at n=P(K,z+1), with K greater than
+the starting epoch, and permits any fixed initial rank r0. The marker bound
+uses r0+(n+2)^2+1 and can always be met by increasing K. Every command has
+finitely many batches and decreases its remaining cursor at continuation;
+hence each preceding epoch terminates unless the machine has already halted.
+The fresh counter then advances through all sufficiently large integers.
+
+Starting at 1 therefore inserts two finite earlier epochs. Source soundness
+applies from the zero proof payload and is preserved by every emitted axiom,
+stack operation and matching detachment, so an earlier stop still witnesses
+a genuine numerical proof. If no earlier stop occurs, an arbitrarily late
+synchronizing window is eventually reached, exactly as for start 3.
+
+This is a written cofinal-enumeration transfer, independent of the physical
+boot certificate. It does not assert a freshly checked Lean theorem for the
+complete stream. The canonical PC-zero entry and zero scratch registers must
+be supplied by the new physical certificate; the counting theory calibration
+then retains the qualifications stated above.
+
+TARGETED REVIEW OF THE NEW KERNEL WRAPPER
+
+The source permutation maps old logical register zero to physical register
+one. Changing kernel_branches.py from runs[0] to runs[discover.COUNTER] in
+the cold-counter branch is therefore the required change, and the symbolic
+trace generator uses the same parameter. The check_all.py coverage formula
+also reads COUNTER_ROLE, while verify.py supplies COUNTER_ROLE=1. A stale
+register-zero exclusion was found in the optional check_persisted.py wrapper
+and reported to the compiler owner, who corrected it. This was a replay
+wrapper defect; the active check_all replay already used the correct index.
+
+The two new Lean adapter sources were reviewed against actual uploaded API
+declarations: interpretation composition order, the mutual interpretation r/l
+fields, the contravariant consistency transfer, countChurch_iff_counting and
+the definitional application of ArbitraryBoolean.fnStructure. No concrete
+type/API mismatch was found. This source review is not a compilation result.

@@ -1,0 +1,93 @@
+PURE NF 174 -> 173: INDEPENDENT VERIFICATION SCOPE
+R. Gutin and E. Glazer
+25 November 2026
+
+Identities
+----------
+174-state baseline table:
+67eab25b985bc0f49caee05ca236a030d1d1dd4aa751dabd7e845d975d8fea6a
+173-state candidate table:
+ca0c0924b4f4008b19fd2b63f5c07b244c4573ad338dcd5b8267cf2e7a02990a
+Both sources, unchanged byte for byte:
+ce0fb9873e0546d3c691c50ed7f1ec1f04729e5fc961bc6e24f825a35e1cb702
+Regenerated 173-state physical certificate:
+a586a379699827444c7571b141cb4ea86a472ac00b4d8e944050ea91cc51de2b
+Pinned standalone Lean reference kernel:
+cd9a6ddb5fbf8f649c789dc905236e1ddee9fb32a323c141a4e63478f72e47b6
+
+Independent source audit
+------------------------
+The literal two-target patch is independently reconstructed. It changes
+only d:163/read1 from d:39 to d:17, and d:79/read1 from d:39 to d:160.
+All writes and moves remain the same. The now unused d:39 rows are removed.
+The resulting table has 173 graph-reachable working states and 346 binary
+transition arms; halt is a separate terminal state and is not counted.
+
+The source still has 2,976 primitive leaves. An independent binary-tree CFG
+reconstruction identifies 694 disjoint closed arithmetic loops, and checks
+that no exterior control edge enters an affected loop interior. Natural
+abstract classes are {0},{1},{2},{3},{4}, and the unbounded class >=5.
+The fixed point has 1,369 reachable outer vertices and all 1,603 nonhalting
+successor images are explicitly checked for containment.
+
+At all 28 rotated transfers, outer entry has R4=0, R7=0 and R1>=1.
+The unique borrowed-increment transfer is headed at PC2913; its existing
+increment is PC2912, its changed no-op/jump is PC2914, and its old tail
+PC2915 is unreachable in the new phase graph. Both source-side endpoint
+specifications are checked against independent affine formulas for all
+3,932 domains. Every phase PC reachable in the overapproximated phase graph
+is covered (2,975 PCs).
+
+Independent physical audit
+--------------------------
+3,932 exact unbounded domains are checked: 3,791 ordinary instructions,
+56 entry cases, 28 deferred-increment cases, 56 tail cases, and one borrowed
+jump. The 20 one-unit pump laws are checked directly against the literal
+transition table before their natural-number iterations are used. The checker
+imports neither the phase producer nor its contracts.
+
+Inputs include independent arbitrary natural parameters for all relevant
+registers, gap extension and spare extension. Both infinite tape rays are
+compared by exact finite symbolic formulas. The audit accounts for frame
+origin, all register fields, head position, gap, spare supply and nonnegative
+finite clock. There is one expected halting domain. All 346 transition arms
+occur in the universal warm proofs; 235 also occur during blank startup.
+
+The baseline's older 7,808 certificate branches split into 3,905 ordinary
+natural-register domains and 3,903 special cold-frame domains. The new count
+is 3,905 + 28 - 1 = 3,932, after splitting each rotated loop's four ordinary
+cases into five phase cases and removing the borrowed loop's unused tail.
+Cold initialization is separately verified transition by transition from
+all blank tape to the actual initialized natural-register frame.
+
+Exact blank startup
+-------------------
+Both a separate Python simulator and the physical checker reproduce 67,998
+transitions to the full canonical PC0 tape, with head -4, gap 55, 30 zero spare
+fields, R1=1 and all eight other registers zero. The complete marked-cell set
+is compared, not merely a local pattern. Every startup transition is also
+covered by 34 fresh Lean-kernel proof segments with matching literal endpoint
+snapshots. See kernel/boot/verified.json for the receipt.
+
+Kernel replay and proof boundary
+--------------------------------
+Raw physical proof terms quantify over all eleven natural parameters and
+arbitrary exterior tape rays beyond explicit blank margins. They use only
+the supplied equality/natural-number prelude, definitions, computation and
+natural induction; there are no added axiom declarations. Every theorem is
+regenerated from the bound table, source and traces before checking.
+The complete physical replay receipt is kernel/phases.json when present.
+
+The mathematical composition uses finite termination of each ordinary phase
+and donor-decreasing induction for the rotated tails. It yields identical
+source-boundary effects, including gap/spare growth. The identical source
+and same initialized source counter then preserve the baseline's halting
+behavior. The arithmetic induction is supplied by the separate transfer
+workstream. No single end-to-end Lean theorem for the entire source/TM/NF
+calibration is asserted here.
+
+In particular, the inherited 174-state NF calibration still includes written
+standard-natural numerical enumeration and zero-row census arguments. Its
+abstract pure-NF calculus theorem is distinct from the literal implementation
+bridge. This new reduction imports no Axiom of Counting and changes no logical
+row or numerical proof-enumeration source instruction.

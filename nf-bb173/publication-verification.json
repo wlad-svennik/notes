@@ -1,0 +1,21 @@
+{
+  "status": "PASS_VERIFIED_173_STATE_IMPLEMENTATION_REDUCTION",
+  "working_states": 173,
+  "binary_rows": 346,
+  "halting_state_separate": true,
+  "table_sha256": "ca0c0924b4f4008b19fd2b63f5c07b244c4573ad338dcd5b8267cf2e7a02990a",
+  "source_sha256": "ce0fb9873e0546d3c691c50ed7f1ec1f04729e5fc961bc6e24f825a35e1cb702",
+  "source_unchanged": true,
+  "source_sites": 2976,
+  "physical_domains": 3932,
+  "pump_rules": 20,
+  "boot_steps": 67998,
+  "all_rows_covered": 346,
+  "rotated_loops": 28,
+  "inductive_source_images": 1603,
+  "trace_regenerated_byte_identically": true,
+  "arithmetic_kernel_theorems": 16,
+  "fresh_complete_physical_kernel_replay": false,
+  "kernel_checker_sha256": "cd9a6ddb5fbf8f649c789dc905236e1ddee9fb32a323c141a4e63478f72e47b6",
+  "scope": "Exact implementation reduction preserving the unchanged 174-state pure-NF source. Whole-program composition and inherited numerical enumeration/calibration retain their documented written-proof boundary. Generic loop arithmetic is freshly kernel-checked in this package."
+}

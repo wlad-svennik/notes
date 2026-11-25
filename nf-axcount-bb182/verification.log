@@ -1,0 +1,26 @@
+PASS: 4,485 unbounded physical domains, exact blank startup, all 364 rows, byte-identical trace regeneration.
+PASS: independent source CFG, all loop ingress restrictions, all 30 guards, and exact affine phase interface.
+PASS: 16 regenerated arithmetic induction theorems accepted by the Lean kernel.
+Regenerating and kernel-checking all physical phase proof terms...
+PASS: all 4,485 physical phase theorems freshly accepted.
+PASS: all 67,998 blank-start transitions freshly accepted in 34 matching kernel segments.
+{
+  "status": "PASS_VERIFIED_182_STATE_REDUCTION",
+  "working_states": 182,
+  "binary_rows": 364,
+  "halt_state_separate": true,
+  "source_sites_unchanged": 3397,
+  "table_sha256": "d99fe0163acc608b1bed679e9c72a941bd05d37c285e6db0a12cb111eca25e7b",
+  "source_sha256": "222bb33545c28307c2a358760ed9857f6897d43ef1bae010919a0abca7e2b8f4",
+  "trace_sha256": "524d0c803171630be065173596b3a199eca8d795b9acb58327345dfae993918f",
+  "physical_domains": 4485,
+  "pumps": 20,
+  "boot_steps": 67998,
+  "all_rows_covered": 364,
+  "rotated_loops": 30,
+  "source_inductive_images": 1832,
+  "arithmetic_kernel_theorems": 16,
+  "fresh_complete_physical_kernel_replay": true,
+  "kernel_checker_sha256": "cd9a6ddb5fbf8f649c789dc905236e1ddee9fb32a323c141a4e63478f72e47b6",
+  "scope": "Exact implementation reduction preserving the unchanged source and its inherited NF+full AxCount calibration; written whole-program composition and inherited full-chart/model comparison retain their documented scope."
+}

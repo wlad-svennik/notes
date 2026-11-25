@@ -1,0 +1,204 @@
+PURE NF: TRANSFER OF THE AXCOUNT LOOP SAVING, 174 TO 173 STATES
+R. Gutin and E. Glazer
+25 November 2026
+
+Scope and exact claim
+---------------------
+The new literal binary table is obtained from the accepted pure-NF174 table
+by the same two incoming-edge changes used in the NF+AxCount183-to-182
+reduction. No AxCount formula or counting axiom is introduced. The pure-NF
+source program remains byte-identical, including all 2,976 source addresses.
+
+Parent table SHA256:
+67eab25b985bc0f49caee05ca236a030d1d1dd4aa751dabd7e845d975d8fea6a
+New table SHA256:
+ca0c0924b4f4008b19fd2b63f5c07b244c4573ad338dcd5b8267cf2e7a02990a
+Unchanged source SHA256:
+ce0fb9873e0546d3c691c50ed7f1ec1f04729e5fc961bc6e24f825a35e1cb702
+
+The old transitions d:163/read1 and d:79/read1 both write1, move right,
+and enter d:39. Change the first successor to d:17 and the second to d:160.
+No surviving row then enters d:39. Delete its two rows. Every other row is
+unchanged. The resulting machine has 173 working states, 346 transition
+rows, a separate halt outcome, start k:74, blank symbol0, and two-way tape.
+
+This proof compares the two machines at complete source operations. The
+deleted control and its replacements are not asserted equal on arbitrary
+tapes or at every old primitive boundary.
+
+1. The unchanged source loops and their genuine entries
+-------------------------------------------------------
+Each affected ordinary loop has the exact literal form
+
+  h:   CD3; if R3=0 leave, otherwise decrease R3 and go to h+1
+  h+1: CI4
+  h+2: CC, returning to h
+
+The 28 rotated heads are
+281,427,453,558,636,792,1018,1096,1122,1227,1357,1513,1720,
+1798,1920,1946,2077,2148,2174,2253,2305,2408,2485,2537,
+2668,2799,2953,2973.
+
+There is one further R3-to-R4 loop, at h=2913, described below. Literal
+source-tree reconstruction verifies these are exactly all 29 loops of this
+form. No exterior source edge enters h+1 or h+2 for any of them. The last
+loop, h=2973, exits by wrapping to PC0; all others have unwrapped exits.
+
+For the source invariant, all 694 disjoint closed decrement/increment loops
+are replaced in an analysis graph by their exact complete arithmetic
+effects. For donor n and destination multiplicities a_r, a complete loop
+sets the donor to0 and adds a_r*n to every destination r. This follows by
+natural induction because every positive iteration decreases the donor.
+The donor is distinct from every destination; external interior ingress
+is excluded independently from the literal source graph.
+
+The abstract numeric classes are singleton0,1,2,3,4 and the whole interval
+{5,6,...}. The last class is not a sample value. The initial abstract state
+is PC0, R1=1, every other register0. The producer computes 1,369 reachable
+outer vertices. An independent checker verifies initial inclusion and all
+1,603 nonhalting successor images, plus all closed-loop and ingress facts.
+
+At each of the 28 rotated outer entries this proves
+
+  R1>0, R7=0, R4=0.
+
+At the exceptional loop it proves R1>0, R7=0, R4=1. The latter destination
+fact is stronger than needed. The independent physical borrow contracts
+admit arbitrary R4, including internal visits that no longer satisfy the
+old outer-entry description. No guard is transferred to an internal phase
+without a separate preservation argument.
+
+2. The physical contracts at each rotated loop
+------------------------------------------------
+The canonical frame is the established guard, source address, gap, header,
+nine unary fields in order R2,R8,R1,R4,R3,R7,R0,R5,R6, and spare zero
+fields. A register r has r+2 ones. Base gap is at least49, and there are
+at least24 spare zero fields. The nine register extensions, gap extension,
+and spare extension are independent unbounded natural exponents. A return
+to control d:0 is accepted only with the full matching tape, source address,
+head position and resources; internal visits to d:0 are not boundaries.
+
+Let w be1 for the last loop's terminal wrap and0 otherwise. The following
+five exact phase contracts have been generated for each literal head:
+
+  Entry zero h: R3=0,R4=m -> exit with both unchanged;
+    gap increases w, spares unchanged, frame origin decreases w.
+
+  Entry positive h: R3=n>0,R4=0 -> h+1 with R3=n-1,R4=0;
+    gap increases1, spares and origin unchanged.
+
+  Defer h+1: R3=d,R4=0 -> h+2 with every register/resource unchanged.
+
+  Tail positive h+2: R3=d>0,R4=m -> h+2 with R3=d-1,R4=m+1;
+    gap increases1, spares increase1, origin unchanged.
+
+  Tail zero h+2: R3=0,R4=m -> exit with R3=0,R4=m+1;
+    gap increases w, spares increase1, origin decreases w.
+
+All five preserve R1>0 and R7=0. All unnamed registers are independently
+arbitrary and preserved. The tail contracts allow arbitrary destination m;
+only entry-positive and defer require zero destination.
+
+These are physical universal proof obligations, not tests at finitely many
+register values. The trace producer emits explicit bit transitions and
+whole-word pumps. Separate replay reconstructs its own domains/endpoints
+and checks each transition and one-unit pump law. Pump iteration is then
+natural induction. The physical Lean-kernel replay is a separate receipt.
+
+3. Complete rotated-loop arithmetic and termination
+----------------------------------------------------
+If the original donor n=0, the entry-zero contract exits immediately and
+performs no increment. If n=k+1, entry-positive and defer reach the tail
+with donor k, destination0, gap G+1 and spares S.
+
+For each i with 0<=i<=k the tail invariant is
+
+  R3=k-i, R4=i, gap=G+1+i, spares=S+i.
+
+Each positive tail decreases the donor by1, increases destination/gap/
+spares by1, and retains all guards. After k such tails, the zero tail adds
+the one remaining destination increment and exits. The complete output is
+
+  R3=0, R4=n, gap=G+n+w, spares=S+n, origin=old_origin-w.
+
+Those are exactly the old loop's complete effects on every admitted input.
+The n=0 and n>0 cases cover all naturals. Each tail has finite physical
+clock and strictly decreases the positive donor; hence no new infinite
+internal execution or early halt is introduced. Resources never decrease.
+
+Sixteen freshly regenerated natural-induction proof terms establish the
+standard/rotated output identity, remaining donor, operation counts, and
+gap/spare expressions. They have been accepted by the standalone Lean
+kernel. Their unchanging generic export is bound afresh to all29 literal
+NF loop occurrences and144 exact phase/source formulas by check_source.py.
+
+4. The exceptional borrowed increment at PC2913
+------------------------------------------------
+The literal source neighborhood is
+
+  2912: CI4 ->2913
+  2913: CD3; positive ->2914, zero ->2916
+  2914: CI4 ->2915
+  2915: jump ->2913.
+
+The candidate's physical phase at2914 preserves every register/resource
+and jumps to2912. The unchanged increment at2912 then performs the increment
+formerly performed at2914. Thus one positive iteration remains one CD3 and
+one CI4. The old2915 control point is unreachable in the new phase graph.
+
+For arbitrary donor n and destination m at2913 the complete loop exits
+2916 with R3=0,R4=m+n, gap increased by n and spares increased by n.
+Termination follows from decreasing donor. If entry is at2912, its leading
+increment is preserved as well. The ordinary2912 increment is checked on
+all nine arbitrary natural register inputs, not only its old outer guard.
+
+5. Coverage, startup and whole-program composition
+---------------------------------------------------
+The physical domain inventory contains
+
+  3,791 ordinary domains outside the replaced intervals,
+    140 rotated-loop domains (28 times5), and
+      1 exceptional borrowed-jump domain,
+  for 3,932 universal domains in total.
+
+Every ordinary decrement outside the replaced intervals has its positive
+and zero domains. The original halt domain is included. The independent
+phase-interface audit checks every domain, exact endpoint, head shift,
+resource delta, and the unreachability of the discarded2915 phase.
+
+Exact blank replay reaches PC0 after67,998 transitions with R1=1, all other
+registers0, head-4, gap55 and30 spare fields. Every marked tape cell is
+compared against the canonical frame. This satisfies the universal frame
+and source-invariant premises above.
+
+At every outer source boundary, induction combines an unchanged ordinary
+primitive, an unaffected finite closed loop, a verified rotated loop, or
+the verified borrowed loop. The inductive source invariant supplies each
+entry guard. The complete register/resource effects match the unchanged
+source; the next outer boundary again satisfies that invariant. Universal
+phase correctness and donor decrease show that each such source operation
+is implemented in finite time and cannot halt elsewhere.
+
+Consequently the173-state machine halts from blank exactly when the
+unchanged pure-NF source halts, and therefore exactly when the174-state
+parent halts. Inheriting the parent's NF calibration gives the same
+halting-if-and-only-if-NF-inconsistent claim with the parent's existing
+qualification. This saving needs no AxCount axiom: only the shared machine
+architecture, ordinary natural-number arithmetic, and proved source guards.
+
+The whole-program composition in this document is a written proof supported
+by machine-checked physical phases, source invariants, exact startup and
+kernel-checked arithmetic. It is not a claim of one new end-to-end Lean
+theorem from the NF axioms to binary halting, and it does not upgrade any
+inherited written numerical-enumeration or model-calibration bridge.
+
+Replay inputs
+-------------
+direct173/ contains candidate.tm, unchanged source.sites.json and traces.gz.
+phase_producer/ reconstructs all physical phase certificates.
+outer_loops.py produces outer-invariant.json; check_outer_invariant.py is
+the separate literal CFG/image checker.
+arithmetic/ contains generic proof generation, fresh source binding and
+portable kernel replay. arithmetic-replay.json records this run's acceptance.
+Independent physical/source checkers and fresh physical/blank kernel
+receipts are supplied by the independent verification lane.

@@ -1,0 +1,56 @@
+{
+  "status": "source_invariant_and_startup_passed_physical_phase_proof_separate",
+  "table_sha256": "948492f1d299acb09b0d3464c5de7ef6e5d510bc09398324a9610c65f52cbbf3",
+  "primitive_source_sha256": "fdb3fde1f2690cdbf37e164ecf128f6f3d8d8a2a0f173e7de2bd8d4929affa6e",
+  "macro_source_sha256": "cccaeda909358991cb3a1f8882d97abcab8ab7bb3f8d503ec3030c475ba82ae8",
+  "checker_sha256": "1d64ecff87c6e42396a09c32bdd414f80bc9d49529b6c78b9396890fc5fad45b",
+  "primitive_sites": 4365,
+  "macro_sites": 4307,
+  "macro_count": 29,
+  "table_change": {
+    "states": 197,
+    "transition_arms": 394,
+    "exact_quotient_checked": true,
+    "deleted_state": "d:160",
+    "survivor": "d:39",
+    "survivor_1_arm_from": "d:160",
+    "start": "k:64"
+  },
+  "invariant": {
+    "invariant_sha256": "885c5527377d89a244f4bbef5689c4fea765dcd37ba852540df11131d9456f0f",
+    "threshold": 15,
+    "initial_included": true,
+    "inductive_nonhalt_edges": 5621,
+    "admitted_halt_edges": 1,
+    "reachable_pcs": 4299,
+    "natural_registers_inductive": true,
+    "macro_heads": 29,
+    "all_macro_R0_positive_R7_zero": true,
+    "ordinary_28_macro_R5_zero": true,
+    "exceptional_PC39_R6_zero": true
+  },
+  "source_control_edges_checked": 5634,
+  "interior_incoming_edges_checked": 58,
+  "startup": {
+    "steps": 72014,
+    "frame": {
+      "pc": 0,
+      "path": "0000",
+      "head": -6,
+      "header": 43,
+      "gap": 49,
+      "registers": [
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "zero_spares": 31
+    }
+  }
+}
